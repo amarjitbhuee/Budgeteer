@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //Jeff: added models variable
 var models = require('./models'); 
+//Ryan: added CORS
+var cors = require("cors");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,6 +18,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//Ryan: added app.use(cors())
+app.use(cors());
 
 //Jeff: added CORS code
 app.use(function(req, res, next) {
