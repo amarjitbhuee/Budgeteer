@@ -34,6 +34,11 @@ class Task extends React.Component {
     });
   };
 
+  deleteTask = (taskid) => {
+    let url = "http://localhost:3001/tasks/" + taskid;
+    axios.delete(url)
+    .then(response => this.getData());
+  };
 
   render() {
     return (
@@ -44,7 +49,9 @@ class Task extends React.Component {
         <ul>
           {this.state.tasks.map(p => (
             <li key={p.taskid}>
-              {p.name} : { p.complete ? "complete" : "not complete" } <button type="button" className="btn btn-success">Complete</button><button type="button" className="btn btn-danger">Delete</button>
+              {p.name} : { p.complete ? "complete" : "not complete" } 
+              <button type="button" className="btn btn-success">Complete</button>
+              <button type="button" className="btn btn-danger" onClick={() => this.deleteTask(p.id)}>Delete</button>
             </li>
           ))}
         </ul>
