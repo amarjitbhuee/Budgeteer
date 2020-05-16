@@ -4,7 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //Jeff: added models variable
+<<<<<<< HEAD
 var models = require('./models');
+=======
+var models = require('./models'); 
+//Ryan: added CORS
+>>>>>>> 5e846ce775b0a3e072fd3eee86f8445c9688b39d
 var cors = require("cors");
 
 var indexRouter = require('./routes/index');
@@ -17,7 +22,19 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+<<<<<<< HEAD
 app.use(cors());
+=======
+//Ryan: added app.use(cors())
+app.use(cors());
+
+//Jeff: added CORS code
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+>>>>>>> 5e846ce775b0a3e072fd3eee86f8445c9688b39d
 
 app.use(logger('dev'));
 app.use(express.json());
