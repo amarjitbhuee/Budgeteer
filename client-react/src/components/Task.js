@@ -34,18 +34,11 @@ class Task extends React.Component {
     });
   };
 
-<<<<<<< HEAD
-  deleteTask = (taskid) => {
-    let url = "http://localhost:3001/tasks/" + taskid;
-    axios.delete(url)
-    .then(response => this.getData());
-=======
   //Ryan: Added deleteTask
    deleteTask = (taskid) => {
       let url = "http://localhost:3001/tasks/" + taskid;
        axios.delete(url)
         .then(response => this.getData())
->>>>>>> 5e846ce775b0a3e072fd3eee86f8445c9688b39d
   };
 
   render() {
