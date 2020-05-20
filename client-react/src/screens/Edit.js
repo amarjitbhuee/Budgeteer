@@ -13,15 +13,20 @@ componentDidMount() {
     this.getTransaction();
   }
   getTransaction = () => {
-      let url = "http://localhost:3001/transactions"; 
-      axios.get(url).then(response => this.setState({ transactions: response.data}));
+    let url = "http://localhost:3001/transactions"; 
+    axios.get(url)
+      .then(response => this.setState({ transactions: response.data}));
   }
 
 render() {
     return (
       <div>
         <h1>Update Transaction</h1>
-        
+        {this.state.transactions.map(p => (
+          <div key={p.transactionid}>
+            {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
+          </div>
+        ))}
       </div>
     );
   }

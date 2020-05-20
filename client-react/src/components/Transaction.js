@@ -45,7 +45,8 @@ addTransaction = () => {
       });
   };
 
-//Jeff: ***Will this still be needed once we change from update to edit? 
+//Jeff: ***Will this still be needed once we change from update to edit?
+//Jeff ***May have to to move to edit screen 
 updateTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.put(url, {
