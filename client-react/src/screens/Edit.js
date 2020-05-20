@@ -21,11 +21,7 @@ render() {
     return (
       <div>
         <h1>Update Transaction</h1>
-        {this.state.transactions.map(p => (
-            <div>
-            {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-            </div>
-        ))}
+        
       </div>
     );
   }

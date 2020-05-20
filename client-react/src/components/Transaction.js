@@ -97,7 +97,7 @@ render() {
           {this.state.transactions.map(p => (
             <li key={p.transactionid}>
               {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-              <Link to={`/history/${p.id}`}><button type="button" className="btn btn-success">Edit</button></Link>
+              <Link to={`/edit/${p.id}`}><button type="button" className="btn btn-success">Edit</button></Link>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.id)}>Delete</button>
             </li>
           ))}

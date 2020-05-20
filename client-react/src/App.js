@@ -4,7 +4,7 @@ import "./App.css";
 //Jeff imported Update from screens
 import History from "./screens/History";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import UpdateItem from "./components/UpdateItem";  
+import Edit from "./screens/Edit";  
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Transaction} />
           <Route path="/history" exact component={History} />
-          <Route path="/history/:id" component={UpdateItem} />
+          <Route path="/edit/:id" component={Edit} />
         </Switch>
       </div>
     </Router>

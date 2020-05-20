@@ -15,9 +15,11 @@ router.get("/history", function (req, res, next) {
     .then(transactions => res.json(transactions));
 });
 
-//Jeff added find by pk !!!still working on it 
-router.get("/:id", function (req, res, next) {
-    models.Transaction.findByPk(transactionId).then(transaction => res.json(transaction));    
+//Jeff added find by pk !!!still working on it
+router.get("/history/:id", function (req, res, next) {
+    let transactionId = parseInt(req.params.id);
+    models.Transaction.findByPk(transactionId)
+    .then(transaction => res.json(transaction));    
 })
 
 router.post("/", function (req, res, next) {
