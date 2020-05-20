@@ -3,9 +3,22 @@ var router = express.Router();
 var models = require("../models");
 
 //AJ added routes
+//Jeff added to limit 5 for main page
 router.get("/", function (req, res, next) {
-    models.Transaction.findAll().then(transactions => res.json(transactions));
+    models.Transaction.findAll({limit: 10})
+    .then(transactions => res.json(transactions));
 });
+
+//Jeff added find all for history
+router.get("/history", function (req, res, next) {
+    models.Transaction.findAll()
+    .then(transactions => res.json(transactions));
+});
+
+//Jeff added find by pk !!!still working on it 
+router.get("/:id", function (req, res, next) {
+    models.Transaction.findByPk(transactionId).then(transaction => res.json(transaction));    
+})
 
 router.post("/", function (req, res, next) {
     let newTransaction = new models.Transaction();

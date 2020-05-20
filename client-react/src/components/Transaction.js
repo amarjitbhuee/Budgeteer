@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import '../transaction.min.css'
+import '../transaction.min.css'; 
+import { Link } from 'react-router-dom'; 
+
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
@@ -14,16 +16,13 @@ class Transaction extends React.Component {
 componentDidMount() {
     this.getData();
   }
+ 
+
 getData = () => {
-    // Java Spring Boot uses port 8080
-    //let url = "http://localhost:8080/tasks";
-
-    // C# dotnetcore uses port 5000
-    //let url = "http://localhost:5000/projects";
-
     // Express uses port 3001 (react uses 3000)
     let url = "http://localhost:3001/transactions";
-    axios.get(url).then(response => this.setState({ transactions: response.data }));
+    axios.get(url)
+      .then(response => this.setState({ transactions: response.data }));
   };
 addTransaction = () => {
     let url = "http://localhost:3001/transactions";
@@ -46,6 +45,7 @@ addTransaction = () => {
       });
   };
 
+//Jeff: ***Will this still be needed once we change from update to edit? 
 updateTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.put(url, {
@@ -70,7 +70,8 @@ deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.delete(url)
       .then(response => this.getData())
-  };
+};
+
 render() {
     return (
       <div>
@@ -91,16 +92,18 @@ render() {
 
 <input ref={this.amount} id="amount" placeholder="Amount" />
         <input ref={this.description} id="description" placeholder="Description" />
-        <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
+        <button type="button" className="btn btn-primary" onClick={ this.addTransaction }>add</button>
         <ul>
           {this.state.transactions.map(p => (
             <li key={p.transactionid}>
               {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-              <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(p.id)}>Update</button>
+              <Link to={`/history/${p.id}`}><button type="button" className="btn btn-success">Edit</button></Link>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.id)}>Delete</button>
             </li>
           ))}
         </ul>
+        <br />
+        <Link to={`/history`}>View All Transactions</Link>
       </div>
     );
   }
