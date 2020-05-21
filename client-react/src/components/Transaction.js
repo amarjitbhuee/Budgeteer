@@ -4,7 +4,8 @@ import '../transaction.min.css';
 // import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css"; 
+import { Link } from 'react-router-dom'; 
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -86,16 +87,14 @@ class Transaction extends React.Component {
         this.description.current.value = "";
       });
   };
-
-  deleteTransaction = (transactionid) => {
+deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.delete(url)
       .then(response => this.getData())
-  };
+};
 
-  render() {
+render() {
     return (
-
       <div>
         <h3>List of Transactions (React)</h3>
         <select ref={this.paymentType} id="paymentType">
@@ -118,13 +117,13 @@ class Transaction extends React.Component {
           {this.state.transactions.map(p => (
             <li key={p.transactionid}>
               {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-              {/* <Link to ={`/edit${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link> */}
-              <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button>
+              <Link to={`/edit/${p.id}`}><button type="button" className="btn btn-success">Edit</button></Link>
+              <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.id)}>Delete</button>
             </li>
           ))}
         </ul>
         <br />
-        {/* <Link to={`/history`}>View All Transactions</Link> */}
+        <Link to={`/history`}>View All Transactions</Link>
       </div>
     );
   }
