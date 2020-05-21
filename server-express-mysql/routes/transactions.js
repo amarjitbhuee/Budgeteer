@@ -8,23 +8,17 @@ router.get("/", function (req, res, next) {
     models.Transaction.findAll({
         limit:10,
         order:[
-            ['id', 'DESC']
+            ['transactionid', 'DESC']
         ]
     })
     .then(transactions => res.json(transactions));
 });
 
-<<<<<<< HEAD
-router.get("/:id", function (req, res, next) {
-    models.Transaction.findByPk(req.params.id).then(user => res.json(user));
-});
-
-=======
 //Jeff added find all for history
 router.get("/history", function (req, res, next) {
     models.Transaction.findAll({
         order:[
-            ['id', 'DESC']
+            ['transactionid', 'DESC']
         ]
     })
     .then(transactions => res.json(transactions));
@@ -37,7 +31,6 @@ router.get("/edit/:id", function (req, res, next) {
     .then(transaction => res.json(transaction));    
 })
 
->>>>>>> c4f20222fc2d14c5894baee5f7b99fe2ce21985f
 router.post("/", function (req, res, next) {
     let newTransaction = new models.Transaction();
     newTransaction.paymentType = req.body.paymentType;

@@ -1,6 +1,6 @@
 import React from "react";
 import Transaction from './components/Transaction';
-import User from './components/User';
+// import User from './components/User';
 import "./App.css";
 //Jeff imported Update from screens
 import History from "./screens/History";

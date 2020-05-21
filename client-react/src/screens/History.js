@@ -36,8 +36,8 @@ class History extends React.Component {
                     {this.state.transactions.map(p => (
                     <li key={p.transactionid}>
                         {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-                        <Link to={`/edit/${p.id}`}><button type="button" className="btn btn-success">Edit</button></Link>
-                        <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.id)}>Delete</button>
+                        <Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link>
+                        <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button>
                     </li>
                     ))}
                 </ul>
