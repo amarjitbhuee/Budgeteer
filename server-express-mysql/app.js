@@ -4,9 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //Jeff: added models variable
-
-var models = require('./models');
-
 var models = require('./models'); 
 //Ryan: added CORS
 var cors = require("cors");

@@ -7,6 +7,10 @@ router.get("/", function (req, res, next) {
     models.Transaction.findAll().then(transactions => res.json(transactions));
 });
 
+router.get("/:id", function (req, res, next) {
+    models.Transaction.findByPk(req.params.id).then(user => res.json(user));
+});
+
 router.post("/", function (req, res, next) {
     let newTransaction = new models.Transaction();
     newTransaction.paymentType = req.body.paymentType;
@@ -27,7 +31,7 @@ router.put("/:id", function (req, res, next) {
             description: req.body.description
         },
         {
-            where: { id: parseInt(req.params.id) }
+            where: { transactionid: parseInt(req.params.id) }
         }
     ).then(transaction => res.json(transaction));
 });

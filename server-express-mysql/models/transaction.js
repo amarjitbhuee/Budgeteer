@@ -4,10 +4,15 @@ module.exports = (sequelize, DataTypes) => {
   const Transaction = sequelize.define(
     "Transaction",
     {
-      id: {
+      transactionid: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: false
+      },
+      userid: {
+        type: DataTypes.INTEGER,
+        allowNull: true
       },
       paymentType: {
         type: DataTypes.STRING,
@@ -29,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       }
+      
     }, {}
     );
   Transaction.associate = function (models) {

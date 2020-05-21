@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import '../task.min.css'
+
 class Task extends React.Component {
   constructor(props) {
     super(props);
@@ -34,11 +35,17 @@ class Task extends React.Component {
     });
   };
 
+  completeTask = (taskid) => {
+    let url = "http://localhost:3001/tasks/" + taskid;
+    axios.put(url, { complete: true })
+      .then(response => this.getData())
+  }
+
   //Ryan: Added deleteTask
-   deleteTask = (taskid) => {
-      let url = "http://localhost:3001/tasks/" + taskid;
-       axios.delete(url)
-        .then(response => this.getData())
+  deleteTask = (taskid) => {
+    let url = "http://localhost:3001/tasks/" + taskid;
+    axios.delete(url)
+      .then(response => this.getData())
   };
 
   render() {
@@ -50,8 +57,8 @@ class Task extends React.Component {
         <ul>
           {this.state.tasks.map(p => (
             <li key={p.taskid}>
-              {p.name} : { p.complete ? "complete" : "not complete" } 
-              <button type="button" className="btn btn-success">Complete</button>
+              {p.name} : { p.complete ? "complete" : "not complete"}
+              <button type="button" className="btn btn-success" onClick={() => this.completeTask(p.id)}>Complete</button>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteTask(p.id)}>Delete</button>
             </li>
           ))}
