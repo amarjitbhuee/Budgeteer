@@ -3,6 +3,8 @@ var router = express.Router();
 //Jeff: added mysql variable and ran npm --save mysql
 var mysql = require('mysql2'); 
 
+
+
 //Jeff: added connection to database, ***IF IT DOESNT WORK: check your password for the workbench, and created budgetapp schema ;)
 var connection = mysql.createConnection({
   host: 'localhost', 

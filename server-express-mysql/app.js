@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 //Jeff: added models variable
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 var models = require('./models'); 
 //Ryan: added CORS
 var cors = require("cors");
@@ -14,6 +18,9 @@ var tasksRouter = require('./routes/tasks');
 var transactionsRouter = require('./routes/transactions');
 
 var app = express();
+
+// Exporting associations from models/index.js - Ryan
+var models = require('./models');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -64,4 +64,16 @@ router.delete("/:id", function (req, res, next) {
         .catch(err => res.status(400).send(err));
 });
 
+
+// Look up one app user and their account activity (findOne)
+// router.get('/users/:id', function (req, res, next) {
+//     models.users.findByPk(parseInt(req.params.id), {
+//         include: [{model: models.transaction}],
+//     })
+//     .then(userFound => {
+//         res.setHeader('Content-type', 'application/json');
+//         res.send(JSON.stringify(userFound));
+//     })
+//   });
+
 module.exports = router;

@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING,
         allowNull: false
+      },
+      userid: {
+        type: DataTypes.INTEGER,
+        allowNull: true
       }
       
     }, {}
