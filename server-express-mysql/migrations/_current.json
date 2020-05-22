@@ -36,7 +36,13 @@
                 "transactionid": {
                     "primaryKey": true,
                     "autoIncrement": true,
+                    "allowNull": false,
                     "field": "transactionid",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "userid": {
+                    "allowNull": true,
+                    "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "paymentType": {
@@ -63,11 +69,6 @@
                     "allowNull": false,
                     "field": "description",
                     "seqType": "Sequelize.STRING"
-                },
-                "userid": {
-                    "allowNull": true,
-                    "field": "userid",
-                    "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -126,5 +127,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 7
 }

@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true
       },
-      userid: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
       paymentType: {
         type: DataTypes.STRING,
         allowNull: false,

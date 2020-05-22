@@ -116,10 +116,15 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "transactionid": {
+                    "allowNull": true,
+                    "field": "transactionid",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 6
 }
