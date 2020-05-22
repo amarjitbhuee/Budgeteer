@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-// module.exports = function(models) {
-//     models.transaction.belongsToMany(models.users, 
-//         { 
-//             through: models.transaction,
-//             foreignKey: 'userid'
-//         });
-// }
-=======
 module.exports = function(models) {
     // models.users.hasMany(models.transaction, {
     //     foreignKey: 'transactionid'
@@ -29,4 +20,3 @@ module.exports = function(models) {
 //         });
 // }
 
->>>>>>> Stashed changes
