@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true
       },
+      userid: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
       paymentType: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,12 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-      userid: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      }
-      
+      },      
     }, {}
     );
   Transaction.associate = function (models) {
