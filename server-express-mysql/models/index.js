@@ -35,9 +35,13 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-// associations(db);
+associations(db);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+//without associations file
+// db.transaction.belongsTo(db.users);
+// db.users.hasMany(db.transaction);
 
 module.exports = db;

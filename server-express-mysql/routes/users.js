@@ -22,18 +22,38 @@ router.post("/", function (req, res, next) {
   newUser.lastname = req.body.lastname;
   newUser.username = req.body.username;
   newUser.save().then(users => res.json(users));
-})
+});
+  
+// if-else
+  // .spread(function (result, created) {
+  //   if (created) {
+  //       res.redirect('/actors');
+  //   } else {
+  //       res.send('This actor already exists.');
+  //   }
+  // });
 
-router.get("/:id/transactions", function (req, res, next) {
-  models.transactions
+
+router.get("/:id", function (req, res, next) {
+  models.users
   .findOne({
-    include: [{model: models.transactions}],
+    // include: [{model: models.transactions}],
     where: { userid: parseInt(req.params.id)}
   })
   .then(usersFound => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(usersFound));
   })
+});
+
+router.post("/:id/transactions", function (req, res, next) {
+  let newTransaction = new models.Transaction();
+  newTransaction.paymentType = req.body.paymentType;
+  newTransaction.date = req.body.date;
+  newTransaction.type = req.body.type;
+  newTransaction.amount = req.body.amount;
+  newTransaction.description = req.body.description;
+  newTransaction.save().then(transaction => res.json(transaction));
 });
 
 module.exports = router;

@@ -1,5 +1,27 @@
 {
     "tables": {
+        "sequelizemeta": {
+            "tableName": "sequelizemeta",
+            "schema": {
+                "name": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Tasks": {
             "tableName": "Tasks",
             "schema": {
@@ -30,13 +52,51 @@
             },
             "indexes": []
         },
+        "tasks": {
+            "tableName": "tasks",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": true,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "complete": {
+                    "allowNull": true,
+                    "field": "complete",
+                    "seqType": "Sequelize.INTEGER(1)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Transactions": {
             "tableName": "Transactions",
             "schema": {
                 "transactionid": {
                     "primaryKey": true,
                     "autoIncrement": true,
+                    "allowNull": false,
                     "field": "transactionid",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "userid": {
+                    "allowNull": true,
+                    "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "paymentType": {
@@ -64,11 +124,6 @@
                     "field": "description",
                     "seqType": "Sequelize.STRING"
                 },
-                "userid": {
-                    "allowNull": true,
-                    "field": "userid",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -82,13 +137,75 @@
             },
             "indexes": []
         },
+        "transactions": {
+            "tableName": "transactions",
+            "schema": {
+                "paymentType": {
+                    "allowNull": false,
+                    "field": "paymentType",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "date": {
+                    "allowNull": true,
+                    "field": "date",
+                    "seqType": "Sequelize.DATEONLY"
+                },
+                "type": {
+                    "allowNull": false,
+                    "field": "type",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "amount": {
+                    "allowNull": false,
+                    "field": "amount",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "description": {
+                    "allowNull": false,
+                    "field": "description",
+                    "seqType": "Sequelize.STRING(255)"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "transactionid": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "field": "transactionid",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "userid": {
+                    "allowNull": true,
+                    "field": "userid",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "userId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "users",
+                        "key": "userid"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "userId",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
         "users": {
             "tableName": "users",
             "schema": {
                 "userid": {
                     "allowNull": false,
                     "primaryKey": true,
-                    "autoIncrement": true,
                     "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -116,15 +233,10 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "transactionid": {
-                    "allowNull": true,
-                    "field": "transactionid",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 10
 }

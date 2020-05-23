@@ -1,23 +1,19 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('users', {
-    userid: {
+  return sequelize.define('tasks', {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    firstname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     },
-    lastname: {
-      type: DataTypes.STRING(45),
-      allowNull: false
-    },
-    username: {
-      type: DataTypes.STRING(45),
-      allowNull: false
+    complete: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -28,6 +24,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'users'
+    tableName: 'tasks'
   });
 };

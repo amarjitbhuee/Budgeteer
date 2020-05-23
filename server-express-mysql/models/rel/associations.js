@@ -1,10 +1,20 @@
 module.exports = function(models) {
     // models.users.hasMany(models.transaction, {
-    //     foreignKey: 'transactionid'
+    //     foreignKey: 'userid'
     // });
-    models.transaction.belongsTo(models.users, {
+    // users.hasMany(transaction, {as: 
+    //     'transactions', foreignKey: 'userid'
+    // });
+    models.transactions.belongsTo(models.users, {
         foreignKey: 'userId'
     });
+    
+    // models.transaction.hasMany(models.users, {
+    //     foreignKey: 'transactionid'
+    // });
+    // models.transaction.belongsTo(models.users, {
+    //     foreignKey: 'userId'
+    // });
 }
 
 // module.exports = function(models) {
