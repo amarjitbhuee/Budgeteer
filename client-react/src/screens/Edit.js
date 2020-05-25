@@ -55,15 +55,8 @@ class Edit extends React.Component {
       .then(response => {
         // refresh the data
         this.getTransaction();
-        // empty the input
-        this.paymentType.current.value = "Direct Deposit"
-        // eslint-disable-next-line
-        this.state.date = ""
-        this.type.current.value = "Income"
-        this.amount.current.value = ""
-        this.description.current.value = "";
       })
-      .catch.catch(err => console.log(err));
+      .catch(err => console.log(err));
   };
 
 render() {
@@ -75,8 +68,8 @@ render() {
         <p>Type: {this.state.transactions.type}</p>
         <p>Amount: ${this.state.transactions.amount}</p>
         <p>Description: {this.state.transactions.description}</p>
-        <select ref={this.paymentType} id="paymentType">
-          <option value="Select Payment Type">Select Payment Type</option>
+        <select ref={this.paymentType} id="paymentType" defaultValue={this.state.transactions.paymentType}>
+          <option value={this.state.transactions.paymenttype} selected>{this.state.transactions.paymentType}</option>
           <option value="null">-------------</option>
           <option value="Direct Deposit">Direct Deposit</option>
           <option value="Check">Check</option>
@@ -84,17 +77,17 @@ render() {
           <option value="Cash">Cash</option>
           <option value="Other">Other</option>
         </select>
-        <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" />
+        <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
         <select ref={this.type} id="type">
-          <option value="Select Type">Select Type</option>
+          <option value={this.state.transactions.type} selected>{this.state.transactions.type}</option>
           <option value="null">-------------</option>
           <option value="Income">Income</option>
           <option value="Expense">Expense</option>
           <option value="Savings">Savings</option>
         </select>
-    <input ref={this.amount} id="amount" placeholder="Amount" />
-        <input ref={this.description} id="description" placeholder="Description" />
-        <button type="button" className="btn btn-success" onClick={() => this.updateTransaction}>Update</button>
+    <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
+        <input ref={this.description} id="description" defaultValue={this.state.transactions.description} />
+        <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
       </div>
     );
   }
