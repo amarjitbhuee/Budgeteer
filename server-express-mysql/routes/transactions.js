@@ -24,12 +24,13 @@ router.get("/history", function (req, res, next) {
     .then(transactions => res.json(transactions));
 });
 
-//Jeff added find by pk !!!still working on it
+//Jeff added find by pk
+//Jeff - tested and works in postman by pulling up the selected ID
 router.get("/edit/:id", function (req, res, next) {
     let transactionId = parseInt(req.params.id);
     models.Transaction.findByPk(transactionId)
-    .then(transaction => res.json(transaction));    
-})
+    .then(transactions => res.json(transactions));  
+});
 
 router.post("/", function (req, res, next) {
     let newTransaction = new models.Transaction();
@@ -41,7 +42,8 @@ router.post("/", function (req, res, next) {
     newTransaction.save().then(transaction => res.json(transaction));
 });
 
-router.put("/:id", function (req, res, next) {
+//Jeff -tested and works in postman by udating a given ID. Update is aplied to main page and history
+router.put("/edit/:id", function (req, res, next) {
     models.Transaction.update(
         {
             paymentType: req.body.paymentType,

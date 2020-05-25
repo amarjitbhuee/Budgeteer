@@ -16,8 +16,6 @@ class History extends React.Component {
       this.getData();
     }
   getData = () => {
-  
-      // Express uses port 3001 (react uses 3000)
       let url = "http://localhost:3001/transactions/history";
       axios.get(url)
       .then(response => this.setState({ transactions: response.data }));
