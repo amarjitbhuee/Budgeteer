@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import '../user.min.css';
+import { Link } from 'react-router-dom';
 
 class User extends React.Component {
   constructor(props) {
@@ -16,20 +17,9 @@ class User extends React.Component {
   };
 
   getData = () => {
-    // Java Spring Boot uses port 8080
-    //let url = "http://localhost:8080/tasks";
-
-    // C# dotnetcore uses port 5000
-    //let url = "http://localhost:5000/projects";
-
     // Express uses port 3001 (react uses 3000)
     let url = "http://localhost:3001/users";
     axios.get(url).then(response => this.setState({ users: response.data }));
-  };
-
-  getTheData = (userid) => {
-    let url = "http://localhost:3001/users/" + userid;
-    axios.get(url).then(response => this.setState({ user: response.data }));
   };
 
   addUser = () => {
@@ -49,27 +39,10 @@ class User extends React.Component {
       });
   };
 
-  updateUser = (userid) => {
-    let url = "http://localhost:3001/users/" + userid;
-    axios.put(url, {
-      firstname: this.firstname.current.value,
-      lastname: this.lastname.date,
-      username: this.username.current.value,
-    })
-      .then(response => {
-        // refresh the data
-        this.getData();
-        // empty the input
-        this.firstname.current.value = ""
-        this.lastname.current.value = ""
-        this.username.current.value = ""
-      });
-  };
-
-  deleteTransaction = (userid) => {
+  deleteUser = (userid) => {
     let url = "http://localhost:3001/users/" + userid;
     axios.delete(url)
-      .then(response => this.getData())
+      .then(response => this.getData());
   };
 
   render() {
@@ -85,7 +58,7 @@ class User extends React.Component {
           {this.state.users.map(p => (
             <li key={p.userid}>
               {p.firstname} | { p.lastname} | { p.username}
-              <button type="button" className="btn btn-success" onClick={() => this.updateUser(p.userid)}>Update</button>
+              <Link to={`/edituser/${p.userid}`}><button type="button" className="btn btn-success">Edit</button></Link>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteUser(p.userid)}>Delete</button>
             </li>
           ))}

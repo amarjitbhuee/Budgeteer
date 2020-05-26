@@ -39,9 +39,6 @@ class Edit extends React.Component {
     .then(response => this.setState({ transactions: response.data }))
  };
 
- 
-  //Jeff: ***Will this still be needed once we change from update to edit?
-  //Jeff: ***May have to to move to edit screen 
   //Jeff: Moved from transaction.js  
   updateTransaction = () => {
     let id = this.props.match.params.transactionid
