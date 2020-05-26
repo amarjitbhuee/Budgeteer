@@ -11,6 +11,7 @@ import Edit from "./screens/Edit";
 //Jeff: added Current Balance  
 import CurrentBalance from "./components/CurrentBalance"
 import Header from "./components/Header"
+import GlorifiedCalculator from "./components/GlorifiedCalculator";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
         <hr/>
         <CurrentBalance />
+        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
+        <hr/>
+        <GlorifiedCalculator />
         {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
         <hr/>
         <Switch>
