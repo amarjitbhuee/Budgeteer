@@ -70,7 +70,7 @@ render() {
         <p>Amount: ${this.state.transactions.amount}</p>
         <p>Description: {this.state.transactions.description}</p>
         <select ref={this.paymentType} id="paymentType" defaultValue={this.state.transactions.paymentType}>
-          <option value={this.state.transactions.paymenttype} selected>{this.state.transactions.paymentType}</option>
+          <option value={this.state.transactions.paymentType} selected>{this.state.transactions.paymentType}</option>
           <option value="null">-------------</option>
           <option value="Direct Deposit">Direct Deposit</option>
           <option value="Check">Check</option>
