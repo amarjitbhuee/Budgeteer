@@ -9,9 +9,6 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 const associations = require('./rel/associations');
 
-// db.users.hasMany(db.transaction);
-// db.transaction.belongsTo(db.users);
-
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);

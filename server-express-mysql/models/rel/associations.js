@@ -5,16 +5,13 @@ module.exports = function(models) {
     // users.hasMany(transaction, {as: 
     //     'transactions', foreignKey: 'userid'
     // });
+    
     models.transactions.belongsTo(models.users, {
         foreignKey: 'userId'
     });
-    
-    // models.transaction.hasMany(models.users, {
-    //     foreignKey: 'transactionid'
-    // });
-    // models.transaction.belongsTo(models.users, {
-    //     foreignKey: 'userId'
-    // });
+    // models.users.hasMany(models.transaction, {
+    //         foreignKey: 'userid'
+    //     });
 }
 
 // module.exports = function(models) {

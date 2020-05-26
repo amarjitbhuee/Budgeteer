@@ -58,7 +58,7 @@
             "tableName": "transactions",
             "schema": {
                 "paymentType": {
-                    "allowNull": false,
+                    "allowNull": true,
                     "field": "paymentType",
                     "seqType": "Sequelize.STRING(255)"
                 },
@@ -95,11 +95,12 @@
                 "transactionid": {
                     "allowNull": false,
                     "primaryKey": true,
+                    "autoIncrement": true,
                     "field": "transactionid",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "userid": {
-                    "allowNull": true,
+                    "allowNull": false,
                     "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -123,6 +124,7 @@
                 "userid": {
                     "allowNull": false,
                     "primaryKey": true,
+                    "autoIncrement": true,
                     "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -155,5 +157,5 @@
             "indexes": []
         }
     },
-    "revision": 11
+    "revision": 15
 }
