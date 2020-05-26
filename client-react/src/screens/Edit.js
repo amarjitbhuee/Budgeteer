@@ -2,6 +2,7 @@ import React from "react";
 import '../transaction.min.css'; 
 import axios from "axios";
 import DatePicker from "react-datepicker";
+import { Link } from 'react-router-dom';
 
 class Edit extends React.Component {
   constructor(props) {
@@ -88,6 +89,10 @@ render() {
     <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
         <input ref={this.description} id="description" defaultValue={this.state.transactions.description} />
         <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
+        <br />
+        <Link to={`/`}>Home</Link><br />
+        <br />
+        <Link to={`/history`}>View All Transactions</Link>
       </div>
     );
   }

@@ -6,7 +6,7 @@ var models = require("../models");
 //Jeff added to limit 10 for main page
 router.get("/", function (req, res, next) {
     models.Transaction.findAll({
-        limit:10,
+        limit:3,
         order:[
             ['transactionid', 'DESC']
         ]
