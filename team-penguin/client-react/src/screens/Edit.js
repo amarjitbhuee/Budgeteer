@@ -33,8 +33,8 @@ class Edit extends React.Component {
 
   getTransaction = () => {
     //Jeff: Url connects properly without out manually inputing the transaction id
-    let id = this.props.match.params.transactionid;
-    let url = "http://localhost:3001/transactions/edit/" + id; 
+    let className = this.props.match.params.transactionid;
+    let url = "http://localhost:3001/transactions/edit/" + className; 
     axios.get(url)
     .then(response => this.setState({ transactions: response.data }))
  };
@@ -44,8 +44,8 @@ class Edit extends React.Component {
   //Jeff: ***May have to to move to edit screen 
   //Jeff: Moved from transaction.js  
   updateTransaction = () => {
-    let id = this.props.match.params.transactionid
-    let url = "http://localhost:3001/transactions/edit/" + id;
+    let className = this.props.match.params.transactionid
+    let url = "http://localhost:3001/transactions/edit/" + className;
     axios.put(url, {
       paymentType: this.paymentType.current.value,
       date: this.state.date,
@@ -69,8 +69,8 @@ render() {
         <p>Type: {this.state.transactions.type}</p>
         <p>Amount: ${this.state.transactions.amount}</p>
         <p>Description: {this.state.transactions.description}</p>
-        <select ref={this.paymentType} id="paymentType" defaultValue={this.state.transactions.paymentType}>
-          <option value={this.state.transactions.paymenttype} selected>{this.state.transactions.paymentType}</option>
+        <select ref={this.paymentType} className="paymentType" defaultValue={this.state.transactions.paymentType}>
+          <option value={this.state.transactions.paymenttype} defaultValue>{this.state.transactions.paymentType}</option>
           <option value="null">-------------</option>
           <option value="Direct Deposit">Direct Deposit</option>
           <option value="Check">Check</option>
@@ -79,14 +79,14 @@ render() {
           <option value="Other">Other</option>
         </select>
         <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
-        <select ref={this.type} id="type">
-          <option value={this.state.transactions.type} selected>{this.state.transactions.type}</option>
+        <select ref={this.type} className="type">
+          <option value={this.state.transactions.type} defaultValue>{this.state.transactions.type}</option>
           <option value="null">-------------</option>
           <option value="Income">Income</option>
           <option value="Expense">Expense</option>
           <option value="Savings">Savings</option>
         </select>
-    <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
+    <input ref={this.amount} className="amount" defaultValue={this.state.transactions.amount} />
         <input ref={this.description} id="description" defaultValue={this.state.transactions.description} />
         <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
         <br />
