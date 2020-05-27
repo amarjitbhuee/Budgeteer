@@ -84,7 +84,7 @@ render() {
         </select>
         <br />
         <label>Select Date: </label>
-        <DatePicker defaultvalue={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
+        <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
         <br />
         <label>Select Payment Type: </label>
         <select ref={this.type} className="type">
