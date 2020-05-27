@@ -71,7 +71,7 @@ render() {
         <p>Description: {this.state.transactions.description}</p>
         <hr />
         <label>Select Payment Type: </label>
-        <select ref={this.paymentType} id="paymentType" defaultValue={this.state.transactions.paymentType}>
+        <select ref={this.paymentType} className="paymentType" defaultValue={this.state.transactions.paymentType}>
           <optgroup label="Payment Type:">
             <option value={this.state.transactions.paymenttype} defaultValue>{this.state.transactions.paymentType}</option>
             <option value="null">-------------</option>
@@ -84,10 +84,10 @@ render() {
         </select>
         <br />
         <label>Select Date: </label>
-        <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
+        <DatePicker defaultvalue={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
         <br />
         <label>Select Payment Type: </label>
-        <select ref={this.type} id="type">
+        <select ref={this.type} className="type">
           <optgroup label="Type:">
             <option value={this.state.transactions.type} defaultValue>{this.state.transactions.type}</option>
             <option value="null">-------------</option>
@@ -98,10 +98,10 @@ render() {
         </select>
         <br />
         <label>Enter Amount: </label>
-        <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
+        <input ref={this.amount} className="amount" defaultValue={this.state.transactions.amount} />
         <br />
         <label>Enter Description: </label>
-        <input ref={this.description} id="description" defaultValue={this.state.transactions.description} />
+        <input ref={this.description} className="description" defaultValue={this.state.transactions.description} />
         <br />
         <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
         <br />
