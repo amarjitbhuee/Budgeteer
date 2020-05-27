@@ -69,25 +69,40 @@ render() {
         <p>Type: {this.state.transactions.type}</p>
         <p>Amount: ${this.state.transactions.amount}</p>
         <p>Description: {this.state.transactions.description}</p>
+        <hr />
+        <label>Select Payment Type: </label>
         <select ref={this.paymentType} id="paymentType" defaultValue={this.state.transactions.paymentType}>
-          <option value={this.state.transactions.paymenttype} selected>{this.state.transactions.paymentType}</option>
-          <option value="null">-------------</option>
-          <option value="Direct Deposit">Direct Deposit</option>
-          <option value="Check">Check</option>
-          <option value="Credit Card">Credit Card</option>
-          <option value="Cash">Cash</option>
-          <option value="Other">Other</option>
+          <optgroup label="Payment Type:">
+            <option value={this.state.transactions.paymenttype} defaultValue>{this.state.transactions.paymentType}</option>
+            <option value="null">-------------</option>
+            <option value="Direct Deposit">Direct Deposit</option>
+            <option value="Check">Check</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Cash">Cash</option>
+            <option value="Other">Other</option>
+          </optgroup>
         </select>
+        <br />
+        <label>Select Date: </label>
         <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} />
+        <br />
+        <label>Select Payment Type: </label>
         <select ref={this.type} id="type">
-          <option value={this.state.transactions.type} selected>{this.state.transactions.type}</option>
-          <option value="null">-------------</option>
-          <option value="Income">Income</option>
-          <option value="Expense">Expense</option>
-          <option value="Savings">Savings</option>
+          <optgroup label="Type:">
+            <option value={this.state.transactions.type} defaultValue>{this.state.transactions.type}</option>
+            <option value="null">-------------</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+            <option value="Savings">Savings</option>
+          </optgroup>
         </select>
-    <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
+        <br />
+        <label>Enter Amount: </label>
+        <input ref={this.amount} id="amount" defaultValue={this.state.transactions.amount} />
+        <br />
+        <label>Enter Description: </label>
         <input ref={this.description} id="description" defaultValue={this.state.transactions.description} />
+        <br />
         <button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
         <br />
         <Link to={`/`}>Home</Link><br />

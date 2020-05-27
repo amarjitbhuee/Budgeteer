@@ -2,8 +2,8 @@ import React from 'react'
 
 export const CurrentBalance = () => {
     return (
-        <div>
-            <h4>Your Current Balance: </h4>
+        <div id="currentBalance">
+            <h4>Your Current Balance:</h4>
         </div>
     )
 }
