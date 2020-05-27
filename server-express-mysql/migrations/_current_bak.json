@@ -99,6 +99,11 @@
                     "field": "transactionid",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "userid": {
+                    "allowNull": true,
+                    "field": "userid",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "userId": {
                     "allowNull": true,
                     "references": {
@@ -134,8 +139,13 @@
                     "seqType": "Sequelize.STRING(45)"
                 },
                 "username": {
+                    "unique": true,
                     "allowNull": false,
                     "field": "username",
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "password": {
+                    "field": "password",
                     "seqType": "Sequelize.STRING(45)"
                 },
                 "createdAt": {
@@ -152,5 +162,5 @@
             "indexes": []
         }
     },
-    "revision": 14
+    "revision": 16
 }

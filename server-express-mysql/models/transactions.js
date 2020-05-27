@@ -38,7 +38,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     userid: {
       type: DataTypes.INTEGER,
-      allowNull: true
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'userid'
+      }
     }
   }, {
     tableName: 'transactions'

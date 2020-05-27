@@ -1,14 +1,14 @@
 module.exports = function(models) {
-    // models.users.hasMany(models.transaction, {
-    //     foreignKey: 'userid'
-    // });
+    models.users.hasMany(models.transactions, {
+        foreignKey: 'userid'
+    });
     // users.hasMany(transaction, {as: 
     //     'transactions', foreignKey: 'userid'
     // });
-    
-    models.transactions.belongsTo(models.users, {
-        foreignKey: 'userId'
-    });
+
+    // models.transactions.belongsTo(models.users, {
+    //     foreignKey: 'userid'
+    // });
     // models.users.hasMany(models.transaction, {
     //         foreignKey: 'userid'
     //     });

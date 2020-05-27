@@ -5,20 +5,28 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * removeColumn "userid" from table "transactions"
+ * addColumn "email" to table "users"
  *
  **/
 
 var info = {
-    "revision": 13,
-    "name": "removed_userid_transactions",
-    "created": "2020-05-25T02:31:15.813Z",
+    "revision": 17,
+    "name": "users_added_email",
+    "created": "2020-05-26T21:32:42.180Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-    fn: "removeColumn",
-    params: ["transactions", "userid"]
+    fn: "addColumn",
+    params: [
+        "users",
+        "email",
+        {
+            "type": Sequelize.STRING,
+            "field": "email",
+            "unique": true
+        }
+    ]
 }];
 
 module.exports = {

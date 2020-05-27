@@ -15,67 +15,89 @@ router.get("/", function (req, res, next) {
     .then(users => res.json(users));
 });
 
-// Add users to the database without if-else
-// router.post("/", function (req, res, next) {
-//   let newUser = new models.users();
-//   newUser.firstname = req.body.firstname;
-//   newUser.lastname = req.body.lastname;
-//   newUser.username = req.body.username;
-//   newUser.save().then(users => res.json(users));
-// });
-
 // findOrCreate a new User
+// router.post('/', function (req, res, next) {
+//   models.users.findOrCreate({
+//     where: {
+//       firstname: req.body.firstname,
+//       lastname: req.body.lastname,
+//       username: req.body.username
+//     }
+//   }).spread(function(result, created){
+//     if (created) {
+//       res.redirect('/users/' + result.userid);
+//     } else {
+//       res.status(400);
+//       res.send('Username already exists.');
+//     }
+//   })
+// })
+
+// user signup
 router.post('/', function (req, res, next) {
   models.users.findOrCreate({
-    where: {
+    where: { username: req.body.username },
+    defaults: {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      username: req.body.username
+      email: req.body.email,
+      password: req.body.password
     }
-  }).spread(function(result, created){
+  }).spread(function (result, created) {
     if (created) {
-      res.redirect('/users/' + result.userid);
+      // with views
+      // res.send('User successfully created');
+      res.send("User created");
     } else {
       res.status(400);
-      res.send('Username already exists.');
+      res.send('That username already exist.');
     }
   })
 })
-  
+
 // findAll users and their transactions
-router.get('/transactions', function(req, res, next){
+router.get('/transactions', function (req, res, next) {
   models.users
-  .findAll({include: [{ model: models.transactions }]})
-  .then(usersFound => {
+    .findAll({ include: [{ model: models.transactions }] })
+    .then(usersFound => {
       res.setHeader('Content-Type', 'application/json');
       res.send(JSON.stringify(usersFound))
-  })
+    })
 })
 
 //findOne user and their transactions
 router.get("/:id", function (req, res, next) {
   models.users
-  .findOne({
-    // include: [{model: models.transactions}],
-    where: { userid: parseInt(req.params.id)}
-  })
-  .then(usersFound => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(usersFound));
-  })
+    .findOne({
+      // causes an error that transactions is not associated with users
+      // include: [{model: models.transactions}],
+      where: { userid: parseInt(req.params.id) }
+    })
+    .then(usersFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(usersFound));
+    })
 });
 
 // create new transaction
-router.post('/:id/transactions', function(req, res, next){
+router.post('/:id/transactions', function (req, res, next) {
   models.transactions
-  .create(req.body)
-  .then(newTransaction => {
-    res.setHeader(JSON.stringify(newTransaction));
-  })
-  .catch(err => {
-    res.status(400);
-    res.send(err.message);
-  })
+    .create({
+      userid: parseInt(req.params.id),
+      type: req.body.type,
+      amount: req.body.amount,
+      description: req.body.description,
+      date: req.body.date
+    })
+    .then(newTransaction => {
+      // res.setHeader(JSON.stringify(newTransaction));
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(newTransaction));
+    })
+    .catch(err => {
+      res.status(400);
+      res.send(err.message);
+    })
 })
 
 // router.post("/:id/transactions", function (req, res, next) {
@@ -89,28 +111,30 @@ router.post('/:id/transactions', function(req, res, next){
 // });
 
 // update user information
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function (req, res, next) {
   let userId = parseInt(req.params.id);
 
-  models.users.update(req.body, {where: {userid: userId}})
-  .then(result => res.redirect('/users/' + userId))
-  .catch(err => {
-    res.status(400);
-    res.send('There was a problem updating the user. Please check the user information.');
-  });
+  models.users.update(req.body, { where: { userid: userId } })
+    .then(result => res.redirect('/users/' + userId))
+    .catch(err => {
+      res.status(400);
+      res.send('There was a problem updating the user. Please check the user information.');
+    });
 });
 
 //delete
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', function (req, res, next) {
   let userId = parseInt(req.params.id);
 
   models.users
-  .destroy({where: {userid: userId}})
-  .then(result => res.redirect('/'))
-  .catch(err => {
-    res.status(400);
-    res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
-  })
+    .destroy({ where: { userid: userId } })
+    .then(result => res.redirect('/'))
+    .catch(err => {
+      res.status(400);
+      res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
+    })
 })
+
+
 
 module.exports = router;

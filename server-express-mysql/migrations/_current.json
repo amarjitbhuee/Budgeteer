@@ -100,7 +100,7 @@
                     "seqType": "Sequelize.INTEGER"
                 },
                 "userid": {
-                    "allowNull": false,
+                    "allowNull": true,
                     "field": "userid",
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -139,9 +139,19 @@
                     "seqType": "Sequelize.STRING(45)"
                 },
                 "username": {
+                    "unique": true,
                     "allowNull": false,
                     "field": "username",
                     "seqType": "Sequelize.STRING(45)"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING(45)"
+                },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -157,5 +167,5 @@
             "indexes": []
         }
     },
-    "revision": 15
+    "revision": 17
 }
