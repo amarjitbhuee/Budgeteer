@@ -30,7 +30,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={ Transaction } />
           <Route path="/history"  component={ History } />
-          <Route path="/edituser/:userid" component={ Edit } />
+          <Route path="/edit/:transactionid" component={ Edit } />
         </Switch>
       </div>
     </Router>
