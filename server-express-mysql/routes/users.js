@@ -15,24 +15,6 @@ router.get("/", function (req, res, next) {
     .then(users => res.json(users));
 });
 
-// findOrCreate a new User
-// router.post('/', function (req, res, next) {
-//   models.users.findOrCreate({
-//     where: {
-//       firstname: req.body.firstname,
-//       lastname: req.body.lastname,
-//       username: req.body.username
-//     }
-//   }).spread(function(result, created){
-//     if (created) {
-//       res.redirect('/users/' + result.userid);
-//     } else {
-//       res.status(400);
-//       res.send('Username already exists.');
-//     }
-//   })
-// })
-
 // user signup
 router.post('/', function (req, res, next) {
   models.users.findOrCreate({
@@ -47,7 +29,7 @@ router.post('/', function (req, res, next) {
     if (created) {
       // with views
       // res.send('User successfully created');
-      res.send("User created");
+      res.send("User created successfully.");
     } else {
       res.status(400);
       res.send('That username already exist.');
@@ -70,7 +52,7 @@ router.get("/:id", function (req, res, next) {
   models.users
     .findOne({
       // causes an error that transactions is not associated with users
-      // include: [{model: models.transactions}],
+      include: [{model: models.transactions}],
       where: { userid: parseInt(req.params.id) }
     })
     .then(usersFound => {
@@ -90,7 +72,6 @@ router.post('/:id/transactions', function (req, res, next) {
       date: req.body.date
     })
     .then(newTransaction => {
-      // res.setHeader(JSON.stringify(newTransaction));
       res.setHeader('Content-Type', 'application/json');
       res.send(JSON.stringify(newTransaction));
     })
