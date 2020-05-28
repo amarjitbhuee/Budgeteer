@@ -15,6 +15,9 @@ var transactionsRouter = require('./routes/transactions');
 
 var app = express();
 
+// Exporting associations from models/index.js - Ryan
+var models = require('./models');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -55,7 +58,8 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.render('error');
+  res.send("Error 500")
 });
 
 //Jeff: added data sync'd message
