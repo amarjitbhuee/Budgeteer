@@ -10,12 +10,14 @@ var op = Sequelize.Op;
 // });
 
 // Return all app users (findAll)
+// AJ confirmed working on Postman
 router.get("/", function (req, res, next) {
   models.users.findAll({})
     .then(users => res.json(users));
 });
 
 // user signup
+// AJ confirmed working on Postman
 router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
     where: { username: req.body.username },
@@ -37,6 +39,7 @@ router.post('/signup', function (req, res, next) {
 })
 
 // user login
+// AJ confirmed working on Postman
 router.post('/login', function(req, res, next) {
   models.users.findOne({
     where: {
@@ -54,6 +57,7 @@ router.post('/login', function(req, res, next) {
 });
 
 // create new transaction
+// AJ confirmed working on Postman
 router.post('/:id/transactions', function (req, res, next) {
   models.transactions
     .create({
@@ -74,6 +78,7 @@ router.post('/:id/transactions', function (req, res, next) {
 })
 
 // user profile
+// AJ confirmed working on Postman
 router.get('/profile/:id', function(req, res, next){
   models.users
   .findByPk(parseInt(req.params.id))
@@ -95,16 +100,17 @@ router.get('/profile/:id', function(req, res, next){
 })
 
 // findAll users and their transactions
-router.get('/transactions', function (req, res, next) {
-  models.users
-    .findAll({ include: [{ model: models.transactions }] })
-    .then(usersFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound))
-    })
-})
+// router.get('/transactions', function (req, res, next) {
+//   models.users
+//     .findAll({ include: [{ model: models.transactions }] })
+//     .then(usersFound => {
+//       res.setHeader('Content-Type', 'application/json');
+//       res.send(JSON.stringify(usersFound))
+//     })
+// })
 
 //findOne user and their transactions
+// AJ confirmed working on Postman
 router.get("/:id", function (req, res, next) {
   models.users
     .findOne({
@@ -129,6 +135,7 @@ router.get("/:id", function (req, res, next) {
 // });
 
 // update user information
+// AJ confirmed working on Postman
 router.put('/:id', function (req, res, next) {
   let userId = parseInt(req.params.id);
 
@@ -140,7 +147,30 @@ router.put('/:id', function (req, res, next) {
     });
 });
 
+// get user in update screen
+router.get("/edituser/:id", function (req, res, next) {
+  let userId = parseInt(req.params.id);
+  models.users.findByPk(userId)
+  .then(users => res.json(users));  
+});
+
+router.put("/edituser/:id", function (req, res, next) {
+  models.users.update(
+      {
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password
+      },
+      {
+          where: { userid: parseInt(req.params.id) }
+      }
+  ).then(user => res.json(user));
+});
+
 //delete
+//AJ confirmed working on Postman
 router.delete('/:id', function (req, res, next) {
   let userId = parseInt(req.params.id);
 

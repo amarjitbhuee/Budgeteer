@@ -38,6 +38,7 @@ class Transaction extends React.Component {
   addTransaction = () => {
     let url = "http://localhost:3001/transactions";
     axios.post(url, {
+      userid: this.userid.current.value,
       paymentType: this.paymentType.current.value,
       date: this.state.date,
       type: this.type.current.value,
@@ -67,6 +68,7 @@ render() {
     return (
       <div>
         <h3>List of Transactions (React)</h3>
+        <input ref={this.userid} id="userid" placeholder="user id" />
         <select ref={this.paymentType} id="paymentType">
           <option value="Select Payment Type">Select Payment Type</option>
           <option value="null">-------------</option>

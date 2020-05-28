@@ -1,11 +1,14 @@
 import React from "react";
 import axios from "axios";
 import '../user.min.css';
+import { Link } from 'react-router-dom';
 
 class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = { users: [] };
+    this.email = React.createRef();
+    this.password = React.createRef();
     this.firstname = React.createRef();
     this.lastname = React.createRef();
     this.username = React.createRef();
@@ -16,12 +19,6 @@ class User extends React.Component {
   };
 
   getData = () => {
-    // Java Spring Boot uses port 8080
-    //let url = "http://localhost:8080/tasks";
-
-    // C# dotnetcore uses port 5000
-    //let url = "http://localhost:5000/projects";
-
     // Express uses port 3001 (react uses 3000)
     let url = "http://localhost:3001/users";
     axios.get(url).then(response => this.setState({ users: response.data }));
@@ -33,11 +30,14 @@ class User extends React.Component {
   };
 
   addUser = () => {
-    let url = "http://localhost:3001/users";
+    let url = "http://localhost:3001/users/signup";
     axios.post(url, {
+      
       firstname: this.firstname.current.value,
       lastname: this.lastname.current.value,
-      username: this.username.current.value
+      username: this.username.current.value,
+      email: this.email.current.value,
+      password: this.password.current.value,
     })
       .then(response => {
         // refresh the data
@@ -80,16 +80,19 @@ class User extends React.Component {
         <input ref={this.firstname} id="firstname" placeholder="First Name" />
         <input ref={this.lastname} id="lastname" placeholder="Last Name" />
         <input ref={this.username} id="username" placeholder="Username" />
+        <input ref={this.password} id="password" placeholder="Password" />
+        <input ref={this.email} id="email" placeholder="Email" />
         <button type="button" className="btn btn-primary" onClick={this.addUser}>add</button>
         <ul>
           {this.state.users.map(p => (
             <li key={p.userid}>
-              {p.firstname} | { p.lastname} | { p.username}
-              <button type="button" className="btn btn-success" onClick={() => this.updateUser(p.userid)}>Update</button>
+              {p.firstname} | { p.lastname} | { p.username} | { p.password }
+              <Link to={`/edituser/${p.userid}`}><button type="button" className="btn btn-success">Edit</button></Link>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteUser(p.userid)}>Delete</button>
             </li>
           ))}
         </ul>
+        <Link to={`/transaction`}>View Transactions</Link>
       </div>
     );
   }
