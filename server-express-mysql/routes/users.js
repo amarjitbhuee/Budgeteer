@@ -16,7 +16,7 @@ router.get("/", function (req, res, next) {
 });
 
 // user signup
-router.post('/', function (req, res, next) {
+router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
     where: { username: req.body.username },
     defaults: {
@@ -27,12 +27,69 @@ router.post('/', function (req, res, next) {
     }
   }).spread(function (result, created) {
     if (created) {
-      // with views
-      // res.send('User successfully created');
       res.send("User created successfully.");
+      // res.redirect('login');
     } else {
       res.status(400);
       res.send('That username already exist.');
+    }
+  })
+})
+
+// user login
+router.post('/login', function(req, res, next) {
+  models.users.findOne({
+    where: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  }).then(user => {
+    if (user) {
+      res.send('Login successful.');
+      // res.redirect('/' + user.userid + '/transactions' );
+    } else {
+      res.send('Invalid login.');
+    }
+  })
+});
+
+// create new transaction
+router.post('/:id/transactions', function (req, res, next) {
+  models.transactions
+    .create({
+      userid: parseInt(req.params.id),
+      type: req.body.type,
+      amount: req.body.amount,
+      description: req.body.description,
+      date: req.body.date
+    })
+    .then(newTransaction => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(newTransaction));
+    })
+    .catch(err => {
+      res.status(400);
+      res.send(err.message);
+    })
+})
+
+// user profile
+router.get('/profile/:id', function(req, res, next){
+  models.users
+  .findByPk(parseInt(req.params.id))
+  .then(user => {
+    if(user){
+      // res.render('profile', {
+      //   firstname: user.firstname,
+      //   lastname: user.lastname,
+      //   email: user.email,
+      //   username: user.username
+    // })
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(user));
+      
+    } else {
+      res.send('User not found.');
     }
   })
 })
@@ -60,26 +117,6 @@ router.get("/:id", function (req, res, next) {
       res.send(JSON.stringify(usersFound));
     })
 });
-
-// create new transaction
-router.post('/:id/transactions', function (req, res, next) {
-  models.transactions
-    .create({
-      userid: parseInt(req.params.id),
-      type: req.body.type,
-      amount: req.body.amount,
-      description: req.body.description,
-      date: req.body.date
-    })
-    .then(newTransaction => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(newTransaction));
-    })
-    .catch(err => {
-      res.status(400);
-      res.send(err.message);
-    })
-})
 
 // router.post("/:id/transactions", function (req, res, next) {
 //   let newTransaction = new models.transactions();
