@@ -21,18 +21,14 @@ class User extends React.Component {
   getData = () => {
     // Express uses port 3001 (react uses 3000)
     let url = "http://localhost:3001/users";
-    axios.get(url).then(response => this.setState({ users: response.data }));
-  };
-
-  getTheData = (userid) => {
-    let url = "http://localhost:3001/users/" + userid;
-    axios.get(url).then(response => this.setState({ user: response.data }));
+    axios.get(url)
+      .then(response => this.setState({ users: response.data }));
   };
 
   addUser = () => {
     let url = "http://localhost:3001/users/signup";
     axios.post(url, {
-      
+
       firstname: this.firstname.current.value,
       lastname: this.lastname.current.value,
       username: this.username.current.value,
@@ -46,6 +42,8 @@ class User extends React.Component {
         this.firstname.current.value = ""
         this.lastname.current.value = ""
         this.username.current.value = ""
+        this.email.current.value = ""
+        this.password.current.value = ""
       });
   };
 
@@ -55,6 +53,8 @@ class User extends React.Component {
       firstname: this.firstname.current.value,
       lastname: this.lastname.date,
       username: this.username.current.value,
+      email: this.email.current.value,
+      password: this.password.current.value
     })
       .then(response => {
         // refresh the data
@@ -63,10 +63,12 @@ class User extends React.Component {
         this.firstname.current.value = ""
         this.lastname.current.value = ""
         this.username.current.value = ""
+        this.email.current.value = ""
+        this.password.current.value = ""
       });
   };
 
-  deleteTransaction = (userid) => {
+  deleteUser = (userid) => {
     let url = "http://localhost:3001/users/" + userid;
     axios.delete(url)
       .then(response => this.getData())
@@ -86,7 +88,7 @@ class User extends React.Component {
         <ul>
           {this.state.users.map(p => (
             <li key={p.userid}>
-              {p.firstname} | { p.lastname} | { p.username} | { p.password }
+              {p.firstname} | { p.lastname} | { p.username} | { p.password}
               <Link to={`/edituser/${p.userid}`}><button type="button" className="btn btn-success">Edit</button></Link>
               <button type="button" className="btn btn-danger" onClick={() => this.deleteUser(p.userid)}>Delete</button>
             </li>

@@ -55,6 +55,7 @@ class Transaction extends React.Component {
         this.type.current.value = "Income"
         this.amount.current.value = ""
         this.description.current.value = "";
+        this.userid.current.value = "";
       });
   };
 

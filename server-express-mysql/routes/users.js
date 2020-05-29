@@ -173,10 +173,10 @@ router.put("/edituser/:id", function (req, res, next) {
 //AJ confirmed working on Postman
 router.delete('/:id', function (req, res, next) {
   let userId = parseInt(req.params.id);
-
-  models.users
-    .destroy({ where: { userid: userId } })
-    .then(result => res.redirect('/'))
+  models.users.findByPk(userId)
+    // .destroy({ where: { userid: userId } })
+    .then(users => users.destroy())
+    .then(() => res.send({ userId }))
     .catch(err => {
       res.status(400);
       res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
