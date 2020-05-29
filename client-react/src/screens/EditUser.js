@@ -10,6 +10,9 @@ class EditUser extends React.Component {
         this.state = {
             users: []
         };
+        this.userid = React.createRef();
+        this.email = React.createRef();
+        this.password = React.createRef();
         this.firstname = React.createRef();
         this.lastname = React.createRef();
         this.username = React.createRef();
@@ -22,16 +25,18 @@ class EditUser extends React.Component {
 
     getUser = () => {
         //AJ: Url connects properly without out manually inputing the transaction id
-        let id = this.props.match.params.userid;
-        let url = "http://localhost:3001/users/edituser/" + id;
+        let className = this.props.match.params.userid;
+        let url = "http://localhost:3001/users/edituser/" + className;
         axios.get(url)
             .then(response => this.setState({ users: response.data }))
     };
 
     updateUser = () => {
-        let id = this.props.match.params.userid
-        let url = "http://localhost:3001/users/edituser/" + id;
+        let className = this.props.match.params.userid
+        let url = "http://localhost:3001/users/edituser/" + className;
         axios.put(url, {
+            email: this.email.current.value,
+            password: this.password.current.value,
             firstname: this.firstname.current.value,
             lastname: this.lastname.current.value,
             username: this.username.current.value,
@@ -45,20 +50,37 @@ class EditUser extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Update User</h3>
-                <p>First Name: {this.state.users.firstname}</p>
-                <p>Last Name: {this.state.users.lastname} </p>
-                <p>Username: {this.state.users.username}</p>
-                <input ref={this.firstname} id="firstname" defaultValue={this.state.users.firstname} />
-                <input ref={this.lastname} id="lastname" defaultValue={this.state.users.lastname} />
-                <input ref={this.username} id="username" defaultValue={this.state.users.username} />
-                <button type="button" className="btn btn-success" onClick={() => this.updateUser(this.userid)}>Update</button>
-                <br />
-                <Link to={`/`}>Home</Link><br />
-            </div>
+          <div>
+            <h3>Update User</h3>
+            <p>First Name: {this.state.users.firstname}</p>
+            <p>Last Name: {this.state.users.lastname} </p>
+            <p>Username: {this.state.users.username}</p>
+            <p>Email: {this.state.users.email}</p>
+            <p>Password: {this.state.users.password}</p>
+            <hr />
+            <label>First Name: </label>
+            <input ref={this.firstname} className="firstname" defaultValue={this.state.users.firstname} />
+            <br />
+            <label>Last Name: </label>
+            <input ref={this.lastname} className="lastname" defaultValue={this.state.users.lastname} />
+            <br />
+            <label>Username: </label>
+            <input ref={this.username} className="username" defaultValue={this.state.users.username} />
+            <br />
+            <label>Email: </label>
+            <input ref={this.email} className="email" defaultValue={this.state.users.email} />
+            <br />
+            <label>Password: </label>
+            <input ref={this.password} className="password" defaultValue={this.state.users.password} />
+            <br />
+            <button type="button" className="btn btn-success" onClick={() => this.updateUser(this.userid)}>Update</button>
+            <br />
+            <Link to={`/`}>View All Users</Link><br />
+            <br />
+            <Link to={`/history`}>View All Transactions</Link>
+          </div>
         );
-    }
+      }
 }
 
 export default EditUser;

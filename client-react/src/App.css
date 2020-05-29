@@ -1,3 +1,13 @@
 body {
+    background-image: url(./assets/img/Background_Image.jpg); 
+    background-size: 2320px;
+    /* background-position-y: -800px;*/
+    background-position-x: -400px;
+    background-position: fixed;  
+    background-repeat: no-repeat;
     background-color: lightblue;
+}
+
+.history {
+    color: blue; 
 }
