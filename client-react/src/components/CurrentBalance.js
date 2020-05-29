@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-
-export const CurrentBalance = () => {
+export const CurrentBalance = (props) => {
     return (
         <div>
-            <h4>Your Current Balance: </h4> 
+            <h1>Your Current Balance: $</h1>
         </div>
     )
 }
