@@ -89,13 +89,8 @@ render() {
     console.log('Rendered!')
     return (
       <div>
-<<<<<<< HEAD
         <h3 className="history">Transaction History</h3>
         <h3>Current Balance: ${this.state.currentBalance}</h3>
-=======
-        <h3>List of Transactions (React)</h3>
-        <input ref={this.userid} id="userid" placeholder="user id" />
->>>>>>> f00d84474fffb90f9cb250c67b1f163dd615c1d8
         <select ref={this.paymentType} id="paymentType">
           <option value="Select Payment Type">Select Payment Type</option>
           <option value="null">-------------</option>
