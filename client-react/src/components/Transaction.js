@@ -8,7 +8,11 @@ import '../transaction.min.css';
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { transactions: [] };
+    this.state = { 
+      transactions: [],
+      currentBalance: 0,
+      addAmount: 0 
+     };
     this.userid = React.createRef();
     this.paymentType = React.createRef();
     this.date = React.createRef();
@@ -47,6 +51,7 @@ class Transaction extends React.Component {
       .then(response => {
         // refresh the data
         this.getData();
+        this.increment();
         // empty the input
         this.paymentType.current.value = "Direct Deposit"
         // eslint-disable-next-line
@@ -55,7 +60,13 @@ class Transaction extends React.Component {
         this.amount.current.value = ""
         this.description.current.value = "";
       });
-  };
+    };
+
+    increment() {
+      this.setState({
+        currentBalance: this.state.currentBalance + parseInt(this.state.addAmount)
+      })
+    };
 
   deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
@@ -66,7 +77,8 @@ class Transaction extends React.Component {
 render() {
     return (
       <div>
-        <h3>List of Transactions (React)</h3>
+        <h3 className="addTransaction">Add Transaction</h3>
+        <h5>Your Balance Has Been Modified By: ${this.state.currentBalance}</h5>
         <select ref={this.paymentType} id="paymentType">
           <option value="Select Payment Type">Select Payment Type</option>
           <option value="null">-------------</option>
@@ -84,7 +96,7 @@ render() {
           <option value="Expense">Expense</option>
           <option value="Savings">Savings</option>
         </select>
-        <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" />
+        <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value})} />
         <input ref={this.description} id="description" placeholder="Description" />
         <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
         <ul>
