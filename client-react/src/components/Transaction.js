@@ -51,6 +51,7 @@ class Transaction extends React.Component {
   addTransaction = () => {
     let url = "http://localhost:3001/transactions";
     axios.post(url, {
+      userid: this.userid.current.value,
       paymentType: this.paymentType.current.value,
       date: this.state.date,
       type: this.type.current.value,
@@ -68,6 +69,7 @@ class Transaction extends React.Component {
         this.type.current.value = "Income"
         this.amount.current.value = ""
         this.description.current.value = "";
+        this.userid.current.value = "";
       });
     };
 
@@ -87,8 +89,13 @@ render() {
     console.log('Rendered!')
     return (
       <div>
+<<<<<<< HEAD
         <h3 className="history">Transaction History</h3>
         <h3>Current Balance: ${this.state.currentBalance}</h3>
+=======
+        <h3>List of Transactions (React)</h3>
+        <input ref={this.userid} id="userid" placeholder="user id" />
+>>>>>>> f00d84474fffb90f9cb250c67b1f163dd615c1d8
         <select ref={this.paymentType} id="paymentType">
           <option value="Select Payment Type">Select Payment Type</option>
           <option value="null">-------------</option>
