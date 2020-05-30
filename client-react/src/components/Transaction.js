@@ -1,14 +1,14 @@
 import React from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"; 
+import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
-import '../transaction.min.css'; 
+import '../transaction.min.css';
 
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       transactions: [],
       currentBalance: 0,
       addAmount: 0
@@ -28,7 +28,7 @@ class Transaction extends React.Component {
     });
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log('componentWillMount');
   }
 
@@ -71,13 +71,13 @@ class Transaction extends React.Component {
         this.description.current.value = "";
         this.userid.current.value = "";
       });
-    };
+  };
 
-    increment() {
-      this.setState({
-        currentBalance: this.state.currentBalance + parseInt(this.state.addAmount)
-      })
-    };
+  increment() {
+    this.setState({
+      currentBalance: this.state.currentBalance + parseInt(this.state.addAmount)
+    })
+  };
 
   deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
@@ -85,7 +85,7 @@ class Transaction extends React.Component {
       .then(response => this.getData())
   };
 
-render() {
+  render() {
     console.log('Rendered!')
     return (
       <div>
@@ -108,7 +108,7 @@ render() {
           <option value="Expense">Expense</option>
           <option value="Savings">Savings</option>
         </select>
-        <input ref={this.amount} className="amount" placeholder="$ Dollar Amount"type="number" onChange={event => this.setState({ addAmount: event.target.value })}/>
+        <input ref={this.amount} className="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value })} />
         <input ref={this.description} id="description" placeholder="Description" />
         <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
         <ul>
