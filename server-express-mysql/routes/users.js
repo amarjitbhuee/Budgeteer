@@ -106,21 +106,6 @@ router.get('/logout', function (req, res, next) {
   res.redirect('login')
 });
 
-// Test users/:id route. Not needed.
-// router.get('/:id', function (req, res, next) {
-//   models.users.findByPk(parseInt(req.params.id))
-//     .then(user => {
-//       if (user) {
-//         res.render('user', {
-//           firstname: user.firstname,
-//           lastname: user.lastname
-//         });
-//       } else {
-//         res.send('User not found');
-//       }
-//     });
-// });
-
 // create new transaction with user secured route
 router.post('/transactions', function (req, res, next) {
   models.transactions
@@ -219,6 +204,21 @@ router.delete('/', function (req, res, next) {
 //       res.setHeader('Content-Type', 'application/json');
 //       res.send(JSON.stringify(usersFound));
 //     })
+// });
+
+// Test users/:id route. Not needed.
+// router.get('/:id', function (req, res, next) {
+//   models.users.findByPk(parseInt(req.params.id))
+//     .then(user => {
+//       if (user) {
+//         res.render('user', {
+//           firstname: user.firstname,
+//           lastname: user.lastname
+//         });
+//       } else {
+//         res.send('User not found');
+//       }
+//     });
 // });
 
 module.exports = router;
