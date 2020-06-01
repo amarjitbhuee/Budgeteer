@@ -66,4 +66,17 @@ router.delete("/:id", function (req, res, next) {
         .catch(err => res.status(400).send(err));
 });
 
+router.get("/savings", function (req, res, next) {
+    models.Transaction.findAll({
+        where: {
+            type: 'Savings' 
+        },   
+        attributes: [
+            'type',
+            'amount'
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
 module.exports = router;
