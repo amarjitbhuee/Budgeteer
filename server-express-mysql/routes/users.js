@@ -9,20 +9,9 @@ var authService = require('../services/auth');
 // user signup frontend route
 router.get('/signup', function (req, res, next) {
   res.render('signup');
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// Return all app users (findAll)
-// AJ confirmed working on Postman
-router.get("/", function (req, res, next) {
-  models.users.findAll({})
-    .then(users => res.json(users));
 });
 
 // user signup with JWT Auth
-// user signup
 // AJ confirmed working on Postman
 router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
@@ -45,8 +34,6 @@ router.post('/signup', function (req, res, next) {
   })
 })
 
-// user login
-// AJ confirmed working on Postman
 // user login frontend route
 router.get('/login', function (req, res, next) {
   res.render('login');
@@ -108,17 +95,8 @@ router.get('/transactions', function (req, res, next) {
     // res.redirect('login')
   }
 })
-    if (user) {
-      res.send('Login successful.');
-      // res.redirect('/' + user.userid + '/transactions' );
-    } else {
-      res.send('Invalid login.');
-    }
-  });
 
 // POST to transactions without JWT (Working)
-// create new transaction
-// AJ confirmed working on Postman
 router.post('/:id/transactions', function (req, res, next) {
   models.transactions
     .create({
@@ -138,84 +116,6 @@ router.post('/:id/transactions', function (req, res, next) {
     })
 })
 
-// user profile
-// AJ confirmed working on Postman
-router.get('/profile/:id', function (req, res, next) {
-  models.users
-    .findByPk(parseInt(req.params.id))
-    .then(user => {
-      if (user) {
-        // res.render('profile', {
-        //   firstname: user.firstname,
-        //   lastname: user.lastname,
-        //   email: user.email,
-        //   username: user.username
-        // })
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(user));
-
-      } else {
-        res.send('User not found.');
-      }
-    })
-})
-
-// findAll users and their transactions
-// router.get('/transactions', function (req, res, next) {
-//   models.users
-//     .findAll({ include: [{ model: models.transactions }] })
-//     .then(usersFound => {
-//       res.setHeader('Content-Type', 'application/json');
-//       res.send(JSON.stringify(usersFound))
-//     })
-// })
-
-//findOne user and their transactions
-// AJ confirmed working on Postman
-router.get("/:id", function (req, res, next) {
-  models.users
-    .findOne({
-      // causes an error that transactions is not associated with users
-      include: [{ model: models.transactions }],
-      where: { userid: parseInt(req.params.id) }
-    })
-    .then(usersFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
-    })
-});
-
-// router.post("/:id/transactions", function (req, res, next) {
-//   let newTransaction = new models.transactions();
-//   newTransaction.paymentType = req.body.paymentType;
-//   newTransaction.date = req.body.date;
-//   newTransaction.type = req.body.type;
-//   newTransaction.amount = req.body.amount;
-//   newTransaction.description = req.body.description;
-//   newTransaction.save().then(transactions => res.json(transactions));
-// });
-
-router.get("/:id/expense", function (req, res, next) {
-  models.users
-    .findOne({
-      // causes an error that transactions is not associated with users
-      include: [{ model: models.transactions }],
-      where: 
-      { 
-        userid: parseInt(req.params.id)     
-      },
-      attributes: ['transactions.type']      
-    }).then()
-    .findAll({
-      where:{ type:'Expense'}
-    })
-    .then(usersFound => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(usersFound));
-    })
-});
-
-// update user information
 // create new transaction with user secured route
 // router.post('/transactions', function (req, res, next) {
 //   // let token = req.cookies.jwt;
@@ -314,10 +214,6 @@ router.get('/profile', function (req, res, next) {
 // update user information with secured route
 router.put('/', function (req, res, next) {
   let userId = parseInt(req.user.userid);
-
-router.put('/:id', function (req, res, next) {
-  let userId = parseInt(req.params.id);
-
   models.users.update(req.body, { where: { userid: userId } })
     .then(result => res.redirect('/users/' + userId))
     .catch(err => {
@@ -326,38 +222,7 @@ router.put('/:id', function (req, res, next) {
     });
 });
 
-// get user in update screen
-router.get("/edituser/:id", function (req, res, next) {
-  let userId = parseInt(req.params.id);
-  models.users.findByPk(userId)
-    .then(users => res.json(users));
-});
-
-router.put("/edituser/:id", function (req, res, next) {
-  models.users.update(
-    {
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
-    },
-    {
-      where: { userid: parseInt(req.params.id) }
-    }
-  ).then(user => res.json(user));
-});
-
-//delete
-//AJ confirmed working on Postman
-router.delete('/:id', function (req, res, next) {
-  let userId = parseInt(req.params.id);
-  models.users.findByPk(userId)
-    // .destroy({ where: { userid: userId } })
-    .then(users => users.destroy())
-    .then(() => res.send({ userId }))
-
-    //delete with user secured routes
+//delete with user secured routes
 router.delete('/', function (req, res, next) {
   let userId = parseInt(req.user.userid);
   models.users
@@ -368,6 +233,7 @@ router.delete('/', function (req, res, next) {
       res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
     })
 })
+
 
 // =====Admin functions==========
 
@@ -433,3 +299,5 @@ router.get('/', function (req, res, next) {
 // });
 
 module.exports = router;
+
+
