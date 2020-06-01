@@ -40,7 +40,7 @@ router.post('/signup', function (req, res, next) {
 
 // user login
 // AJ confirmed working on Postman
-router.post('/login', function(req, res, next) {
+router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
       username: req.body.username,
@@ -79,24 +79,24 @@ router.post('/:id/transactions', function (req, res, next) {
 
 // user profile
 // AJ confirmed working on Postman
-router.get('/profile/:id', function(req, res, next){
+router.get('/profile/:id', function (req, res, next) {
   models.users
-  .findByPk(parseInt(req.params.id))
-  .then(user => {
-    if(user){
-      // res.render('profile', {
-      //   firstname: user.firstname,
-      //   lastname: user.lastname,
-      //   email: user.email,
-      //   username: user.username
-    // })
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(user));
-      
-    } else {
-      res.send('User not found.');
-    }
-  })
+    .findByPk(parseInt(req.params.id))
+    .then(user => {
+      if (user) {
+        // res.render('profile', {
+        //   firstname: user.firstname,
+        //   lastname: user.lastname,
+        //   email: user.email,
+        //   username: user.username
+        // })
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(user));
+
+      } else {
+        res.send('User not found.');
+      }
+    })
 })
 
 // findAll users and their transactions
@@ -115,7 +115,7 @@ router.get("/:id", function (req, res, next) {
   models.users
     .findOne({
       // causes an error that transactions is not associated with users
-      include: [{model: models.transactions}],
+      include: [{ model: models.transactions }],
       where: { userid: parseInt(req.params.id) }
     })
     .then(usersFound => {
@@ -134,6 +134,26 @@ router.get("/:id", function (req, res, next) {
 //   newTransaction.save().then(transactions => res.json(transactions));
 // });
 
+router.get("/:id/expense", function (req, res, next) {
+  models.users
+    .findOne({
+      // causes an error that transactions is not associated with users
+      include: [{ model: models.transactions }],
+      where: 
+      { 
+        userid: parseInt(req.params.id)     
+      },
+      attributes: ['transactions.type']      
+    }).then()
+    .findAll({
+      where:{ type:'Expense'}
+    })
+    .then(usersFound => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(usersFound));
+    })
+});
+
 // update user information
 // AJ confirmed working on Postman
 router.put('/:id', function (req, res, next) {
@@ -151,21 +171,21 @@ router.put('/:id', function (req, res, next) {
 router.get("/edituser/:id", function (req, res, next) {
   let userId = parseInt(req.params.id);
   models.users.findByPk(userId)
-  .then(users => res.json(users));  
+    .then(users => res.json(users));
 });
 
 router.put("/edituser/:id", function (req, res, next) {
   models.users.update(
-      {
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          username: req.body.username,
-          email: req.body.email,
-          password: req.body.password
-      },
-      {
-          where: { userid: parseInt(req.params.id) }
-      }
+    {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password
+    },
+    {
+      where: { userid: parseInt(req.params.id) }
+    }
   ).then(user => res.json(user));
 });
 
