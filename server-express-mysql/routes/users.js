@@ -9,9 +9,20 @@ var authService = require('../services/auth');
 // user signup frontend route
 router.get('/signup', function (req, res, next) {
   res.render('signup');
+/* GET users listing. */
+// router.get('/', function(req, res, next) {
+//   res.send('respond with a resource');
+// });
+
+// Return all app users (findAll)
+// AJ confirmed working on Postman
+router.get("/", function (req, res, next) {
+  models.users.findAll({})
+    .then(users => res.json(users));
 });
 
 // user signup with JWT Auth
+// user signup
 // AJ confirmed working on Postman
 router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
@@ -34,17 +45,14 @@ router.post('/signup', function (req, res, next) {
   })
 })
 
-<<<<<<< HEAD
 // user login
 // AJ confirmed working on Postman
-=======
 // user login frontend route
 router.get('/login', function (req, res, next) {
   res.render('login');
 });
 
 // login with JWT Auth
->>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
@@ -100,8 +108,17 @@ router.get('/transactions', function (req, res, next) {
     // res.redirect('login')
   }
 })
+    if (user) {
+      res.send('Login successful.');
+      // res.redirect('/' + user.userid + '/transactions' );
+    } else {
+      res.send('Invalid login.');
+    }
+  });
 
 // POST to transactions without JWT (Working)
+// create new transaction
+// AJ confirmed working on Postman
 router.post('/:id/transactions', function (req, res, next) {
   models.transactions
     .create({
@@ -121,7 +138,6 @@ router.post('/:id/transactions', function (req, res, next) {
     })
 })
 
-<<<<<<< HEAD
 // user profile
 // AJ confirmed working on Postman
 router.get('/profile/:id', function (req, res, next) {
@@ -200,7 +216,6 @@ router.get("/:id/expense", function (req, res, next) {
 });
 
 // update user information
-=======
 // create new transaction with user secured route
 // router.post('/transactions', function (req, res, next) {
 //   // let token = req.cookies.jwt;
@@ -275,7 +290,6 @@ router.get('/logout', function (req, res, next) {
 });
 
 // user profile == for future updates. will contain add'l info i.e. history and stats
->>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
 // AJ confirmed working on Postman
 router.get('/profile', function (req, res, next) {
   models.users
@@ -300,6 +314,10 @@ router.get('/profile', function (req, res, next) {
 // update user information with secured route
 router.put('/', function (req, res, next) {
   let userId = parseInt(req.user.userid);
+
+router.put('/:id', function (req, res, next) {
+  let userId = parseInt(req.params.id);
+
   models.users.update(req.body, { where: { userid: userId } })
     .then(result => res.redirect('/users/' + userId))
     .catch(err => {
@@ -308,7 +326,6 @@ router.put('/', function (req, res, next) {
     });
 });
 
-<<<<<<< HEAD
 // get user in update screen
 router.get("/edituser/:id", function (req, res, next) {
   let userId = parseInt(req.params.id);
@@ -339,20 +356,18 @@ router.delete('/:id', function (req, res, next) {
     // .destroy({ where: { userid: userId } })
     .then(users => users.destroy())
     .then(() => res.send({ userId }))
-=======
-//delete with user secured routes
+
+    //delete with user secured routes
 router.delete('/', function (req, res, next) {
   let userId = parseInt(req.user.userid);
   models.users
     .destroy({ where: { userid: userId } })
     .then(result => res.redirect('/'))
->>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
     .catch(err => {
       res.status(400);
       res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
     })
 })
-
 
 // =====Admin functions==========
 
