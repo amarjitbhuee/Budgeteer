@@ -3,20 +3,15 @@ var router = express.Router();
 var models = require('../models');
 var Sequelize = require('sequelize');
 var op = Sequelize.Op;
+var passport = require('../services/passport');
+var authService = require('../services/auth');
 
-/* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// Return all app users (findAll)
-// AJ confirmed working on Postman
-router.get("/", function (req, res, next) {
-  models.users.findAll({})
-    .then(users => res.json(users));
+// user signup frontend route
+router.get('/signup', function (req, res, next) {
+  res.render('signup');
 });
 
-// user signup
+// user signup with JWT Auth
 // AJ confirmed working on Postman
 router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
@@ -25,39 +20,88 @@ router.post('/signup', function (req, res, next) {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: req.body.password
+      password: authService.hashPassword(req.body.password)
+      // password: req.body.password
     }
   }).spread(function (result, created) {
     if (created) {
-      res.send("User created successfully.");
-      // res.redirect('login');
+      // res.send("User created successfully.");
+      res.redirect('login');
     } else {
-      res.status(400);
+      // res.status(400);
       res.send('That username already exist.');
     }
   })
 })
 
+<<<<<<< HEAD
 // user login
 // AJ confirmed working on Postman
+=======
+// user login frontend route
+router.get('/login', function (req, res, next) {
+  res.render('login');
+});
+
+// login with JWT Auth
+>>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
       username: req.body.username,
-      password: req.body.password
+      // password: req.body.password
     }
   }).then(user => {
-    if (user) {
-      res.send('Login successful.');
-      // res.redirect('/' + user.userid + '/transactions' );
+    if (!user) {
+      console.log('User not found');
+      return res.status(401).json({
+        message: "User not found"
+      });
     } else {
-      res.send('Invalid login.');
+      let passwordMatch = authService.comparePasswords(req.body.password, user.password);
+      if (passwordMatch) {
+        let token = authService.signUser(user);
+        res.cookie('jwt', token);
+        // res.send('Login successful');
+        console.log('Login successful');
+        res.redirect('transactions');
+      } else {
+        console.log('Wrong Password');
+        res.redirect('login');
+      }
     }
-  })
+  });
 });
 
-// create new transaction
-// AJ confirmed working on Postman
+// secure transactions route (JWT)
+router.get('/transactions', function (req, res, next) {
+  let token = req.cookies.jwt;
+  // after logout
+  if (token) {
+    authService.verifyUser(token)
+      .then(user => {
+        if (user) {
+          res.render('transactions', {
+            firstname: user.firstname,
+            lastname: user.lastname,
+          });
+        }
+        else {
+          res.status(401);
+          res.send('Must be logged in')
+          // console.log('Must be logged in');
+          // res.redirect('login')
+        }
+      })
+  } else {
+    res.status(401);
+    res.send('Must be logged in')
+    // console.log('Must be logged in');
+    // res.redirect('login')
+  }
+})
+
+// POST to transactions without JWT (Working)
 router.post('/:id/transactions', function (req, res, next) {
   models.transactions
     .create({
@@ -77,6 +121,7 @@ router.post('/:id/transactions', function (req, res, next) {
     })
 })
 
+<<<<<<< HEAD
 // user profile
 // AJ confirmed working on Postman
 router.get('/profile/:id', function (req, res, next) {
@@ -155,10 +200,106 @@ router.get("/:id/expense", function (req, res, next) {
 });
 
 // update user information
-// AJ confirmed working on Postman
-router.put('/:id', function (req, res, next) {
-  let userId = parseInt(req.params.id);
+=======
+// create new transaction with user secured route
+// router.post('/transactions', function (req, res, next) {
+//   // let token = req.cookies.jwt;
+//   // if (token) {
+//   //   authService.verifyUser(token)
+//   //   .then(user => {
+//   //     if (user) {
+//   //       res.render('transactions')
+//   //     }  else {
+//   //       res.status(401);
+//   //       res.send('Must be logged in')
+//   //       // console.log('Must be logged in');
+//   //       // res.redirect('login')
+//   //     }
+//   //   })
+//   // }
+//   models.transactions
+//     .create({
+//       userid: parseInt(req.user.userid),
+//       type: req.body.type,
+//       amount: req.body.amount,
+//       description: req.body.description,
+//       date: req.body.date
+//     })
+//     .then(newTransaction => {
+//       // JWT 
+//       let token = authService.signUser(user);
+//       res.cookie('jwt', token);
+//       // res.setHeader('Content-Type', 'application/json');
+//       res.send(JSON.stringify(newTransaction));
+//     })
+//     .catch(err => {
+//       res.status(400);
+//       res.send(err.message);
+//     })
+// })
 
+//findOne user and their transactions with JWT
+// router.get('/:id', function (req, res, next) {
+//   let token = req.cookies.jwt;
+//   if (token) {
+//     authService.verifyUser(token)
+//       .then(user => {
+//         if (user) {
+//           res.render('users', {
+//             include: [{ model: models.transactions }],
+//             where: { userid: parseInt(req.params.id) },
+//             firstname: user.firstname,
+//             lastname: user.lastname
+//           })
+//         } else {
+//           res.status(401);
+//           res.send('Must be logged in')
+//           // console.log('Must be logged in');
+//           // res.redirect('login')
+//         }
+//       })
+//   } else {
+//     res.status(401);
+//     res.send('Must be logged in')
+//     // console.log('Must be logged in');
+//     // res.redirect('login')
+//   }
+// });
+
+// logout
+router.get('/logout', function (req, res, next) {
+  res.cookie('jwt', '', { expire: new Date(0) });
+  // res.send('Logged out');
+  console.log('Logged out');
+  res.redirect('login')
+});
+
+// user profile == for future updates. will contain add'l info i.e. history and stats
+>>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
+// AJ confirmed working on Postman
+router.get('/profile', function (req, res, next) {
+  models.users
+    .findByPk(parseInt(req.user.userid))
+    .then(user => {
+      if (user) {
+        // res.render('profile', {
+        //   firstname: user.firstname,
+        //   lastname: user.lastname,
+        //   email: user.email,
+        //   username: user.username
+        // })
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(user));
+
+      } else {
+        res.send('User not found.');
+      }
+    })
+})
+
+// update user information with secured route
+router.put('/', function (req, res, next) {
+  let userId = parseInt(req.user.userid);
   models.users.update(req.body, { where: { userid: userId } })
     .then(result => res.redirect('/users/' + userId))
     .catch(err => {
@@ -167,6 +308,7 @@ router.put('/:id', function (req, res, next) {
     });
 });
 
+<<<<<<< HEAD
 // get user in update screen
 router.get("/edituser/:id", function (req, res, next) {
   let userId = parseInt(req.params.id);
@@ -197,6 +339,14 @@ router.delete('/:id', function (req, res, next) {
     // .destroy({ where: { userid: userId } })
     .then(users => users.destroy())
     .then(() => res.send({ userId }))
+=======
+//delete with user secured routes
+router.delete('/', function (req, res, next) {
+  let userId = parseInt(req.user.userid);
+  models.users
+    .destroy({ where: { userid: userId } })
+    .then(result => res.redirect('/'))
+>>>>>>> 6184a79ed2f42325eb2848332eabe9ef84ee7d1b
     .catch(err => {
       res.status(400);
       res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
@@ -204,5 +354,67 @@ router.delete('/:id', function (req, res, next) {
 })
 
 
+// =====Admin functions==========
+
+//findAll users
+router.get('/', function (req, res, next) {
+  let token = req.cookies.jwt;
+  authService.verifyUser(token)
+  // models.users
+    .findAll({
+      include: [{ model: models.transactions }]
+        .then(usersFound => {
+          res.setHeader('Content-Type', 'application/json')
+          res.send(JSON.stringify(usersFound));
+        })
+    })
+})
+
+//findOne user and their transactions
+// router.get("/:id", function (req, res, next) {
+//   models.users
+//     .findOne({
+//       include: [{ model: models.transactions }],
+//       where: { userid: parseInt(req.params.id) }
+//     })
+//     .then(usersFound => {
+//       let token = authService.signUser(user);
+//       res.cookie('jwt', token);
+//       res.setHeader('Content-Type', 'application/json');
+//       res.send(JSON.stringify(usersFound));
+//     })
+// });
+
+// Return all app users (findAll)
+// AJ confirmed working on Postman
+// router.get("/", function (req, res, next) {
+//   models.users.findAll({})
+//     .then(users => res.json(users));
+// });
+
+// findAll users and their transactions
+// router.get('/transactions', function (req, res, next) {
+//   models.users
+//     .findAll({ include: [{ model: models.transactions }] })
+//     .then(usersFound => {
+//       res.setHeader('Content-Type', 'application/json');
+//       res.send(JSON.stringify(usersFound))
+//     })
+// })
+
+// Test users/:id route. Not needed.
+// router.get('/:id', function (req, res, next) {
+//   models.users.findByPk(parseInt(req.params.id))
+//     .then(user => {
+//       if (user) {
+//         res.render('user', {
+//           firstname: user.firstname,
+//           lastname: user.lastname
+//         });
+//       } else {
+//         res.send('User not found');
+//       }
+//     });
+// });
 
 module.exports = router;

@@ -8,6 +8,10 @@ var models = require('./models');
 //Ryan: added CORS
 var cors = require("cors");
 
+//Passport declaration
+var passport = require('passport');
+var session = require('express-session');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var tasksRouter = require('./routes/tasks');
@@ -39,6 +43,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Passport
+app.use(session({secret: 'perilous journey'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -148,6 +148,11 @@
                     "field": "password",
                     "seqType": "Sequelize.STRING(45)"
                 },
+                "email": {
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -162,5 +167,5 @@
             "indexes": []
         }
     },
-    "revision": 16
+    "revision": 17
 }
