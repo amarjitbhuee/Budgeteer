@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; 
 import { Link } from 'react-router-dom';
 import '../transaction.min.css'; 
+import { confirmAlert } from 'react-confirm-alert'; 
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Transaction extends React.Component {
     let url = "http://localhost:3001/transactions";
     axios.get(url)
       .then(response => this.setState({ transactions: response.data }));
-  };
+    };
 
   addTransaction = () => {
     let url = "http://localhost:3001/transactions";
@@ -59,6 +60,7 @@ class Transaction extends React.Component {
         this.type.current.value = "Income"
         this.amount.current.value = ""
         this.description.current.value = "";
+
       });
     };
 
@@ -68,12 +70,39 @@ class Transaction extends React.Component {
       })
     };
 
+    delete = (transactionid) => {
+      confirmAlert ({
+        title: "ARE YOU SURE?", 
+        message: "You Are About To Delete A Transaction!", 
+        buttons: [
+          {
+            label: "I Am Sure!", 
+            onClick: () => 
+              this.deleteTransaction(transactionid),
+          },
+          {
+            label: "Cancel"
+          }
+        ]
+      });
+    };
+    
   deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.delete(url)
-      .then(response => this.getData())
+      .then(response => {
+        this.getData();
+        alert('Your Transaction has been deleted!');
+        this.reset();
+      })
   };
+  reset() {
+    this.setState({
+      currentBalance: 0, 
+    })
+  }
 
+  
 render() {
     return (
       <div>
@@ -104,7 +133,7 @@ render() {
             <li key={p.transactionid}>
               {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
               <Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link>
-              <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button>
+              <button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button>
             </li>
           ))}
         </ul>

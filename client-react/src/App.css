@@ -1,13 +1,43 @@
 body {
     background-image: url(./assets/img/Background_Image.jpg); 
     background-size: 2320px;
-    /* background-position-y: -800px;*/
+
     background-position-x: -400px;
     background-position: fixed;  
     background-repeat: no-repeat;
-    background-color: lightblue;
+    background-color: darkorange;
+};
+
+.container {
+    background-color: #F0F2F2;
+    width: 100%;
+    height:auto;
 }
 
-.addTransaction {
-    color: blue; 
+.slogan {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 10px; 
+}
+
+.budgeteer {
+/*Used RBGA to control the Alpha (the A in RGBA). This gives you control of opacity
+color =  240, 242, 242 */
+ background-color: rgba(240, 242, 242, 0.7); 
+ margin-top: px; 
+}
+
+.currentBalance {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 20px; 
+    color: #037F8C;
+    padding-left: 10px;
+}
+
+.balance {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    font-size: 50px; 
+    color: #037F8C;
 }

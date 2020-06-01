@@ -17,20 +17,24 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr/>
-        <CurrentBalance />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr/>
-        <GlorifiedCalculator />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr/>
-        <Switch>
-          <Route path="/" exact component={ Transaction } />
-          <Route path="/history"  component={ History } />
-          <Route path="/edit/:transactionid" component={ Edit } />
-        </Switch>
+        <div className="container">
+          <div className="budgeteer">
+          <Header />
+          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
+          <hr/>
+          <CurrentBalance />
+          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
+          <hr/>
+          <GlorifiedCalculator />
+          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
+          <hr/>
+          <Switch>
+            <Route path="/" exact component={ Transaction } />
+            <Route path="/history"  component={ History } />
+            <Route path="/edit/:transactionid" component={ Edit } />
+          </Switch>
+          </div>
+        </div>
       </div>
     </Router>
   );

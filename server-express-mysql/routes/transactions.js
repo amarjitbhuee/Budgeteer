@@ -66,4 +66,54 @@ router.delete("/:id", function (req, res, next) {
         .catch(err => res.status(400).send(err));
 });
 
+// router.get("/amounts", function (req, res, next) {
+//     models.Transaction.findAll({
+//         attributes:[
+//             'amount', 
+//         ]
+//     })
+//     .then(transactions => res.json(transactions));
+// });
+
+router.get("/income", function (req, res, next) {
+    models.Transaction.findAll({
+        where: {
+            type: 'Income' 
+        },   
+        attributes: [
+            'type',
+            'amount'
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
+router.get("/expense", function (req, res, next) {
+    models.Transaction.findAll({
+        where: {
+            type: 'Expense' 
+        },   
+        attributes: [
+            'type',
+            'amount'
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
+router.get("/savings", function (req, res, next) {
+    models.Transaction.findAll({
+        where: {
+            type: 'Savings' 
+        },   
+        attributes: [
+            'type',
+            'amount'
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
+
+
 module.exports = router;

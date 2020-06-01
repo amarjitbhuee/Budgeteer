@@ -4,7 +4,7 @@ import axios from "axios";
 import '../transaction.min.css';
 //Jeff: added link from react-router-dom
 import { Link } from 'react-router-dom';
-
+import { confirmAlert } from 'react-confirm-alert'; 
 
 //Jeff: added History component to be rendered
 class History extends React.Component {
@@ -20,12 +20,31 @@ class History extends React.Component {
         axios.get(url)
             .then(response => this.setState({ transactions: response.data }));
     };
+    delete = (transactionid) => {
+        confirmAlert ({
+          title: "ARE YOU SURE?", 
+          message: "You Are About To Delete A Transaction!", 
+          buttons: [
+            {
+              label: "I Am Sure!", 
+              onClick: () => 
+                this.deleteTransaction(transactionid),
+            },
+            {
+              label: "Cancel"
+            }
+          ]
+        });
+      }
+      
     deleteTransaction = (transactionid) => {
-        let url = "http://localhost:3001/transactions/" + transactionid;
-        axios.delete(url)
-            .then(response => this.getData())
-    }
-
+      let url = "http://localhost:3001/transactions/" + transactionid;
+      axios.delete(url)
+        .then(response => {
+          this.getData();
+          alert('Your Transaction has been deleted!');
+        })
+    };
     render() {
         return (
             <div>
@@ -35,7 +54,7 @@ class History extends React.Component {
                         <li key={p.transactionid}>
                             {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
                             <Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link>
-                            <button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button>
+              <button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button>
                         </li>
                     ))}
                 </ul>
