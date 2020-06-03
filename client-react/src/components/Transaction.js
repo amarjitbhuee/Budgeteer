@@ -54,10 +54,10 @@ class Transaction extends React.Component {
         this.getData();
         this.increment();
         // empty the input
-        this.paymentType.current.value = "Direct Deposit"
+        this.paymentType.current.value = "Select Payment Type"
         // eslint-disable-next-line
         this.state.date = ""
-        this.type.current.value = "Income"
+        this.type.current.value = "Select Type"
         this.amount.current.value = ""
         this.description.current.value = "";
 
@@ -106,28 +106,31 @@ class Transaction extends React.Component {
 render() {
     return (
       <div>
-        <h3 className="addTransaction">Add Transaction</h3>
-        <h5>Your Balance Has Been Modified By: ${this.state.currentBalance}</h5>
-        <select ref={this.paymentType} id="paymentType">
-          <option value="Select Payment Type">Select Payment Type</option>
-          <option value="null">-------------</option>
-          <option value="Direct Deposit">Direct Deposit</option>
-          <option value="Check">Check</option>
-          <option value="Credit Card">Credit Card</option>
-          <option value="Cash">Cash</option>
-          <option value="Other">Other</option>
-        </select>
-        <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" />
-        <select ref={this.type} id="type">
-          <option value="Select Type">Select Type</option>
-          <option value="null">-------------</option>
-          <option value="Income">Income</option>
-          <option value="Expense">Expense</option>
-          <option value="Savings">Savings</option>
-        </select>
-        <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value})} />
-        <input ref={this.description} id="description" placeholder="Description" />
-        <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
+        <h3 className="quote">"Beware of little expenses. A small leak will sink a great ship." ~Benjamin Franklin</h3>
+        <p className="transactions">Add A New Transaction Transaction</p>
+        <h5 className="adjustment">Your Balance Has Been Modified By: <span className="adjustedBalance">${this.state.currentBalance}</span></h5>
+        <form className="form">
+          <select ref={this.paymentType} id="paymentType">
+            <option value="Select Payment Type">Select Payment Type</option>
+            <option value="null">-------------</option>
+            <option value="Direct Deposit">Direct Deposit</option>
+            <option value="Check">Check</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Cash">Cash</option>
+            <option value="Other">Other</option>
+          </select>
+          <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" />
+          <select ref={this.type} id="type">
+            <option value="Select Type">Select Type</option>
+            <option value="null">-------------</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+            <option value="Savings">Savings</option>
+          </select>
+          <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value})} />
+          <input ref={this.description} id="description" placeholder="Description" />
+          <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
+        </form>
         <ul>
           {this.state.transactions.map(p => (
             <li key={p.transactionid}>
@@ -137,8 +140,7 @@ render() {
             </li>
           ))}
         </ul>
-        <br />
-        <Link to={`/history`}>View All Transactions</Link>
+        <Link to={`/history`}><p className="allTransactions">View All Transactions</p></Link>
       </div>
     );
   }

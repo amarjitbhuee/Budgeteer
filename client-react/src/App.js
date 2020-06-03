@@ -12,6 +12,9 @@ import Edit from "./screens/Edit";
 import CurrentBalance from "./components/CurrentBalance"
 import Header from "./components/Header"
 import GlorifiedCalculator from "./components/GlorifiedCalculator";
+import Income from "./screens/Income";
+import Expense from "./screens/Expense";
+import Savings from "./screens/Savings";
 
 function App() {
   return (
@@ -19,16 +22,15 @@ function App() {
       <div className="App">
         <div className="container">
           <div className="budgeteer">
-          <Header />
-          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-          <hr/>
-          <CurrentBalance />
-          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-          <hr/>
+            <div className="head">
+              <Header />
+              <CurrentBalance />
+            </div> 
           <GlorifiedCalculator />
-          {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-          <hr/>
           <Switch>
+            <Route path="/Income" component={ Income } />
+            <Route path="/Expense" component={ Expense } />
+            <Route path="/Savings" component={ Savings } />
             <Route path="/" exact component={ Transaction } />
             <Route path="/history"  component={ History } />
             <Route path="/edit/:transactionid" component={ Edit } />

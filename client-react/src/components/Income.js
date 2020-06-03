@@ -25,10 +25,11 @@ class Income extends React.Component {
 
     render() {
         const amounts = this.state.transactions.map(transaction => transaction.amount);
-        const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
+        // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
+        const total = amounts.reduce((acc, item) => (acc += item), 0)
         return(
             <div>
-                <h1>${total}</h1>
+                <h1 className="total">${total}</h1>
             </div>
         )
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import '../transaction.min.css';
+import { Link } from 'react-router-dom';
 
 class CurrentBalance extends React.Component{
     constructor(props) {
@@ -18,6 +19,7 @@ class CurrentBalance extends React.Component{
         this.getExpense();
         this.getSavings();
     };
+
 
     getIncome = () => {
         let url = "http://localhost:3001/transactions/income";
@@ -40,19 +42,19 @@ class CurrentBalance extends React.Component{
 
     render() {
         const amountsIncome = this.state.transactionsIncome.map(transaction => transaction.amount);
-        const totalIncome = amountsIncome.reduce((acc, item) => (acc += item), 0).toFixed(2);
+        const totalIncome = amountsIncome.reduce((acc, item) => (acc += item), 0);
 
         const amountsExpense = this.state.transactionsExpense.map(transaction => transaction.amount);
-        const totalExpense = amountsExpense.reduce((acc, item) => (acc += item), 0).toFixed(2);
+        const totalExpense = amountsExpense.reduce((acc, item) => (acc += item), 0);
 
         
         const amountsSavings = this.state.transactionsSavings.map(transaction => transaction.amount);
-        const totalSavings = amountsSavings.reduce((acc, item) => (acc += item), 0).toFixed(2);
+        const totalSavings = amountsSavings.reduce((acc, item) => (acc += item), 0);
 
-        const currentBalance = ((totalIncome-totalExpense) - (totalSavings)).toFixed(2); 
+        const currentBalance = ((totalIncome-totalExpense) - (totalSavings)); 
         return(
             <div>
-                <h5 className="currentBalance">Your Current Balance: <br /><span className="balance">${currentBalance}</span></h5>
+                <Link to={`/history`}><h5 className="currentBalance"><span className="underline">Your Current Balance:</span> <br /> <span className="balance">${currentBalance}</span></h5></Link>
             </div>
         )
     }

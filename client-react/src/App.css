@@ -1,7 +1,32 @@
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-30px);
+		-ms-transform:     translateY(-30px);
+		transform:         translateY(-30px)
+	}
+	60% {
+		-webkit-transform: translateY(-15px);
+		-ms-transform:     translateY(-15px);
+		transform:         translateY(-15px)
+	}
+}
+
+a {
+    outline: 0;
+ }
+
+a:hover {
+    text-decoration: none;
+}
+
 body {
     background-image: url(./assets/img/Background_Image.jpg); 
     background-size: 2320px;
-
     background-position-x: -400px;
     background-position: fixed;  
     background-repeat: no-repeat;
@@ -14,6 +39,24 @@ body {
     height:auto;
 }
 
+.logo {
+    padding-top: 10px;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite; 
+}
+
+.logo:hover {
+    cursor:pointer;
+    animation-name: bounce;
+    -moz-animation-name: bounce;
+}
+
 .slogan {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
     font-size: 20px; 
@@ -22,22 +65,158 @@ body {
     padding-left: 10px; 
 }
 
-.budgeteer {
-/*Used RBGA to control the Alpha (the A in RGBA). This gives you control of opacity
-color =  240, 242, 242 */
- background-color: rgba(240, 242, 242, 0.7); 
- margin-top: px; 
+.logos {
+    padding-left: 10px;
 }
 
-.currentBalance {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
-    font-size: 20px; 
-    color: #037F8C;
-    padding-left: 10px;
+.head {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .balance {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    font-size: 50px; 
+    font-size: 75px; 
     color: #037F8C;
+}
+
+
+.currentBalance {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 17px; 
+    color: #734440;
+    padding-left: 10px;
+    padding-right: 70px;
+    padding-top: 20px;
+}
+
+.budgeteer {
+/*Used RBGA to control the Alpha (the A in RGBA). This gives you control of opacity
+color =  240, 242, 242 */
+ background-color: rgba(240, 242, 242, 0.7); 
+ border: solid 2px #D9961A;
+ margin-top: 80px;
+ border-radius: 50px 0px 50px 0px; 
+}
+
+.calculator { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+} 
+
+.glorified {
+    border-top: solid 1px #037F8C;
+    border-bottom: solid 1px #037F8C;
+    background-color: #F0F2F2;
+    padding-right: 50px;
+    padding-left: 50px; 
+    position: relative;
+    bottom:20px;
+}
+
+.glorifiedCalculator {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #D9961A;
+    width: 150px;
+}
+
+.glorifiedCalculator {
+    text-decoration: none;
+}
+
+.logo2 {
+    width: 75px; 
+    height: 75px;
+    padding-bottom: 15px; 
+}
+
+.overview {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px;
+    position: relative; 
+    bottom: 10px; 
+}
+
+.block {
+    /* for visual representation
+    border: solid 1px black; */
+    width: 200px
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.underline:hover {
+    cursor:pointer;
+    color: #037F8C;
+}
+
+.total {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 40px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 10px; 
+    text-decoration: none;
+}
+
+.quote {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 17px; 
+    font-weight: 100; 
+    color: #734440;
+    padding-left: 25px; 
+    padding-right: 25px; 
+    text-decoration: none;
+    position: relative; 
+    bottom: 15px
+}
+
+.adjustment {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 23px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px; 
+    text-decoration: none;
+    position: relative; 
+    bottom: 5px; 
+}
+
+.adjustedBalance {
+    color: #734440;
+    font-style: italic;
+    font-size:28px; 
+}
+
+.transactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px; 
+    text-decoration: none;
+}
+
+.allTransactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px; 
+    text-decoration: underline;
+}
+
+.allTransactions:hover {
+    text-decoration: none; 
+    color: #D9961A; 
 }
