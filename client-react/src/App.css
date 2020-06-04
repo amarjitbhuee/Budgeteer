@@ -40,7 +40,8 @@ body {
 }
 
 .logo {
-    padding-top: 10px;
+    padding-top: 20px;
+    padding-left: 5px;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
@@ -62,7 +63,7 @@ body {
     font-size: 20px; 
     font-weight: 700; 
     color: #037F8C;
-    padding-left: 10px; 
+    padding-left: 15px; 
 }
 
 .logos {
@@ -129,6 +130,16 @@ color =  240, 242, 242 */
     text-decoration: none;
 }
 
+.symbol1 {
+    color: #4CAF50;
+    opacity: 45%;
+}
+
+.symbol2 {
+    color: red; 
+    opacity: 45%;
+}
+
 .logo2 {
     width: 75px; 
     height: 75px;
@@ -140,7 +151,7 @@ color =  240, 242, 242 */
     font-size: 15px; 
     font-weight: 700; 
     color: #037F8C;
-    padding-left: 25px;
+    padding-left: 30px;
     position: relative; 
     bottom: 10px; 
 }
@@ -264,9 +275,10 @@ button {
 
 input {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    height: 25px;
+    height: 35px;
     border-radius: 0px 0px 5px 5px; 
     border: none;
+    border-left: 1px solid #037F8C;
     border-bottom: 1px solid #037F8C;
     padding-left: 10px;
     color: #734440;
@@ -278,9 +290,10 @@ input::placeholder {
 
 select {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    height: 25px;
+    height: 35px;
     border-radius: 0px 0px 5px 5px; 
     border: none;
+    border-left: 1px solid #037F8C;
     border-bottom: 1px solid #037F8C;
     color: #734440
 }

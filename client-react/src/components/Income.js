@@ -15,8 +15,6 @@ class Income extends React.Component {
         this.getIncome(); 
     };
 
-    
-
     getIncome = () => {
         let url = "http://localhost:3001/transactions/income"; 
         axios.get(url)
@@ -35,7 +33,7 @@ class Income extends React.Component {
         // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
         return(
             <div>
-                <h1 className="total">${total}</h1>
+                <h1 className="total"><span className="symbol1">+</span> ${total}</h1>
             </div>
         )
     }

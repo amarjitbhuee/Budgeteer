@@ -4,14 +4,12 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
 import '../transaction.min.css';
-import { confirmAlert } from 'react-confirm-alert';
 
 class Transaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactions: [],
-      lastAmount: [],
+      transactions: []
     };
 
     this.userid = React.createRef();
@@ -31,7 +29,6 @@ class Transaction extends React.Component {
 
   componentDidMount() {
     this.getData();
-    this.getLastAmount();
   };
 
   getData = () => {
@@ -52,8 +49,6 @@ class Transaction extends React.Component {
     })
       .then(response => {
         // refresh the data
-        this.getData();
-        // this.increment();
         window.location.reload();
         // empty the input
         this.paymentType.current.value = "Select Payment Type"
@@ -62,32 +57,7 @@ class Transaction extends React.Component {
         this.type.current.value = "Select Type"
         this.amount.current.value = ""
         this.description.current.value = "";
-
       });
-  };
-
-  getLastAmount = () => {
-    // Express uses port 3001 (react uses 3000)
-    let url = "http://localhost:3001/transactions/lastAmount";
-    axios.get(url)
-      .then(response => this.setState({ lastAmount: response.data }))
-  };
-
-  delete = (transactionid) => {
-    confirmAlert({
-      title: "ARE YOU SURE?",
-      message: "You Are About To Delete A Transaction!",
-      buttons: [
-        {
-          label: "I Am Sure!",
-          onClick: () =>
-            this.deleteTransaction(transactionid),
-        },
-        {
-          label: "Cancel"
-        }
-      ]
-    });
   };
 
   deleteTransaction = (transactionid) => {
@@ -104,9 +74,8 @@ class Transaction extends React.Component {
 
     return (
       <div className="form">
+        <p className="transactions">Add A New Transaction</p>
         <h3 className="quote">"Beware of little expenses. A small leak will sink a great ship." ~Benjamin Franklin</h3>
-        <p className="transactions">Add A New Transaction Transaction</p>
-        <h5 className="adjustment">Your Balance Has Been Modified By: <span className="adjustedBalance">${this.state.lastAmount.amount}</span></h5>
         <form className="form">
           <table className="table">
             <tbody>
@@ -128,7 +97,7 @@ class Transaction extends React.Component {
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
                 </select></td>
-                <td><input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value })} /></td>
+                <td><input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" /></td>
                 <td><input ref={this.description} id="description" placeholder="Description" /></td>
               </tr>
             </tbody>
@@ -156,7 +125,7 @@ class Transaction extends React.Component {
                 <td>${p.amount}</td>
                 <td>{p.description}</td>
                 <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
-                <td><button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button></td>
+                <td><button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button></td>
               </tr>
             ))}</tbody>
         </table>
