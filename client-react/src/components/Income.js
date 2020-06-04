@@ -16,17 +16,23 @@ class Income extends React.Component {
     };
 
     
+
     getIncome = () => {
         let url = "http://localhost:3001/transactions/income"; 
         axios.get(url)
-            .then(response => this.setState({ transactions: response.data})); 
+            .then(response => 
+                this.setState({ 
+                    transactions: response.data
+                })
+            ); 
     }; 
 
 
     render() {
+
         const amounts = this.state.transactions.map(transaction => transaction.amount);
-        // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
         const total = amounts.reduce((acc, item) => (acc += item), 0)
+        // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
         return(
             <div>
                 <h1 className="total">${total}</h1>

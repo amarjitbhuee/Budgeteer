@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../transaction.min.css';
 import { Link } from 'react-router-dom';
 
+
+
 class CurrentBalance extends React.Component{
     constructor(props) {
         super(props);
@@ -10,7 +12,7 @@ class CurrentBalance extends React.Component{
             transactionsIncome: [],
             transactionsExpense: [], 
             transactionsSavings: [],
-            currentBalance: 0, 
+            currentBalance: '', 
         }
     }; 
 
@@ -42,14 +44,14 @@ class CurrentBalance extends React.Component{
 
     render() {
         const amountsIncome = this.state.transactionsIncome.map(transaction => transaction.amount);
-        const totalIncome = amountsIncome.reduce((acc, item) => (acc += item), 0);
+        const totalIncome = amountsIncome.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
         const amountsExpense = this.state.transactionsExpense.map(transaction => transaction.amount);
-        const totalExpense = amountsExpense.reduce((acc, item) => (acc += item), 0);
+        const totalExpense = amountsExpense.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
         
         const amountsSavings = this.state.transactionsSavings.map(transaction => transaction.amount);
-        const totalSavings = amountsSavings.reduce((acc, item) => (acc += item), 0);
+        const totalSavings = amountsSavings.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
         const currentBalance = ((totalIncome-totalExpense) - (totalSavings)); 
         return(

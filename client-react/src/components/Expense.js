@@ -24,8 +24,8 @@ class Expense extends React.Component {
 
     render() {
         const amounts = this.state.transactions.map(transaction => transaction.amount);
+        const total = amounts.reduce((acc, item) => (acc += item), 0);
         // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
-        const total = amounts.reduce((acc, item) => (acc += item), 0)
         return(
             <div>
                 <h1 className="total">${total}</h1>

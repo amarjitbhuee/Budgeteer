@@ -11,9 +11,9 @@ class Transaction extends React.Component {
     super(props);
     this.state = { 
       transactions: [],
-      currentBalance: 0,
-      addAmount: 0 
+      lastAmount: [], 
      };
+
     this.userid = React.createRef();
     this.paymentType = React.createRef();
     this.date = React.createRef();
@@ -31,6 +31,7 @@ class Transaction extends React.Component {
 
   componentDidMount() {
     this.getData();
+    this.getLastAmount();
   };
 
   getData = () => {
@@ -52,7 +53,8 @@ class Transaction extends React.Component {
       .then(response => {
         // refresh the data
         this.getData();
-        this.increment();
+        // this.increment();
+        window.location.reload();
         // empty the input
         this.paymentType.current.value = "Select Payment Type"
         // eslint-disable-next-line
@@ -63,13 +65,14 @@ class Transaction extends React.Component {
 
       });
     };
-
-    increment() {
-      this.setState({
-        currentBalance: this.state.currentBalance + parseInt(this.state.addAmount)
-      })
-    };
-
+   
+    getLastAmount = () => {
+      // Express uses port 3001 (react uses 3000)
+      let url = "http://localhost:3001/transactions/lastAmount";
+      axios.get(url)
+        .then(response => this.setState({ lastAmount: response.data }))
+      };
+   
     delete = (transactionid) => {
       confirmAlert ({
         title: "ARE YOU SURE?", 
@@ -87,28 +90,23 @@ class Transaction extends React.Component {
       });
     };
     
-  deleteTransaction = (transactionid) => {
-    let url = "http://localhost:3001/transactions/" + transactionid;
-    axios.delete(url)
-      .then(response => {
-        this.getData();
-        alert('Your Transaction has been deleted!');
-        this.reset();
-      })
-  };
-  reset() {
-    this.setState({
-      currentBalance: 0, 
-    })
-  }
+    deleteTransaction = (transactionid) => {
+      let url = "http://localhost:3001/transactions/" + transactionid;
+      axios.delete(url)
+        .then(response => {
+          this.getData();
+          alert('Your Transaction has been deleted!');
+          window.location.reload();
+        })
+    };
 
-  
 render() {
+
     return (
       <div>
         <h3 className="quote">"Beware of little expenses. A small leak will sink a great ship." ~Benjamin Franklin</h3>
         <p className="transactions">Add A New Transaction Transaction</p>
-        <h5 className="adjustment">Your Balance Has Been Modified By: <span className="adjustedBalance">${this.state.currentBalance}</span></h5>
+        <h5 className="adjustment">Your Balance Has Been Modified By: <span className="adjustedBalance">${ this.state.lastAmount.amount }</span></h5>
         <form className="form">
           <select ref={this.paymentType} id="paymentType">
             <option value="Select Payment Type">Select Payment Type</option>

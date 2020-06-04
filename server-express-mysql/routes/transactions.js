@@ -142,6 +142,14 @@ router.get("/savingsShow", function (req, res, next) {
     .then(transactions => res.json(transactions));
 });
 
-
+router.get("/lastAmount", function (req, res, next) {
+    models.Transaction.findOne({
+        attributes:[ 'amount' ],
+        order:[
+            ['transactionid', 'DESC']
+        ]
+    })
+    .then(transactions => res.json(transactions));
+})
 
 module.exports = router;

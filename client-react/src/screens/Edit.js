@@ -54,6 +54,7 @@ class Edit extends React.Component {
       description: this.description.current.value
     })
       .then(response => {
+        window.location.reload();
         // refresh the data
         this.getTransaction();
       })
