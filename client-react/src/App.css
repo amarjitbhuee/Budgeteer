@@ -253,3 +253,11 @@ color =  240, 242, 242 */
 .rowHead {
     color: #037F8C;
 }
+
+button {
+    border-radius: 10px 0px 10px;
+}
+
+.btn {
+    border-radius: 10px 0px 10px;
+}

@@ -50,24 +50,26 @@ class Expense extends React.Component {
       <div className="form">
         <h1 className="transactions">Your Expense History</h1>
         <table className="table">
-          <tr className="rowHead">
-            <th>Payment Type</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Description</th>
-          </tr>
-          {this.state.transactions.map(p => (
-            <tr key={p.transactionid}>
-              <td>{p.paymentType}</td>
-              <td>{p.date}</td>
-              <td>{p.type}</td>
-              <td>${p.amount}</td>
-              <td>{p.description}</td>
-              <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
-              <td><button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button></td>
+          <tbody>
+            <tr className="rowHead">
+              <th>Payment Type</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Description</th>
             </tr>
-          ))}
+            {this.state.transactions.map(p => (
+              <tr key={p.transactionid}>
+                <td>{p.paymentType}</td>
+                <td>{p.date}</td>
+                <td>{p.type}</td>
+                <td>${p.amount}</td>
+                <td>{p.description}</td>
+                <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
+                <td><button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button></td>
+              </tr>
+            ))}
+          </tbody>
         </table>
         <br />
         <Link to={`/`} className="allTransactions">Home</Link><br />

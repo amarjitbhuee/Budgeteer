@@ -50,6 +50,7 @@ class History extends React.Component {
       <div className="form">
         <h1 className="transactions">Transaction History</h1>
         <table className="table">
+        <tbody>
           <tr className="rowHead">
             <th>Payment Type</th>
             <th>Date</th>
@@ -68,6 +69,7 @@ class History extends React.Component {
               <td><button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button></td>
             </tr>
           ))}
+          </tbody>
         </table>
         <br />
         <Link to={`/`} className="allTransactions">Home</Link><br />
