@@ -33,7 +33,7 @@ class Income extends React.Component {
         // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
         return(
             <div>
-                <h1 className="total"><span className="symbol1">+</span> ${total}</h1>
+                <h1 className="total">${total}</h1>
             </div>
         )
     }

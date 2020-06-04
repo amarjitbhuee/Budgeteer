@@ -39,6 +39,7 @@ class Transaction extends React.Component {
   };
 
   addTransaction = () => {
+    //window.location.reload();
     let url = "http://localhost:3001/transactions";
     axios.post(url, {
       paymentType: this.paymentType.current.value,
@@ -57,7 +58,9 @@ class Transaction extends React.Component {
         this.type.current.value = "Select Type"
         this.amount.current.value = ""
         this.description.current.value = "";
-      });
+      })
+      .catch((error) => alert('Oops! . There Is A Problem'))
+      window.location.reload();
   };
 
   deleteTransaction = (transactionid) => {
@@ -80,7 +83,7 @@ class Transaction extends React.Component {
           <table className="table">
             <tbody>
               <tr>
-                <td><select ref={this.paymentType} id="paymentType">
+                <td><select required ref={this.paymentType} id="paymentType">
                   <option value="Select Payment Type">Select Payment Type</option>
                   <option value="null">-------------</option>
                   <option value="Direct Deposit">Direct Deposit</option>
@@ -97,8 +100,9 @@ class Transaction extends React.Component {
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
                 </select></td>
-                <td><input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" /></td>
-                <td><input ref={this.description} id="description" placeholder="Description" /></td>
+                <td>
+                  <input  ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" /></td>
+                <td><input required ref={this.description} id="description" placeholder="Description" type="required" /></td>
               </tr>
             </tbody>
           </table>
