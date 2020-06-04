@@ -253,13 +253,18 @@ color =  240, 242, 242 */
     width: 50%;
     background-color: #4CAF50;
     /* Green */
-    border: none;
+    border: solid 1px #F0F2F2;
     color: white;
     padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+.addTransaction:hover {
+    background-color: #037F8C;
+    border: solid 1px #F0F2F2
 }
 
 .note {
