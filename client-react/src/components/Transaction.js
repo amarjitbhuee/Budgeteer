@@ -110,7 +110,8 @@ render() {
         <p className="transactions">Add A New Transaction Transaction</p>
         <h5 className="adjustment">Your Balance Has Been Modified By: <span className="adjustedBalance">${this.state.currentBalance}</span></h5>
         <form className="form">
-          <select ref={this.paymentType} id="paymentType">
+          <table className="table">
+          <td><select ref={this.paymentType} id="paymentType">
             <option value="Select Payment Type">Select Payment Type</option>
             <option value="null">-------------</option>
             <option value="Direct Deposit">Direct Deposit</option>
@@ -118,28 +119,41 @@ render() {
             <option value="Credit Card">Credit Card</option>
             <option value="Cash">Cash</option>
             <option value="Other">Other</option>
-          </select>
-          <DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" />
-          <select ref={this.type} id="type">
+          </select></td>
+          <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" /></td>
+          <td><select ref={this.type} id="type">
             <option value="Select Type">Select Type</option>
             <option value="null">-------------</option>
             <option value="Income">Income</option>
             <option value="Expense">Expense</option>
             <option value="Savings">Savings</option>
-          </select>
-          <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value})} />
-          <input ref={this.description} id="description" placeholder="Description" />
-          <button type="button" className="btn btn-primary" onClick={this.addTransaction}>add</button>
+          </select></td>
+          <td><input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" onChange={event => this.setState({ addAmount: event.target.value})} /></td>
+          <td><input ref={this.description} id="description" placeholder="Description" /></td>
+          </table>
+          <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
+        
         </form>
-        <ul>
+        <table className="table">
+          <tr className="rowHead">
+            <th>Payment Type</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Description</th>
+          </tr>
           {this.state.transactions.map(p => (
-            <li key={p.transactionid}>
-              {p.paymentType} | { p.date} | { p.type} | { p.amount} | { p.description}
-              <Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link>
-              <button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button>
-            </li>
+            <tr key={p.transactionid}>
+              <td>{p.paymentType}</td>
+              <td>{ p.date}</td>
+              <td>{ p.type}</td>
+              <td>${ p.amount}</td>
+              <td>{ p.description}</td>
+              <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
+              <td><button type="button" className="btn btn-danger" onClick={() => this.delete(p.transactionid)}>Delete</button></td>
+            </tr>
           ))}
-        </ul>
+        </table>
         <Link to={`/history`}><p className="allTransactions">View All Transactions</p></Link>
       </div>
     );
