@@ -269,6 +269,7 @@ input {
     border: none;
     border-bottom: 1px solid #037F8C;
     padding-left: 10px;
+    color: #734440;
 }
 
 input::placeholder {
