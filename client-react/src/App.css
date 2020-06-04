@@ -261,3 +261,25 @@ button {
 .btn {
     border-radius: 10px 0px 10px;
 }
+
+input {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    height: 25px;
+    border-radius: 0px 0px 5px 5px; 
+    border: none;
+    border-bottom: 1px solid #037F8C;
+    padding-left: 10px;
+}
+
+input::placeholder {
+    color: #734440;
+}
+
+select {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    height: 25px;
+    border-radius: 0px 0px 5px 5px; 
+    border: none;
+    border-bottom: 1px solid #037F8C;
+    color: #734440
+}

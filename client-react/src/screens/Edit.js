@@ -67,6 +67,7 @@ class Edit extends React.Component {
         <h3 className="transactions">Update Transaction</h3>
         <form className="form">
           <table className="table">
+            <thead>
             <tr>
               <th></th>
               <th>Edit Payment Type:</th>
@@ -74,7 +75,10 @@ class Edit extends React.Component {
               <th>Edit Payment Type:</th>
               <th>Edit Amount:</th>
               <th>Edit Description:</th>
+              <th></th>
             </tr>
+            </thead>
+            <tbody>
             <tr>
               <td>Entered</td>
               <td>{this.state.transactions.paymentType}</td>
@@ -83,6 +87,8 @@ class Edit extends React.Component {
               <td>${this.state.transactions.amount}</td>
               <td>{this.state.transactions.description}</td>
             </tr>
+            </tbody>
+            <tbody>
             <tr>
               <td>Edit</td>
               <td><select ref={this.paymentType} className="paymentType" defaultValue={this.state.transactions.paymentType}>
@@ -110,6 +116,7 @@ class Edit extends React.Component {
               <td><input ref={this.description} className="description" defaultValue={this.state.transactions.description} /></td>
               <td><button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button></td>
             </tr>
+            </tbody>
           </table>
         </form>
         <br />
