@@ -67,25 +67,6 @@ router.post('/login', function (req, res, next) {
   });
 });
 
-// Login without JWT Auth
-// router.post('/login', function(req, rex, next) {
-//   models.users
-//     .findOne({
-//       where: {
-//         username:req.body.username,
-//         password:req.body.password
-//       }
-//     })
-//     .then(user => {
-//       if (user) {
-//         res.redirect('transactions');
-//         console.log('Login succeeded!');
-//       } else {
-//         res.send('Invalid Login')
-//       }
-//     })
-//   })
-
 //findOne users
 router.get('/', function (req, res, next) {
   let token = req.cookies.jwt;
