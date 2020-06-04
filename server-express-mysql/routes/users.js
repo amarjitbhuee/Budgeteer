@@ -43,8 +43,7 @@ router.get('/login', function (req, res, next) {
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {
-      username: req.body.username,
-      // password: req.body.password
+      username: req.body.username
     }
   }).then(user => {
     if (!user) {
@@ -68,22 +67,104 @@ router.post('/login', function (req, res, next) {
   });
 });
 
-// secure transactions route (JWT)
-router.get('/transactions', function (req, res, next) {
+// Login without JWT Auth
+// router.post('/login', function(req, rex, next) {
+//   models.users
+//     .findOne({
+//       where: {
+//         username:req.body.username,
+//         password:req.body.password
+//       }
+//     })
+//     .then(user => {
+//       if (user) {
+//         res.redirect('transactions');
+//         console.log('Login succeeded!');
+//       } else {
+//         res.send('Invalid Login')
+//       }
+//     })
+//   })
+
+//findOne users
+router.get('/', function (req, res, next) {
+  let token = req.cookies.jwt;
+  authService.verifyUser(token)
+    .then(user => {
+      if (user) {
+        res.setHeader('Content-Type', 'application/json')
+        res.send(JSON.stringify(user));
+      } else {
+        res.status(401);
+        res.send('Must be logged in');
+      }
+    })
+  // models.users
+  //   .findByPk(parseInt(req.user.userid),
+  //     {include: [{ model: models.transactions }]}
+  //   )
+
+})
+
+// create new transaction with user secured route
+router.post('/transactions', function (req, res, next) {
+  // JWT 
+  // let token = authService.verifyTransaction(user);
+  //res.cookie('jwt', token);
   let token = req.cookies.jwt;
   // after logout
   if (token) {
     authService.verifyUser(token)
       .then(user => {
+        // console.log(user);
         if (user) {
-          res.render('transactions', {
-            firstname: user.firstname,
-            lastname: user.lastname,
-          });
+          models.transactions
+            .create({
+              userid: parseInt(user.userid),
+              type: req.body.type,
+              amount: req.body.amount,
+              description: req.body.description,
+              date: req.body.date
+            })
+            .then(newTransaction => {
+              res.setHeader('Content-Type', 'application/json');
+              res.send(JSON.stringify(newTransaction));
+            })
+            .catch(err => {
+              res.status(400);
+              res.send(err.message);
+            })
         }
         else {
           res.status(401);
-          res.send('Must be logged in')
+          // res.send('Must be logged in');
+          console.log('Must be logged in');
+          res.redirect('login')
+        }
+      })
+  };
+});
+
+// secure transactions route (JWT)
+router.get('/transactions', function (req, res, next) {
+  let token = req.cookies.jwt;
+  // after logout
+  if (token) {
+
+    authService.verifyUser(token)
+      .then(user => {
+        if (user) {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify(user));
+
+          // res.render('transactions', {
+          //   firstname: user.firstname,
+          //   lastname: user.lastname,
+          // });
+     
+        } else {
+          res.status(401);
+          res.send('Invalid authentication token')
           // console.log('Must be logged in');
           // res.redirect('login')
         }
@@ -96,90 +177,40 @@ router.get('/transactions', function (req, res, next) {
   }
 })
 
-// POST to transactions without JWT (Working)
-router.post('/:id/transactions', function (req, res, next) {
-  models.transactions
-    .create({
-      userid: parseInt(req.params.id),
-      type: req.body.type,
-      amount: req.body.amount,
-      description: req.body.description,
-      date: req.body.date
-    })
-    .then(newTransaction => {
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(newTransaction));
-    })
-    .catch(err => {
-      res.status(400);
-      res.send(err.message);
-    })
-})
-
-// create new transaction with user secured route
-// router.post('/transactions', function (req, res, next) {
-//   // let token = req.cookies.jwt;
-//   // if (token) {
-//   //   authService.verifyUser(token)
-//   //   .then(user => {
-//   //     if (user) {
-//   //       res.render('transactions')
-//   //     }  else {
-//   //       res.status(401);
-//   //       res.send('Must be logged in')
-//   //       // console.log('Must be logged in');
-//   //       // res.redirect('login')
-//   //     }
-//   //   })
-//   // }
-//   models.transactions
-//     .create({
-//       userid: parseInt(req.user.userid),
-//       type: req.body.type,
-//       amount: req.body.amount,
-//       description: req.body.description,
-//       date: req.body.date
-//     })
-//     .then(newTransaction => {
-//       // JWT 
-//       let token = authService.signUser(user);
-//       res.cookie('jwt', token);
-//       // res.setHeader('Content-Type', 'application/json');
-//       res.send(JSON.stringify(newTransaction));
-//     })
-//     .catch(err => {
-//       res.status(400);
-//       res.send(err.message);
-//     })
-// })
-
 //findOne user and their transactions with JWT
-// router.get('/:id', function (req, res, next) {
-//   let token = req.cookies.jwt;
-//   if (token) {
-//     authService.verifyUser(token)
-//       .then(user => {
-//         if (user) {
-//           res.render('users', {
-//             include: [{ model: models.transactions }],
-//             where: { userid: parseInt(req.params.id) },
-//             firstname: user.firstname,
-//             lastname: user.lastname
-//           })
-//         } else {
-//           res.status(401);
-//           res.send('Must be logged in')
-//           // console.log('Must be logged in');
-//           // res.redirect('login')
-//         }
-//       })
-//   } else {
-//     res.status(401);
-//     res.send('Must be logged in')
-//     // console.log('Must be logged in');
-//     // res.redirect('login')
-//   }
-// });
+router.get('/income_expenses', function (req, res, next) {
+  let token = req.cookies.jwt;
+  if (token) {
+    authService.verifyUser(token)
+      .then(user => {
+        if (user) {
+          //   // res.render('income_expenses', {
+          //   //   // include: [{ model: models.transactions }],
+          //   //   firstname: user.firstname
+          //   // })
+          models.user.findOne({
+            include: [{ model: models.transaction }],
+            where: { userid: parseInt(req.user.userid) }
+
+          })
+            .then(user => {
+              res.setHeader('Content-Type', 'application/json');
+              res.send(JSON.stringify(user));
+            })
+        } else {
+          res.status(401);
+          res.send('Must be logged in')
+          // console.log('Must be logged in');
+          // res.redirect('login')
+        }
+      })
+  } else {
+    res.status(401);
+    res.send('Must be logged in')
+    // console.log('Must be logged in');
+    // res.redirect('login')
+  }
+});
 
 // logout
 router.get('/logout', function (req, res, next) {
@@ -236,20 +267,6 @@ router.delete('/', function (req, res, next) {
 
 
 // =====Admin functions==========
-
-//findAll users
-router.get('/', function (req, res, next) {
-  let token = req.cookies.jwt;
-  authService.verifyUser(token)
-  // models.users
-    .findAll({
-      include: [{ model: models.transactions }]
-        .then(usersFound => {
-          res.setHeader('Content-Type', 'application/json')
-          res.send(JSON.stringify(usersFound));
-        })
-    })
-})
 
 //findOne user and their transactions
 // router.get("/:id", function (req, res, next) {

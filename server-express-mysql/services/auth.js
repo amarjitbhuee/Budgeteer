@@ -6,7 +6,8 @@ var authService ={
     signUser: function(user){
         const token = jwt.sign({
             username: user.username,
-            userid: user.userid
+            userid: user.userid,
+            // transactionid: transaction.transactionid
         }, 'secretkey', 
         {
             expiresIn: '1h'
@@ -16,12 +17,21 @@ var authService ={
     verifyUser: function(token){
         try {
             let decoded = jwt.verify(token, 'secretkey');
-            return models.users.findByPk(decoded.userid);
+            return models.users.findByPk((decoded.userid), {include: [{ model: models.transactions }]});
         } catch (err){
             console.log(err);
             return null;
         }
     },
+    // verifyTransaction: function(token){
+    //     try {
+    //         let decoded = jwt.verify(token, 'secretkey');
+    //         return models.transactions.findByPk(decoded.transactionid);
+    //     } catch (err) {
+    //         console.log(err);
+    //         return null;
+    //     }
+    // },
     hashPassword: function(plainTextPassword){
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(plainTextPassword, salt);

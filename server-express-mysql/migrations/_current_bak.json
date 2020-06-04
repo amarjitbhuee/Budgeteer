@@ -54,70 +54,6 @@
             },
             "indexes": []
         },
-        "transactions": {
-            "tableName": "transactions",
-            "schema": {
-                "paymentType": {
-                    "allowNull": true,
-                    "field": "paymentType",
-                    "seqType": "Sequelize.STRING(255)"
-                },
-                "date": {
-                    "allowNull": true,
-                    "field": "date",
-                    "seqType": "Sequelize.DATEONLY"
-                },
-                "type": {
-                    "allowNull": false,
-                    "field": "type",
-                    "seqType": "Sequelize.STRING(255)"
-                },
-                "amount": {
-                    "allowNull": false,
-                    "field": "amount",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "description": {
-                    "allowNull": false,
-                    "field": "description",
-                    "seqType": "Sequelize.STRING(255)"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "transactionid": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "transactionid",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "userid": {
-                    "allowNull": true,
-                    "field": "userid",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "userId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "users",
-                        "key": "userid"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "userId",
-                    "seqType": "Sequelize.INTEGER"
-                }
-            },
-            "indexes": []
-        },
         "users": {
             "tableName": "users",
             "schema": {
@@ -145,11 +81,13 @@
                     "seqType": "Sequelize.STRING(45)"
                 },
                 "password": {
+                    "allowNull": false,
                     "field": "password",
-                    "seqType": "Sequelize.STRING(45)"
+                    "seqType": "Sequelize.STRING"
                 },
                 "email": {
                     "unique": true,
+                    "allowNull": false,
                     "field": "email",
                     "seqType": "Sequelize.STRING"
                 },
@@ -167,5 +105,5 @@
             "indexes": []
         }
     },
-    "revision": 17
+    "revision": 1
 }
