@@ -2,7 +2,8 @@ import React from 'react'
 import axios from 'axios';
 import '../transaction.min.css';
 import { Link } from 'react-router-dom';
-
+import CurrencyFormat from 'react-currency-format';
+// npm install react-currency-format --save
 
 
 class CurrentBalance extends React.Component{
@@ -56,7 +57,7 @@ class CurrentBalance extends React.Component{
         const currentBalance = ((totalIncome-totalExpense) - (totalSavings)); 
         return(
             <div>
-                <Link to={`/history`}><h5 className="currentBalance"><span className="underline">Your Current Balance:</span> <br /> <span className="balance">${currentBalance}</span></h5></Link>
+                <Link to={`/history`}><h5 className="currentBalance"><span className="underline">Your Current Balance:</span> <br /> <CurrencyFormat value={currentBalance} displayType={'text'} thousandSeparator={true} prefix={'$'} className="balance" /></h5></Link>
             </div>
         )
     }

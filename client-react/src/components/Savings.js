@@ -1,7 +1,8 @@
 import React from 'react'; 
 import axios from 'axios'; 
 import '../transaction.min.css'; 
-
+import CurrencyFormat from 'react-currency-format';
+// npm install react-currency-format --save
 
 class Savings extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class Savings extends React.Component {
         // const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
         return(
             <div>
-                <h1 className="total">${total}</h1>
+                <h1 className="total"><CurrencyFormat value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h1>
             </div>
         )
     }
