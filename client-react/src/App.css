@@ -30,7 +30,7 @@ body {
     background-position-x: -400px;
     background-position: fixed;  
     background-repeat: no-repeat;
-    background-color: darkorange;
+    background-color: #4CAF50;
 };
 
 .container {
@@ -97,7 +97,8 @@ body {
 color =  240, 242, 242 */
  background-color: rgba(240, 242, 242, 0.7); 
  border: solid 2px #D9961A;
- margin-top: 80px;
+ margin-top: 40px;
+ margin-bottom: 20px;
  border-radius: 50px 0px 50px 0px; 
 }
 
@@ -130,12 +131,12 @@ color =  240, 242, 242 */
     text-decoration: none;
 }
 
-.symbol1 {
+.positive {
     color: #4CAF50;
     opacity: 45%;
 }
 
-.symbol2 {
+.negative {
     color: red; 
     opacity: 45%;
 }
@@ -143,7 +144,7 @@ color =  240, 242, 242 */
 .logo2 {
     width: 75px; 
     height: 75px;
-    padding-bottom: 15px; 
+    padding-bottom: 15px;
 }
 
 .overview {
@@ -157,8 +158,8 @@ color =  240, 242, 242 */
 }
 
 .block {
-    /*for visual representation
-    border: solid 1px black;*/
+    /*for visual representation */
+    /* border: solid 1px black; */
     width: 200px
 }
 
@@ -261,6 +262,12 @@ color =  240, 242, 242 */
     font-size: 16px;
 }
 
+.note {
+    color: #734440;
+    font-size: 13px;
+    font-style: italic;
+}
+
 .rowHead {
     color: #037F8C;
 }
@@ -276,24 +283,45 @@ button {
 input {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
     height: 35px;
-    border-radius: 0px 0px 5px 5px; 
+    border-radius: 5px 5px 5px 5px; 
     border: none;
     border-left: 1px solid #037F8C;
     border-bottom: 1px solid #037F8C;
     padding-left: 10px;
     color: #734440;
+    width: 150px;
 }
 
 input::placeholder {
+    opacity: 80%;
     color: #734440;
+}
+
+input:focus {
+    border-left: 1px solid #D9961A;
+    border-bottom: 1px solid #D9961A;
 }
 
 select {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
     height: 35px;
-    border-radius: 0px 0px 5px 5px; 
+    border-radius: 5px 0px 5px 5px; 
     border: none;
     border-left: 1px solid #037F8C;
     border-bottom: 1px solid #037F8C;
-    color: #734440
+    color: #734440;
+    opacity: 75%;
+}
+
+select:focus {
+    border-left: 1px solid #D9961A;
+    border-bottom: 1px solid #D9961A;
+}
+
+select-selected {
+    background-color: #D9961A
+}
+
+.type {
+    color: #037F8C;
 }

@@ -91,34 +91,29 @@ class Edit extends React.Component {
             <tbody>
             <tr>
               <td>Edit</td>
-              <td><select ref={this.paymentType} className="paymentType" defaultValue={this.state.transactions.paymentType}>
-                <optgroup label="Payment Type:">
-                  <option value={this.state.transactions.paymenttype} defaultValue>{this.state.transactions.paymentType}</option>
-                  <option value="null">-------------</option>
+              <td><select ref={this.paymentType} className="selectFields2">
+                  <option value="" selected="selected" disabled="disabled" className="type">Select Payment Type: </option>
                   <option value="Direct Deposit">Direct Deposit</option>
                   <option value="Check">Check</option>
                   <option value="Credit Card">Credit Card</option>
                   <option value="Cash">Cash</option>
                   <option value="Other">Other</option>
-                </optgroup>
               </select></td>
               <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} /></td>
-              <td><select ref={this.type} className="type">
-                <optgroup label="Type:">
-                  <option value={this.state.transactions.type} defaultValue>{this.state.transactions.type}</option>
-                  <option value="null">-------------</option>
+              <td><select ref={this.type} className="selectFields2">
+                  <option value="" selected="selected" disabled="disabled" className="type">Transaction Type:</option>
                   <option value="Income">Income</option>
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
-                </optgroup>
               </select></td>
               <td><input ref={this.amount} className="amount" defaultValue={this.state.transactions.amount} /></td>
-              <td><input ref={this.description} className="description" defaultValue={this.state.transactions.description} /></td>
+              <td><input ref={this.description} className="description" defaultValue={this.state.transactions.description} required /></td>
               <td><button type="button" className="btn btn-success" onClick={() => this.updateTransaction(this.transactionid)}>Update</button></td>
             </tr>
             </tbody>
           </table>
         </form>
+        <p className="note">*** Please make ensure that all fields are filled out prior to update ***<br />- Team Penguin</p>
         <br />
         <Link to={`/`} className="allTransactions">Home</Link><br />
         <br />

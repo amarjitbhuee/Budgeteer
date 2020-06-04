@@ -16,10 +16,10 @@ export const GlorifiedCalculator = () => {
                         <Link to={`/history`}><img className="logo2" src={Logo2} alt="LogoType" /></Link>
                     </div>
                     <div className="block">
-                        <Link to={`/Income`}><h5 className="glorifiedCalculator"><span className="underline">Income: </span><Income /></h5></Link>
+                        <Link to={`/Income`}><h5 className="glorifiedCalculator"><span className="positive">+ </span><span className="underline">Income: </span><Income /></h5></Link>
                     </div>
                     <div className="block">    
-                        <Link to={`/Expense`}><h5 className="glorifiedCalculator"><span className="underline">Expenses: </span><Expense /></h5></Link>
+                        <Link to={`/Expense`}><h5 className="glorifiedCalculator"><span className="negative">- </span><span className="underline"> Expenses: </span><Expense /></h5></Link>
                     </div>
                     <div className="block">    
                         <Link to={`/Savings`}><h5 className="glorifiedCalculator"><span className="underline">Savings: </span><Savings /></h5></Link>

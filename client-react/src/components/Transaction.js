@@ -74,7 +74,6 @@ class Transaction extends React.Component {
   };
 
   render() {
-
     return (
       <div className="form">
         <p className="transactions">Add A New Transaction</p>
@@ -83,9 +82,8 @@ class Transaction extends React.Component {
           <table className="table">
             <tbody>
               <tr>
-                <td><select required ref={this.paymentType} id="paymentType">
-                  <option value="Select Payment Type">Select Payment Type</option>
-                  <option value="null">-------------</option>
+                <td><select required ref={this.paymentType} className="selectFields">
+                  <option value="" selected="selected" disabled="disabled" className="type">Select Payment Type: </option>
                   <option value="Direct Deposit">Direct Deposit</option>
                   <option value="Check">Check</option>
                   <option value="Credit Card">Credit Card</option>
@@ -93,21 +91,20 @@ class Transaction extends React.Component {
                   <option value="Other">Other</option>
                 </select></td>
                 <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" /></td>
-                <td><select ref={this.type} id="type">
-                  <option value="Select Type">Select Type</option>
-                  <option value="null">-------------</option>
+                <td><select ref={this.type} className="selectFields">
+                  <option value="" selected="selected" disabled="disabled" className="type">Transaction Type: </option>
                   <option value="Income">Income</option>
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
                 </select></td>
                 <td>
-                  <input  ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" /></td>
+                  <input  ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number"  /></td>
                 <td><input required ref={this.description} id="description" placeholder="Description" type="required" /></td>
               </tr>
             </tbody>
           </table>
           <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
-
+          <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers <br />and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
         </form>
         <table className="table">
           <thead>
