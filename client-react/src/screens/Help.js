@@ -50,10 +50,11 @@ export const Help = () => {
                 Unlike the first 2 fields the type is required in order to see the transaction adjust the balance. The balances depend on the type to function properly. The Income adds
                 to the current balance, while the Expenses will subtract from your current balance. Savings will also subtract from your current balance as the goal is to stash the Cash
                 as if it was being take away. You will also notice as you make more transactions your Income will add only your income transactions. The Expenses will add only your expenses
-                giving you an idea of how much spending verses saving. And Savings will only add your savings transactions. <br /> <br /><h5>Also: </h5> The curent balance, income, expenses and savings
+                giving you an idea of how much spending verses saving. And Savings will only add your savings transactions. <br /> <br />
+            </p>
+            <h5>Also: </h5> The curent balance, income, expenses and savings
                 fields are also links. Current balance will direct you to all of your transactions, income will direct you to all of your income transactions, epxenses will direct you 
                 to your expense transactions and savings will direct you to all of your savings transactions. 
-            </p>
             <br />
             <hr />
             <br />
