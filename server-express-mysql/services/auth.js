@@ -23,15 +23,6 @@ var authService ={
             return null;
         }
     },
-    // verifyTransaction: function(token){
-    //     try {
-    //         let decoded = jwt.verify(token, 'secretkey');
-    //         return models.transactions.findByPk(decoded.transactionid);
-    //     } catch (err) {
-    //         console.log(err);
-    //         return null;
-    //     }
-    // },
     hashPassword: function(plainTextPassword){
         let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(plainTextPassword, salt);

@@ -89,9 +89,6 @@ router.get('/', function (req, res, next) {
 
 // create new transaction with user secured route
 router.post('/transactions', function (req, res, next) {
-  // JWT 
-  // let token = authService.verifyTransaction(user);
-  //res.cookie('jwt', token);
   let token = req.cookies.jwt;
   // after logout
   if (token) {
@@ -135,14 +132,14 @@ router.get('/transactions', function (req, res, next) {
     authService.verifyUser(token)
       .then(user => {
         if (user) {
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(user));
+          res.setHeader('Content-Type', 'application/json');
+          res.send(JSON.stringify(user));
 
           // res.render('transactions', {
           //   firstname: user.firstname,
           //   lastname: user.lastname,
           // });
-     
+
         } else {
           res.status(401);
           res.send('Invalid authentication token')
@@ -224,27 +221,39 @@ router.get('/profile', function (req, res, next) {
 })
 
 // update user information with secured route
-router.put('/', function (req, res, next) {
-  let userId = parseInt(req.user.userid);
-  models.users.update(req.body, { where: { userid: userId } })
-    .then(result => res.redirect('/users/' + userId))
-    .catch(err => {
-      res.status(400);
-      res.send('There was a problem updating the user. Please check the user information.');
-    });
-});
+// router.put('/', function (req, res, next) {
+//   let userId = parseInt(req.user.userid);
+//   models.users.update(req.body, { where: { userid: userId } })
+//     .then(result => res.redirect('/users/' + userId))
+//     .catch(err => {
+//       res.status(400);
+//       res.send('There was a problem updating the user. Please check the user information.');
+//     });
+// });
 
-//delete with user secured routes
-router.delete('/', function (req, res, next) {
-  let userId = parseInt(req.user.userid);
-  models.users
-    .destroy({ where: { userid: userId } })
-    .then(result => res.redirect('/'))
-    .catch(err => {
-      res.status(400);
-      res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
-    })
+// update user information with JWT Authentication
+router.put('/', function (req, res, next) {
+  let token = req.cookies.jwt;
+  if (token) {
+    authService.verifyUser(token)
+      .then(user => {
+        if (user) {
+          let userid = parseInt(user.userid);
+          models.users.update(req.body,
+            {
+              where: { userid: userid }
+            })
+            .then(result => res.redirect('/users'))
+            .catch(err => {
+              res.status(400);
+              res.send('There was a problem updating the user. Please check the user information.');
+            })
+        }
+      })
+  }
 })
+
+
 
 
 // =====Admin functions==========
@@ -295,6 +304,18 @@ router.delete('/', function (req, res, next) {
 //       }
 //     });
 // });
+
+//delete with user secured routes
+// router.delete('/', function (req, res, next) {
+//   let userId = parseInt(req.user.userid);
+//   models.users
+//     .destroy({ where: { userid: userId } })
+//     .then(result => res.redirect('/'))
+//     .catch(err => {
+//       res.status(400);
+//       res.send('There was a problem deleting the user. Please make sure you are specifying the correct id.')
+//     })
+// })
 
 module.exports = router;
 
