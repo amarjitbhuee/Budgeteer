@@ -100,6 +100,8 @@ color =  240, 242, 242 */
  margin-top: 40px;
  margin-bottom: 20px;
  border-radius: 50px 0px 50px 0px; 
+ height: 900px; 
+ overflow: auto;
 }
 
 .calculator { 
@@ -193,60 +195,60 @@ color =  240, 242, 242 */
     bottom: 15px
 }
 
-.adjustment {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
-    font-size: 23px; 
-    font-weight: 700; 
-    color: #037F8C;
-    padding-left: 25px; 
-    text-decoration: none;
-    position: relative; 
-    bottom: 5px; 
-}
-
-.adjustedBalance {
-    color: #734440;
-    font-style: italic;
-    font-size:28px; 
-}
-
-.transactions {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
-    font-size: 35px; 
-    font-weight: 700; 
-    color: #037F8C;
-    padding-left: 25px; 
-    text-decoration: none;
-}
-
-.allTransactions {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
-    font-size: 15px; 
-    font-weight: 700; 
-    color: #037F8C;
-    padding-left: 25px; 
-    text-decoration: underline;
-}
-
-.allTransactions:hover {
-    text-decoration: none; 
-    color: #D9961A; 
-}
-
-.table {
+input {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    padding-top: 50px;
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
+    height: 35px;
+    border-radius: 5px 5px 5px 5px; 
+    border: none;
+    border-left: 1px solid #037F8C;
+    border-bottom: 1px solid #037F8C;
+    padding-left: 10px;
+    color: #734440;
+    width: 150px;
+    outline: 0;
 }
 
-.form {
-    padding: 20px;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-    vertical-align: middle;
+input::placeholder {
+    opacity: 80%;
+    color: #734440;
+}
+
+input:focus {
+    border: 1px solid #D9961A;
+}
+
+input:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px;
+}
+
+select {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    height: 35px;
+    border-radius: 5px 0px 5px 5px; 
+    border: none;
+    border-left: 1px solid #037F8C;
+    border-bottom: 1px solid #037F8C;
+    color: #734440;
+    opacity: 75%;
+    outline: 0;
+}
+
+select:focus {
+    border: 1px solid #D9961A;
+}
+
+select-selected {
+    background-color: #D9961A
+}
+
+select:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px
+}
+
+.type {
+    color: #037F8C;
 }
 
 .addTransaction {
@@ -273,6 +275,36 @@ color =  240, 242, 242 */
     font-style: italic;
 }
 
+.note2 {
+    color: #037F8C;
+    font-size: 13px; 
+    font-style: italic;
+}
+.transactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px; 
+    text-decoration: none;
+}
+
+.table {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form {
+    padding: 20px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
 .rowHead {
     color: #037F8C;
 }
@@ -285,48 +317,63 @@ button {
     border-radius: 10px 0px 10px;
 }
 
-input {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    height: 35px;
-    border-radius: 5px 5px 5px 5px; 
-    border: none;
-    border-left: 1px solid #037F8C;
-    border-bottom: 1px solid #037F8C;
-    padding-left: 10px;
-    color: #734440;
-    width: 150px;
-}
-
-input::placeholder {
-    opacity: 80%;
-    color: #734440;
-}
-
-input:focus {
-    border-left: 1px solid #D9961A;
-    border-bottom: 1px solid #D9961A;
-}
-
-select {
-    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
-    height: 35px;
-    border-radius: 5px 0px 5px 5px; 
-    border: none;
-    border-left: 1px solid #037F8C;
-    border-bottom: 1px solid #037F8C;
-    color: #734440;
-    opacity: 75%;
-}
-
-select:focus {
-    border-left: 1px solid #D9961A;
-    border-bottom: 1px solid #D9961A;
-}
-
-select-selected {
-    background-color: #D9961A
-}
-
-.type {
+.allTransactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
     color: #037F8C;
+    text-decoration: underline;
+}
+
+.allTransactions:hover {
+    text-decoration: none; 
+    color: #D9961A; 
+}
+
+
+/*The Help Screen*/
+.logoHelp {
+    width: 150px; 
+    height: 150px;
+}
+
+.formExample {
+    width: 900px; 
+    height: 300px; 
+}
+
+.instructions {
+    width: 700px; 
+    display:block; 
+    margin: auto;
+}
+.paymentType {
+    width: 800px; 
+    height: 100px; 
+    display: block;
+    margin: auto;
+}
+
+.date {
+    width: 800px; 
+    height: 250px; 
+    display: block; 
+    margin: auto;
+}
+
+.balances {
+    width: 800px; 
+    height: 250px; 
+    display: block; 
+    margin: auto;
+}
+
+.ledger {
+    width: 600px; 
+    height: 700px; 
+}
+
+.compare {
+    width: 800px; 
+    height: 800px;
 }

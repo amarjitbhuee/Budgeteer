@@ -59,6 +59,9 @@ class Savings extends React.Component {
         </table>
         <br />
         <Link to={`/`} className="allTransactions">Home</Link><br />
+        <Link to={`/history`} className="allTransactions">View All Transactions</Link><br /><br />
+        <p className="note2">If you received an N/A or if any column is blank in any of your transactions you can simply edit them</p>
+        <p><Link to={'/help'}><span className="help">Help & More Information</span></Link></p>
       </div>
     );
   }

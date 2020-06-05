@@ -83,7 +83,8 @@ class Transaction extends React.Component {
             <tbody>
               <tr>
                 <td><select required ref={this.paymentType} className="selectFields">
-                  <option value="" selected="selected" disabled="disabled" className="type">Select Payment Type: </option>
+                  <option value="N/A" className="oops">Payment Type: </option>
+                  <option value="" disabled className="type">Select Payment Type: </option>
                   <option value="Direct Deposit">Direct Deposit</option>
                   <option value="Check">Check</option>
                   <option value="Credit Card">Credit Card</option>
@@ -92,14 +93,15 @@ class Transaction extends React.Component {
                 </select></td>
                 <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText="Date" /></td>
                 <td><select ref={this.type} className="selectFields">
-                  <option value="" selected="selected" disabled="disabled" className="type">Transaction Type: </option>
+                  <option value="N/A (Was not Added to Your Balances)" className="Oops">Type:</option>
+                  <option defaultValue="" disabled="disabled" className="type">Transaction Type: </option>
                   <option value="Income">Income</option>
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
                 </select></td>
                 <td>
-                  <input  ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number"  /></td>
-                <td><input required ref={this.description} id="description" placeholder="Description" type="required" /></td>
+                  <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" required /></td>
+                <td><input ref={this.description} id="description" placeholder="Description" /></td>
               </tr>
             </tbody>
           </table>
@@ -131,6 +133,8 @@ class Transaction extends React.Component {
             ))}</tbody>
         </table>
         <Link to={`/history`}><p className="allTransactions">View All Transactions</p></Link>
+        <p className="note2">If you received an N/A or if any column is blank in any of your transactions you can simply edit them</p>
+        <p><Link to={'/help'}><span className="help">Help & More Information</span></Link></p>
       </div>
     );
   }

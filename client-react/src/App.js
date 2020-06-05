@@ -15,6 +15,7 @@ import GlorifiedCalculator from "./components/GlorifiedCalculator";
 import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
+import Help from "./screens/Help"; 
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" exact component={ Transaction } />
             <Route path="/history"  component={ History } />
             <Route path="/edit/:transactionid" component={ Edit } />
+            <Route path="/Help" component={ Help } />
           </Switch>
           </div>
         </div>
