@@ -412,3 +412,8 @@ button {
 p {
     font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;  
 }
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+}
