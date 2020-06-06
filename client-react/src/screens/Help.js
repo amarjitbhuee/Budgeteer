@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../assets/img/Logo.png';
+import LogoType from '../assets/img/LogoType.png';
 import formExample from '../assets/img/formExample.png';
 import paymentType from '../assets/img/paymentType.png';
 import date from '../assets/img/date.png'; 
