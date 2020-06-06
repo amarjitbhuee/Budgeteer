@@ -109,6 +109,7 @@ class Transaction extends React.Component {
           <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
           <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers <br />and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
         </form>
+        <h3>Recent Transactions:</h3>
         <table className="table">
           <thead>
             <tr className="rowHead">
