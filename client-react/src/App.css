@@ -333,13 +333,13 @@ button {
 
 /*The Help Screen*/
 .logoHelp {
-    width: 150px; 
-    height: 150px;
+    
 }
 
 .formExample {
-    width: 900px; 
-    height: 300px; 
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
 }
 
 .instructions {
@@ -348,32 +348,67 @@ button {
     margin: auto;
 }
 .paymentType {
-    width: 800px; 
-    height: 100px; 
+    width: 100%; 
+    height: auto; 
     display: block;
     margin: auto;
+    border: solid black 1px; 
 }
 
 .date {
-    width: 800px; 
-    height: 250px; 
+    width: 100%; 
+    height: auto; 
     display: block; 
     margin: auto;
+    border: solid black 1px; 
 }
 
 .balances {
-    width: 800px; 
-    height: 250px; 
+    width: 100%; 
+    height: auto; 
     display: block; 
     margin: auto;
+    border: solid black 1px; 
 }
 
 .ledger {
-    width: 600px; 
-    height: 700px; 
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
 }
 
 .compare {
-    width: 800px; 
-    height: 800px;
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
+}
+
+.helpTitle {
+    color:#037F8C;
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700; 
+}
+
+.helpTitle1 {
+    color:#037F8C;
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700;
+    text-decoration: underline; 
+}
+
+.thankYou {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+}
+
+.thankYou1{
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 25x;
+    padding-top: 20px;
+}
+
+p {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;  
 }
