@@ -1,12 +1,12 @@
 import React from 'react';
 import Logo from '../assets/img/Logo.png';
-import { Link } from 'react-router-dom';
 import formExample from '../assets/img/formExample.png';
 import paymentType from '../assets/img/paymentType.png';
 import date from '../assets/img/date.png'; 
 import balances from '../assets/img/balances.png'; 
 import ledger from '../assets/img/ledger.jpg'; 
 import compare from '../assets/img/compare.png'
+import Links from '../components/Links'
 
 export const Help = () => {
     return (
@@ -77,8 +77,8 @@ export const Help = () => {
                 <img className="compare" src={compare} alt="compare" />
             </div>
             <br />
-            <Link to={`/`} className="allTransactions">Home</Link><br /><br />
-            <Link to={`/history`} className="allTransactions">View All Transactions</Link><br /><br />
+            <hr />
+            <Links />
         </div>
     )
 }

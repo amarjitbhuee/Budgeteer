@@ -377,3 +377,8 @@ button {
     width: 800px; 
     height: 800px;
 }
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+}

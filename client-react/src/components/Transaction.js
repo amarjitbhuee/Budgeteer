@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
 import '../transaction.min.css';
+import Links from '../components/Links';
 
 class Transaction extends React.Component {
   constructor(props) {
@@ -132,9 +133,7 @@ class Transaction extends React.Component {
               </tr>
             ))}</tbody>
         </table>
-        <Link to={`/history`}><p className="allTransactions">View All Transactions</p></Link>
-        <p className="note2">If you received an N/A or if any column is blank in any of your transactions you can simply edit them</p>
-        <p><Link to={'/help'}><span className="help">Help & More Information</span></Link></p>
+        <Links />
       </div>
     );
   }
