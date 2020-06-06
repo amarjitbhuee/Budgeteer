@@ -2,7 +2,7 @@ import React from "react";
 import '../transaction.min.css';
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import { Link } from 'react-router-dom';
+import Links from "../components/nav/Links";
 
 class Edit extends React.Component {
   constructor(props) {
@@ -19,30 +19,23 @@ class Edit extends React.Component {
     this.description = React.createRef();
   }
 
-  //Jeff copied from transaction.js
   handleChange = date => {
     this.setState({
       date: date
     });
   };
 
-  //Jeff renamed to getTransaction to try to get transaction based on its id
   componentDidMount() {
     this.getTransaction();
   };
 
   getTransaction = () => {
-    //Jeff: Url connects properly without out manually inputing the transaction id
     let id = this.props.match.params.transactionid;
     let url = "http://localhost:3001/transactions/edit/" + id;
     axios.get(url)
       .then(response => this.setState({ transactions: response.data }))
   };
-
-
-  //Jeff: ***Will this still be needed once we change from update to edit?
-  //Jeff: ***May have to to move to edit screen 
-  //Jeff: Moved from transaction.js  
+ 
   updateTransaction = () => {
     let id = this.props.match.params.transactionid
     let url = "http://localhost:3001/transactions/edit/" + id;
@@ -59,6 +52,16 @@ class Edit extends React.Component {
         this.getTransaction();
       })
       .catch(err => console.log(err));
+  };
+
+  deleteTransaction = (transactionid) => {
+    let url = "http://localhost:3001/transactions/" + transactionid;
+    axios.delete(url)
+      .then(response => {
+        this.getData();
+        alert('Your Transaction has been deleted!');
+        window.location.reload();
+      })
   };
 
   render() {
@@ -116,12 +119,7 @@ class Edit extends React.Component {
           </table>
         </form>
         <p className="note">*** Please make ensure that all fields are filled out prior to update ***<br />- Team Penguin</p>
-        <br />
-        <Link to={`/`} className="allTransactions">Home</Link><br />
-        <br />
-        <Link to={`/history`} className="allTransactions">View All Transactions</Link>
-        <p className="note2">If you received an N/A or if any column is blank in any of your transactions you can simply edit them</p> 
-        <p><Link to={'/help'}><span className="help">Help & More Information</span></Link></p>
+        <Links />
       </div>
     );
   }

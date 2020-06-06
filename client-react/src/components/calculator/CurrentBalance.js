@@ -1,10 +1,9 @@
 import React from 'react'
 import axios from 'axios';
-import '../transaction.min.css';
+import '../../transaction.min.css';
 import { Link } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 // npm install react-currency-format --save
-
 
 class CurrentBalance extends React.Component{
     constructor(props) {
@@ -22,7 +21,6 @@ class CurrentBalance extends React.Component{
         this.getExpense();
         this.getSavings();
     };
-
 
     getIncome = () => {
         let url = "http://localhost:3001/transactions/income";

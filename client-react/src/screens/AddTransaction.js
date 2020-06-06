@@ -2,18 +2,19 @@ import React from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
 import '../transaction.min.css';
-import Links from '../components/Links';
+import Links from '../components/nav/Links';
+import NewTransaction from '../components/NewTransaction';
+import RecentTransactions from '../components/transactionHistory/RecentTransactions';
 
-class Transaction extends React.Component {
+
+class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       transactions: []
     };
 
-    this.userid = React.createRef();
     this.paymentType = React.createRef();
     this.date = React.createRef();
     this.type = React.createRef();
@@ -64,21 +65,10 @@ class Transaction extends React.Component {
       window.location.reload();
   };
 
-  deleteTransaction = (transactionid) => {
-    let url = "http://localhost:3001/transactions/" + transactionid;
-    axios.delete(url)
-      .then(response => {
-        this.getData();
-        alert('Your Transaction has been deleted!');
-        window.location.reload();
-      })
-  };
-
   render() {
     return (
       <div className="form">
-        <p className="transactions">Add A New Transaction</p>
-        <h3 className="quote">"Beware of little expenses. A small leak will sink a great ship." ~Benjamin Franklin</h3>
+        <NewTransaction />
         <form className="form">
           <table className="table">
             <tbody>
@@ -101,43 +91,20 @@ class Transaction extends React.Component {
                   <option value="Savings">Savings</option>
                 </select></td>
                 <td>
-                  <input ref={this.amount} id="amount" placeholder="$ Dollar Amount" type="number" required /></td>
-                <td><input ref={this.description} id="description" placeholder="Description" /></td>
+                <input ref={this.amount} className="amount" placeholder="$ Dollar Amount" type="number"  /></td>
+                <td><input ref={this.description} className="description" placeholder="Description" /></td>
               </tr>
             </tbody>
           </table>
           <button type="button" className="addTransaction" onClick={this.addTransaction}>add</button>
-          <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers <br />and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
+          <p className="note">*** Thank you for choosing Budgeteer! Please note that this application is based on whole numbers and all demcimals will be rounded to the nearest dollar. - Team Penguin***</p>
         </form>
-        <h3>Recent Transactions:</h3>
-        <table className="table">
-          <thead>
-            <tr className="rowHead">
-              <th>Payment Type</th>
-              <th>Date</th>
-              <th>Type</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th></th>
-              <th></th>
-            </tr></thead>
-          <tbody>
-            {this.state.transactions.map(p => (
-              <tr key={p.transactionid}>
-                <td>{p.paymentType}</td>
-                <td>{p.date}</td>
-                <td>{p.type}</td>
-                <td>${p.amount}</td>
-                <td>{p.description}</td>
-                <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
-                <td><button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button></td>
-              </tr>
-            ))}</tbody>
-        </table>
+        <h4>Recent Transactions</h4>
+        <RecentTransactions />
         <Links />
       </div>
     );
   }
 }
 
-export default Transaction;
+export default AddTransaction;

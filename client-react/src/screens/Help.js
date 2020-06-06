@@ -6,7 +6,7 @@ import date from '../assets/img/date.png';
 import balances from '../assets/img/balances.png'; 
 import ledger from '../assets/img/ledger.jpg'; 
 import compare from '../assets/img/compare.png'
-import Links from '../components/Links'
+import Links from '../components/nav/Links'
 
 export const Help = () => {
     return (

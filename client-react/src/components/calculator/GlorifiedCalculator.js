@@ -1,10 +1,9 @@
 import React from 'react';
-import Income from './/Income';  
-import Expense from './/Expense'; 
-import Savings from './/Savings'; 
-import Logo2 from '../assets/img/Logo2.png';
-import { Link } from 'react-router-dom'
-
+import Income from '../calculator/Income';  
+import Expense from '../calculator/Expense'; 
+import Savings from '../calculator/Savings'; 
+import Logo2 from '../../../src/assets/img/Logo2.png';
+import { Link } from 'react-router-dom';
 
 export const GlorifiedCalculator = () => {
     return (

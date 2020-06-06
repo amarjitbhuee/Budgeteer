@@ -1,21 +1,23 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
+import "react-datepicker/dist/react-datepicker.css";
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
-import AllHistoryTransactions from '../components/transactionHistory/AllHistoryTransactions';
 
-
-//Jeff: added History component to be rendered
-class History extends React.Component {
+class Recent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { transactions: [] };
-  }
+    this.state = {
+      transactions: []
+    };
+  };
+
   componentDidMount() {
     this.getData();
-  }
+  };
+
   getData = () => {
-    let url = "http://localhost:3001/transactions/history";
+    // Express uses port 3001 (react uses 3000)
+    let url = "http://localhost:3001/transactions";
     axios.get(url)
       .then(response => this.setState({ transactions: response.data }));
   };
@@ -34,12 +36,11 @@ class History extends React.Component {
   render() {
     return (
       <div className="form">
-        <h1 className="transactions">Transaction History</h1>
-        <AllHistoryTransactions />
-        <Links />
+        <h3>Recent Transactions:</h3>
+        {/* <TransactionForm /> */}
       </div>
     );
   }
 }
 
-export default History; 
+export default Recent;

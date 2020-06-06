@@ -1,17 +1,12 @@
 import React from "react";
-import Transaction from './components/Transaction';
-// import User from './components/User';
+import AddTransaction from './screens/AddTransaction';
 import "./App.css";
-//Jeff added history screen
 import History from "./screens/History";
-//Jeff added router/switch
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-//Jeff: added edit screen
-import Edit from "./screens/Edit";
-//Jeff: added Current Balance  
-import CurrentBalance from "./components/CurrentBalance"
+import Edit from "./screens/Edit"; 
+import CurrentBalance from "./components/calculator/CurrentBalance"
 import Header from "./components/Header"
-import GlorifiedCalculator from "./components/GlorifiedCalculator";
+import GlorifiedCalculator from "./components/calculator/GlorifiedCalculator";
 import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
@@ -32,7 +27,7 @@ function App() {
             <Route path="/Income" component={ Income } />
             <Route path="/Expense" component={ Expense } />
             <Route path="/Savings" component={ Savings } />
-            <Route path="/" exact component={ Transaction } />
+            <Route path="/" exact component={ AddTransaction } />
             <Route path="/history"  component={ History } />
             <Route path="/edit/:transactionid" component={ Edit } />
             <Route path="/Help" component={ Help } />
