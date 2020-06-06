@@ -24,11 +24,11 @@ function App() {
             </div> 
           <GlorifiedCalculator />
           <Switch>
+            <Route path="/" exact component={ AddTransaction } />
+            <Route path="/history"  component={ History } />
             <Route path="/Income" component={ Income } />
             <Route path="/Expense" component={ Expense } />
             <Route path="/Savings" component={ Savings } />
-            <Route path="/" exact component={ AddTransaction } />
-            <Route path="/history"  component={ History } />
             <Route path="/edit/:transactionid" component={ Edit } />
             <Route path="/Help" component={ Help } />
           </Switch>
