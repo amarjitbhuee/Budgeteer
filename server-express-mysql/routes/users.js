@@ -251,9 +251,6 @@ router.put('/', function (req, res, next) {
   }
 })
 
-
-
-
 // =====Admin functions==========
 
 //findOne user and their transactions
