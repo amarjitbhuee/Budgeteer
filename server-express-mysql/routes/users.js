@@ -70,6 +70,7 @@ router.post('/login', function (req, res, next) {
 //findOne users
 router.get('/', function (req, res, next) {
   let token = req.cookies.jwt;
+  if (token) {
   authService.verifyUser(token)
     .then(user => {
       if (user) {
@@ -77,14 +78,15 @@ router.get('/', function (req, res, next) {
         res.send(JSON.stringify(user));
       } else {
         res.status(401);
-        res.send('Must be logged in');
+        res.send('Invalid authentication token');
       }
     })
-  // models.users
-  //   .findByPk(parseInt(req.user.userid),
-  //     {include: [{ model: models.transactions }]}
-  //   )
-
+  } else {
+    res.status(401);
+    res.send('Must be logged in')
+    // console.log('Must be logged in');
+    // res.redirect('login')
+  }
 })
 
 // create new transaction with user secured route
@@ -128,18 +130,15 @@ router.get('/transactions', function (req, res, next) {
   let token = req.cookies.jwt;
   // after logout
   if (token) {
-
     authService.verifyUser(token)
       .then(user => {
         if (user) {
           res.setHeader('Content-Type', 'application/json');
           res.send(JSON.stringify(user));
-
           // res.render('transactions', {
           //   firstname: user.firstname,
           //   lastname: user.lastname,
           // });
-
         } else {
           res.status(401);
           res.send('Invalid authentication token')
@@ -155,29 +154,28 @@ router.get('/transactions', function (req, res, next) {
   }
 })
 
-//findOne user and their transactions with JWT
+//GET function res.render with JWT (not working) 
 router.get('/income_expenses', function (req, res, next) {
   let token = req.cookies.jwt;
   if (token) {
     authService.verifyUser(token)
       .then(user => {
         if (user) {
-          //   // res.render('income_expenses', {
-          //   //   // include: [{ model: models.transactions }],
-          //   //   firstname: user.firstname
-          //   // })
-          models.user.findOne({
-            include: [{ model: models.transaction }],
-            where: { userid: parseInt(req.user.userid) }
-
-          })
-            .then(user => {
-              res.setHeader('Content-Type', 'application/json');
-              res.send(JSON.stringify(user));
-            })
+          // res.setHeader('Content-Type', 'application/json');
+          // res.send(JSON.stringify(user));
+          res.render('income_expenses', {
+            firstname: user.firstname,
+            lastname: user.lastname,
+            transactions: [{
+              transactionid: transactions.transactionid,
+              type: transactions.type,
+              amount: transactions.amount,
+              description: transactions.description              
+            }]
+          });
         } else {
           res.status(401);
-          res.send('Must be logged in')
+          res.send('Invalid authentication token')
           // console.log('Must be logged in');
           // res.redirect('login')
         }
@@ -188,7 +186,7 @@ router.get('/income_expenses', function (req, res, next) {
     // console.log('Must be logged in');
     // res.redirect('login')
   }
-});
+})
 
 // logout
 router.get('/logout', function (req, res, next) {
