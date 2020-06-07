@@ -154,6 +154,36 @@ router.get('/transactions', function (req, res, next) {
   }
 })
 
+// update user information with JWT Authentication
+router.put('/', function (req, res, next) {
+  let token = req.cookies.jwt;
+  if (token) {
+    authService.verifyUser(token)
+      .then(user => {
+        if (user) {
+          let userid = parseInt(user.userid);
+          models.users.update(req.body,
+            {
+              where: { userid: userid }
+            })
+            .then(result => res.redirect('/users'))
+            .catch(err => {
+              res.status(400);
+              res.send('There was a problem updating the user. Please check the user information.');
+            })
+        }
+      })
+  }
+})
+
+// logout
+router.get('/logout', function (req, res, next) {
+  res.cookie('jwt', '', { expire: new Date(0) });
+  // res.send('Logged out');
+  console.log('Logged out');
+  res.redirect('login')
+});
+
 //GET function res.render with JWT (not working) 
 router.get('/income_expenses', function (req, res, next) {
   let token = req.cookies.jwt;
@@ -170,7 +200,7 @@ router.get('/income_expenses', function (req, res, next) {
               transactionid: transactions.transactionid,
               type: transactions.type,
               amount: transactions.amount,
-              description: transactions.description              
+              description: transactions.description,              
             }]
           });
         } else {
@@ -188,13 +218,7 @@ router.get('/income_expenses', function (req, res, next) {
   }
 })
 
-// logout
-router.get('/logout', function (req, res, next) {
-  res.cookie('jwt', '', { expire: new Date(0) });
-  // res.send('Logged out');
-  console.log('Logged out');
-  res.redirect('login')
-});
+
 
 // user profile == for future updates. will contain add'l info i.e. history and stats
 // AJ confirmed working on Postman
@@ -229,27 +253,6 @@ router.get('/profile', function (req, res, next) {
 //     });
 // });
 
-// update user information with JWT Authentication
-router.put('/', function (req, res, next) {
-  let token = req.cookies.jwt;
-  if (token) {
-    authService.verifyUser(token)
-      .then(user => {
-        if (user) {
-          let userid = parseInt(user.userid);
-          models.users.update(req.body,
-            {
-              where: { userid: userid }
-            })
-            .then(result => res.redirect('/users'))
-            .catch(err => {
-              res.status(400);
-              res.send('There was a problem updating the user. Please check the user information.');
-            })
-        }
-      })
-  }
-})
 
 // =====Admin functions==========
 
