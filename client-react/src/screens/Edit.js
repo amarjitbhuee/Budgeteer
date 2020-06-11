@@ -95,8 +95,7 @@ class Edit extends React.Component {
             <tr>
               <td>Edit</td>
               <td><select ref={this.paymentType} className="selectFields2">
-                  <option value="N/A (Did not affect balances)" className="oops">Payment Type: </option>
-                  <option value=""  disabled className="type">Select Payment Type: </option>
+                  <option value={this.state.transactions.paymentType} className="type">{this.state.transactions.paymentType} </option>
                   <option value="Direct Deposit">Direct Deposit</option>
                   <option value="Check">Check</option>
                   <option value="Credit Card">Credit Card</option>
@@ -105,8 +104,7 @@ class Edit extends React.Component {
               </select></td>
               <td><DatePicker selected={this.state.date} onChange={this.handleChange} placeholderText={this.state.transactions.date} /></td>
               <td><select ref={this.type} className="selectFields2">
-                  <option value="N/A (Was not Added to Your Balances)" className="oops">Type:</option>
-                  <option value="" disabled className="type">Transaction Type:</option>
+    <option value={this.state.transactions.type} className="type">{this.state.transactions.type}</option>
                   <option value="Income">Income</option>
                   <option value="Expense">Expense</option>
                   <option value="Savings">Savings</option>
