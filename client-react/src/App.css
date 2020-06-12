@@ -218,7 +218,7 @@ input:focus {
 }
 
 input:hover {
-    cursor: pointer;
+    cursor: text;
     box-shadow: 2px 2px;
 }
 
@@ -268,6 +268,37 @@ select:hover {
     background-color: #037F8C;
     border: solid 1px #F0F2F2
 }
+
+.update {
+    width: 50%;
+    background-color: #4CAF50;
+    /* Green */
+    border: solid 1px #F0F2F2;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.update:hover {
+    background-color: #037F8C;
+    border: solid 1px #F0F2F2
+}
+
+.editField {
+    color: #BF533B;
+}
+
+.editFields {
+    font-style: italic;
+}
+
+/* .editTitle {
+    border-left: solid 1px #BF533B;
+    border-bottom: solid 1px #BF533B
+} */
 
 .note {
     color: #734440;
