@@ -20,17 +20,6 @@ class History extends React.Component {
       .then(response => this.setState({ transactions: response.data }));
   };
 
-
-  deleteTransaction = (transactionid) => {
-    let url = "http://localhost:3001/transactions/" + transactionid;
-    axios.delete(url)
-      .then(response => {
-        this.getData();
-        alert('Your Transaction has been deleted!');
-        window.location.reload();
-      })
-  };
-
   render() {
     return (
       <div className="form">

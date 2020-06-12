@@ -22,12 +22,21 @@ class IncomeTransactions extends React.Component {
       .then(response => this.setState({ transactions: response.data }));
   };
 
+  confirmDelete = (transactionid) => {
+    if (window.confirm('Hey There Budgeteer!\n\nAre you sure you want to delete this transaction?')) {
+      this.deleteTransaction(transactionid);
+    }
+    else {
+      alert('Your transactions was NOT deleted!')
+    }
+  }
+  
   deleteTransaction = (transactionid) => {
     let url = "http://localhost:3001/transactions/" + transactionid;
     axios.delete(url)
       .then(response => {
         this.getIncome();
-        alert('Your Transaction has been deleted!');
+        alert('Your transction has been DELETED!')
         window.location.reload();
       })
   };
@@ -56,7 +65,7 @@ class IncomeTransactions extends React.Component {
                                 <td>${p.amount}</td>
                                 <td>{p.description}</td>
                                 <td><Link to={`/edit/${p.transactionid}`}><button type="button" className="btn btn-success">Edit</button></Link></td>
-                                <td><button type="button" className="btn btn-danger" onClick={() => this.deleteTransaction(p.transactionid)}>Delete</button></td>
+                                <td><button type="button" className="btn btn-danger" onClick={() => this.confirmDelete(p.transactionid)}>Delete</button></td>
                             </tr>
                         ))}
                     </tbody>
