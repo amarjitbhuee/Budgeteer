@@ -12,7 +12,7 @@ router.get('/signup', function (req, res, next) {
 });
 
 // user signup with JWT Auth
-// AJ confirmed working on Postman
+//verified
 router.post('/signup', function (req, res, next) {
   models.users.findOrCreate({
     where: { username: req.body.username },
@@ -40,6 +40,7 @@ router.get('/login', function (req, res, next) {
 });
 
 // login with JWT Auth
+//verified
 router.post('/login', function (req, res, next) {
   models.users.findOne({
     where: {

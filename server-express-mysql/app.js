@@ -8,13 +8,15 @@ var models = require('./models');
 //Ryan: added CORS
 var cors = require("cors");
 
+//delete later not needed
 //Passport declaration
-var passport = require('passport');
-var session = require('express-session');
+// var passport = require('passport');
+// var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var tasksRouter = require('./routes/tasks');
+//Delete later not needed
+//var tasksRouter = require('./routes/tasks');
 var transactionsRouter = require('./routes/transactions');
 
 var app = express();
@@ -44,14 +46,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Delete later not needed
 //Passport
-app.use(session({secret: 'perilous journey'}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({secret: 'perilous journey'}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/tasks', tasksRouter);
+//Delete Later Not needed
+// app.use('/tasks', tasksRouter);
 app.use('/transactions', transactionsRouter);
 
 // catch 404 and forward to error handler
