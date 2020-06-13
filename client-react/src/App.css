@@ -1,13 +1,446 @@
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-30px);
+		-ms-transform:     translateY(-30px);
+		transform:         translateY(-30px)
+	}
+	60% {
+		-webkit-transform: translateY(-15px);
+		-ms-transform:     translateY(-15px);
+		transform:         translateY(-15px)
+	}
+}
+
+a {
+    outline: 0;
+ }
+
+a:hover {
+    text-decoration: none;
+}
+
 body {
     background-image: url(./assets/img/Background_Image.jpg); 
     background-size: 2320px;
-    /* background-position-y: -800px;*/
     background-position-x: -400px;
     background-position: fixed;  
     background-repeat: no-repeat;
-    background-color: lightblue;
+    background-color: #4CAF50;
+};
+
+.container {
+    background-color: #F0F2F2;
+    width: 100%;
+    height:auto;
 }
 
-.history {
-    color: blue; 
+.logo {
+    padding-top: 20px;
+    padding-left: 5px;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite; 
+}
+
+.logo:hover {
+    cursor:pointer;
+    animation-name: bounce;
+    -moz-animation-name: bounce;
+}
+
+.slogan {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 15px; 
+}
+
+.logos {
+    padding-left: 10px;
+}
+
+.head {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.balance {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    font-size: 75px; 
+    color: #037F8C;
+}
+
+
+.currentBalance {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 17px; 
+    color: #734440;
+    padding-left: 10px;
+    padding-right: 70px;
+    padding-top: 20px;
+}
+
+.budgeteer {
+/*Used RBGA to control the Alpha (the A in RGBA). This gives you control of opacity
+color =  240, 242, 242 */
+ background-color: rgba(240, 242, 242, 0.7); 
+ border: solid 2px #D9961A;
+ margin-top: 40px;
+ margin-bottom: 20px;
+ border-radius: 50px 0px 50px 0px; 
+ height: 900px; 
+ overflow: auto;
+}
+
+.calculator { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+} 
+
+.glorified {
+    border-top: solid 1px #037F8C;
+    border-bottom: solid 1px #037F8C;
+    background-color: #F0F2F2;
+    padding-right: 50px;
+    padding-left: 50px; 
+    position: relative;
+    bottom:20px;
+}
+
+.glorifiedCalculator {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #D9961A;
+    width: 150px;
+}
+
+.glorifiedCalculator {
+    text-decoration: none;
+}
+
+.positive {
+    color: #4CAF50;
+    opacity: 45%;
+}
+
+.negative {
+    color: red; 
+    opacity: 45%;
+}
+
+.logo2 {
+    width: 75px; 
+    height: 75px;
+    padding-bottom: 15px;
+}
+
+.overview {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 30px;
+    position: relative; 
+    bottom: 10px; 
+}
+
+.block {
+    /*for visual representation */
+    /* border: solid 1px black; */
+    width: 200px
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.underline:hover {
+    cursor:pointer;
+    color: #037F8C;
+}
+
+.total {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 40px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 10px; 
+    text-decoration: none;
+}
+
+.quote {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 17px; 
+    font-weight: 100; 
+    color: #734440;
+    padding-left: 25px; 
+    padding-right: 25px; 
+    text-decoration: none;
+    position: relative; 
+    bottom: 15px
+}
+
+input {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    height: 35px;
+    border-radius: 5px 5px 5px 5px; 
+    border: none;
+    border-left: 1px solid #037F8C;
+    border-bottom: 1px solid #037F8C;
+    padding-left: 10px;
+    color: #734440;
+    width: 150px;
+    outline: 0;
+}
+
+input::placeholder {
+    opacity: 80%;
+    color: #734440;
+}
+
+input:focus {
+    border: 1px solid #D9961A;
+}
+
+input:hover {
+    cursor: text;
+    box-shadow: 2px 2px;
+}
+
+select {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    height: 35px;
+    border-radius: 5px 0px 5px 5px; 
+    border: none;
+    border-left: 1px solid #037F8C;
+    border-bottom: 1px solid #037F8C;
+    color: #734440;
+    opacity: 75%;
+    outline: 0;
+}
+
+select:focus {
+    border: 1px solid #D9961A;
+}
+
+select-selected {
+    background-color: #D9961A
+}
+
+select:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px
+}
+
+.type {
+    color: #037F8C;
+}
+
+.addTransaction {
+    width: 50%;
+    background-color: #4CAF50;
+    /* Green */
+    border: solid 1px #F0F2F2;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.addTransaction:hover {
+    background-color: #037F8C;
+    border: solid 1px #F0F2F2
+}
+
+.update {
+    width: 50%;
+    background-color: #4CAF50;
+    /* Green */
+    border: solid 1px #F0F2F2;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.update:hover {
+    background-color: #037F8C;
+    border: solid 1px #F0F2F2
+}
+
+.editField {
+    color: #BF533B;
+}
+
+.editFields {
+    font-style: italic;
+}
+
+/* .editTitle {
+    border-left: solid 1px #BF533B;
+    border-bottom: solid 1px #BF533B
+} */
+
+.note {
+    color: #734440;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.note2 {
+    color: #037F8C;
+    font-size: 13px; 
+    font-style: italic;
+}
+.transactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700; 
+    color: #037F8C;
+    padding-left: 25px; 
+    text-decoration: none;
+}
+
+.table {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form {
+    padding: 20px;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.rowHead {
+    color: #037F8C;
+}
+
+button {
+    border-radius: 10px 0px 10px;
+}
+
+.btn {
+    border-radius: 10px 0px 10px;
+}
+
+.allTransactions {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 15px; 
+    font-weight: 700; 
+    color: #037F8C;
+    text-decoration: underline;
+}
+
+.allTransactions:hover {
+    text-decoration: none; 
+    color: #D9961A; 
+}
+
+
+/*The Help Screen*/
+.formExample {
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
+}
+
+.instructions {
+    width: 700px; 
+    display:block; 
+    margin: auto;
+}
+.paymentType {
+    width: 100%; 
+    height: auto; 
+    display: block;
+    margin: auto;
+    border: solid black 1px; 
+}
+
+.date {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: auto;
+    border: solid black 1px; 
+}
+
+.balances {
+    width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: auto;
+    border: solid black 1px; 
+}
+
+.ledger {
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
+}
+
+.compare {
+    width: 100%; 
+    height: auto;
+    border: solid black 1px; 
+}
+
+.helpTitle {
+    color:#037F8C;
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700; 
+}
+
+.helpTitle1 {
+    color:#037F8C;
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+    font-weight: 700;
+    text-decoration: underline; 
+}
+
+.thankYou {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 35px; 
+}
+
+.thankYou1{
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif; 
+    font-size: 25x;
+    padding-top: 20px;
+}
+
+p {
+    font-family: Arial Rounded MT Bold, Helvetica Rounded, Arial, sans-serif;  
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
 }

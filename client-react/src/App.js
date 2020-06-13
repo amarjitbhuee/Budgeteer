@@ -1,39 +1,39 @@
 import React from "react";
-import User from './components/User';
+import AddTransaction from './screens/AddTransaction';
 import "./App.css";
-//Jeff added history screen
 import History from "./screens/History";
-//Jeff added router/switch
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-//Jeff: added edit screen
-import Edit from "./screens/Edit";
-//Jeff: added Current Balance  
-import EditUser from "./screens/EditUser";
-import CurrentBalance from "./components/CurrentBalance"
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import Edit from "./screens/Edit"; 
+import CurrentBalance from "./components/calculator/CurrentBalance"
 import Header from "./components/Header"
-import GlorifiedCalculator from "./components/GlorifiedCalculator";
-import Transaction from "./components/Transaction";
+import GlorifiedCalculator from "./components/calculator/GlorifiedCalculator";
+import Income from "./screens/Income";
+import Expense from "./screens/Expense";
+import Savings from "./screens/Savings";
+import Help from "./screens/Help"; 
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr />
-        <CurrentBalance />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr />
-        <GlorifiedCalculator />
-        {/* Jeff: added <hr/> to help visually seperate components... Make sure it is deleted if needed */}
-        <hr />
-        <Switch>
-          <Route path="/" exact component={User} />
-          <Route path="/transaction" exact component={Transaction} />
-          <Route path="/history" component={History} />
-          <Route path="/edit/:transactionid" component={Edit} />
-          <Route path="/edituser/:userid" component={EditUser} />
-        </Switch>
+        <div className="container">
+          <div className="budgeteer">
+            <div className="head">
+              <Header />
+              <CurrentBalance />
+            </div> 
+          <GlorifiedCalculator />
+          <Switch>
+            <Route path="/" exact component={ AddTransaction } />
+            <Route path="/history"  component={ History } />
+            <Route path="/Income" component={ Income } />
+            <Route path="/Expense" component={ Expense } />
+            <Route path="/Savings" component={ Savings } />
+            <Route path="/edit/:transactionid" component={ Edit } />
+            <Route path="/Help" component={ Help } />
+          </Switch>
+          </div>
+        </div>
       </div>
     </Router>
   );
