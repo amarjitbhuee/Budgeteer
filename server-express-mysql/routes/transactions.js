@@ -24,6 +24,15 @@ router.get("/history", function (req, res, next) {
     .then(transactions => res.json(transactions));
 });
 
+router.get("/statements", function (req, res, next) {
+    models.Transaction.findAll({
+        order:[
+            ['date', 'DESC']
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
 //Jeff added find by pk
 //Jeff - tested and works in postman by pulling up the selected ID
 router.get("/edit/:id", function (req, res, next) {

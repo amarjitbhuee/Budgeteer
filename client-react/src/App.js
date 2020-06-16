@@ -11,6 +11,7 @@ import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
 import Help from "./screens/Help"; 
+import Statements from "./screens/Statements";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path="/Savings" component={ Savings } />
             <Route path="/edit/:transactionid" component={ Edit } />
             <Route path="/Help" component={ Help } />
+            <Route path="/Statements" component={ Statements } />
           </Switch>
           </div>
         </div>
