@@ -68,19 +68,9 @@ class Statements extends React.Component {
                             <td><StatementSavings /></td>
                         </tr>
                         <tr>
-                            <td>
-                                <td>Total Income: </td>
-                                <td><MonthlyIncome /></td>
-                            </td>
-                            <td>
-                                <td>Total Expense: </td>
-                                <td><MonthlyExpense /></td>
-                            </td>
-                            <td>
-                                <td>Total Savings: </td>
-                                <td><MonthlySavings /></td>
-                            </td>
-
+                            <td>Total Income: <MonthlyIncome /></td>
+                            <td>Total Expense: <MonthlyExpense /></td>
+                            <td>Total Savings: <MonthlySavings /></td>
                         </tr>
                         <tr>
                             <td></td>
