@@ -3,9 +3,9 @@ var router = express.Router();
 var models = require("../models");
 
 //AJ added routes
-//Jeff added to limit 10 for main page
+//Jeff added to limit 3 for main page
 router.get("/", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         limit:3,
         order:[
             ['transactionid', 'DESC']
@@ -16,7 +16,7 @@ router.get("/", function (req, res, next) {
 
 //Jeff added find all for history
 router.get("/history", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         order:[
             ['transactionid', 'DESC']
         ]
@@ -37,23 +37,24 @@ router.get("/statements", function (req, res, next) {
 //Jeff - tested and works in postman by pulling up the selected ID
 router.get("/edit/:id", function (req, res, next) {
     let transactionId = parseInt(req.params.id);
-    models.Transaction.findByPk(transactionId)
+    models.transactions.findByPk(transactionId)
     .then(transactions => res.json(transactions));  
 });
 
 router.post("/", function (req, res, next) {
-    let newTransaction = new models.Transaction();
+    let newTransaction = new models.transactions();
+    newTransaction.userid = req.body.userid;
     newTransaction.paymentType = req.body.paymentType;
     newTransaction.date = req.body.date;
     newTransaction.type = req.body.type;
     newTransaction.amount = req.body.amount;
     newTransaction.description = req.body.description;
-    newTransaction.save().then(transaction => res.json(transaction));
+    newTransaction.save().then(transactions => res.json(transactions));
 });
 
 //Jeff -tested and works in postman by udating a given ID. Update is aplied to main page and history
 router.put("/edit/:id", function (req, res, next) {
-    models.Transaction.update(
+    models.transactions.update(
         {
             paymentType: req.body.paymentType,
             date: req.body.date,
@@ -69,7 +70,7 @@ router.put("/edit/:id", function (req, res, next) {
 
 router.delete("/:id", function (req, res, next) {
     let transactionId = parseInt(req.params.id);
-    models.Transaction.findByPk(transactionId)
+    models.transactions.findByPk(transactionId)
         .then(transaction => transaction.destroy())
         .then(() => res.send({ transactionId }))
         .catch(err => res.status(400).send(err));

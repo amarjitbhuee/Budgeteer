@@ -11,7 +11,8 @@ class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactions: []
+      transactions: [],
+      users: []
     };
 
     this.paymentType = React.createRef();
@@ -21,7 +22,6 @@ class AddTransaction extends React.Component {
     this.description = React.createRef();
   };
 
-  // AJ - for DatePicker => npm install react-datepicker --save
   handleChange = date => {
     this.setState({
       date: date
@@ -60,7 +60,7 @@ class AddTransaction extends React.Component {
         this.amount.current.value = ""
         this.description.current.value = "";
       })
-      .catch((error) => alert('Oops! . There Is A Problem'))
+      .catch((error) => alert('Oops! There Is A Problem'))
       window.location.reload();
   };
 

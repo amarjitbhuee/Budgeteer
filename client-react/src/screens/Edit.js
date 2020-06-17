@@ -36,8 +36,8 @@ class Edit extends React.Component {
   };
  
   updateTransaction = () => {
-    let id = this.props.match.params.transactionid
-    let url = "http://localhost:3001/transactions/edit/" + id;
+    let className = this.props.match.params.transactionid
+    let url = "http://localhost:3001/transactions/edit/" + className;
     axios.put(url, {
       paymentType: this.paymentType.current.value,
       date: this.state.date,

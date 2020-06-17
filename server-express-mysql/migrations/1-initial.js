@@ -5,36 +5,29 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "Tasks", deps: []
- * createTable "Transactions", deps: []
+ * createTable "sequelizemeta", deps: []
+ * createTable "tasks", deps: []
+ * createTable "users", deps: []
  *
  **/
 
 var info = {
     "revision": 1,
-    "name": "initial_migration",
-    "created": "2020-05-14T21:58:48.189Z",
+    "name": "initial",
+    "created": "2020-06-02T23:04:21.120Z",
     "comment": ""
 };
 
 var migrationCommands = [{
         fn: "createTable",
         params: [
-            "Tasks",
+            "sequelizemeta",
             {
-                "id": {
-                    "type": Sequelize.INTEGER,
-                    "field": "id",
-                    "autoIncrement": true,
-                    "primaryKey": true
-                },
                 "name": {
-                    "type": Sequelize.STRING,
-                    "field": "name"
-                },
-                "complete": {
-                    "type": Sequelize.BOOLEAN,
-                    "field": "complete"
+                    "type": Sequelize.STRING(255),
+                    "field": "name",
+                    "primaryKey": true,
+                    "allowNull": false
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -53,38 +46,76 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
-            "Transactions",
+            "tasks",
             {
                 "id": {
                     "type": Sequelize.INTEGER,
                     "field": "id",
-                    "autoIncrement": true,
-                    "primaryKey": true
-                },
-                "paymentType": {
-                    "type": Sequelize.STRING,
-                    "field": "paymentType",
+                    "primaryKey": true,
                     "allowNull": false
                 },
-                "date": {
-                    "type": Sequelize.DATEONLY,
-                    "field": "date",
+                "name": {
+                    "type": Sequelize.STRING(255),
+                    "field": "name",
                     "allowNull": true
                 },
-                "type": {
-                    "type": Sequelize.STRING,
-                    "field": "type",
+                "complete": {
+                    "type": Sequelize.INTEGER(1),
+                    "field": "complete",
+                    "allowNull": true
+                },
+                "createdAt": {
+                    "type": Sequelize.DATE,
+                    "field": "createdAt",
                     "allowNull": false
                 },
-                "amount": {
+                "updatedAt": {
+                    "type": Sequelize.DATE,
+                    "field": "updatedAt",
+                    "allowNull": false
+                }
+            },
+            {}
+        ]
+    },
+    {
+        fn: "createTable",
+        params: [
+            "users",
+            {
+                "userid": {
                     "type": Sequelize.INTEGER,
-                    "field": "amount",
+                    "field": "userid",
+                    "autoIncrement": true,
+                    "primaryKey": true,
                     "allowNull": false
                 },
-                "description": {
-                    "type": Sequelize.STRING,
-                    "field": "description",
+                "firstname": {
+                    "type": Sequelize.STRING(45),
+                    "field": "firstname",
                     "allowNull": false
+                },
+                "lastname": {
+                    "type": Sequelize.STRING(45),
+                    "field": "lastname",
+                    "allowNull": false
+                },
+                "username": {
+                    "type": Sequelize.STRING(45),
+                    "field": "username",
+                    "allowNull": false,
+                    "unique": true
+                },
+                "password": {
+                    "type": Sequelize.STRING,
+                    "field": "password",
+                    "allowNull": false
+                },
+                "email": {
+                    "type": Sequelize.STRING,
+                    "field": "email",
+                    "allowNull": false,
+                    "unique": true
                 },
                 "createdAt": {
                     "type": Sequelize.DATE,
