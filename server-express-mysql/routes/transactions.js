@@ -25,7 +25,7 @@ router.get("/history", function (req, res, next) {
 });
 
 router.get("/statements", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         order:[
             ['date', 'DESC']
         ]
@@ -77,7 +77,7 @@ router.delete("/:id", function (req, res, next) {
 });
 
 router.get("/income", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type: 'Income' 
         },   
@@ -90,7 +90,7 @@ router.get("/income", function (req, res, next) {
 });
 
 router.get("/incomeShow", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type:'income'
         },
@@ -102,7 +102,7 @@ router.get("/incomeShow", function (req, res, next) {
 });
 
 router.get("/incomeJune", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type:'income',
             date:'06-1-2020'
@@ -115,7 +115,7 @@ router.get("/incomeJune", function (req, res, next) {
 });
 
 router.get("/expense", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type: 'Expense' 
         },   
@@ -129,7 +129,7 @@ router.get("/expense", function (req, res, next) {
 });
 
 router.get("/expenseShow", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type:'expense'
         },
@@ -141,7 +141,7 @@ router.get("/expenseShow", function (req, res, next) {
 });
 
 router.get("/savings", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type: 'Savings' 
         },   
@@ -154,7 +154,7 @@ router.get("/savings", function (req, res, next) {
 });
 
 router.get("/savingsShow", function (req, res, next) {
-    models.Transaction.findAll({
+    models.transactions.findAll({
         where: {
             type:'savings'
         },
@@ -166,7 +166,7 @@ router.get("/savingsShow", function (req, res, next) {
 });
 
 router.get("/lastAmount", function (req, res, next) {
-    models.Transaction.findOne({
+    models.transactions.findOne({
         attributes:[ 'amount' ],
         order:[
             ['transactionid', 'DESC']

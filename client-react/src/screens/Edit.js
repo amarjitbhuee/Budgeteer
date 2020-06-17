@@ -36,8 +36,8 @@ class Edit extends React.Component {
   };
  
   updateTransaction = () => {
-    let className = this.props.match.params.transactionid
-    let url = "http://localhost:3001/transactions/edit/" + className;
+    let id = this.props.match.params.transactionid
+    let url = "http://localhost:3001/transactions/edit/" + id;
     axios.put(url, {
       paymentType: this.paymentType.current.value,
       date: this.state.date,
@@ -49,9 +49,9 @@ class Edit extends React.Component {
         alert('Hey there Budgeteer!\n\nYou Applied An Update To Your Transaction!')
         window.location.reload();
         // refresh the data
-        this.getTransaction();
+        // this.getTransaction();
       })
-      .catch(err => console.log(err));
+      // .catch(err => console.log(err));
   };
 
   render() {
@@ -84,7 +84,7 @@ class Edit extends React.Component {
             <tbody>
             <tr>
               <td>Edit: </td>
-              <td><select ref={this.paymentType} className="selectFields2" name="paymentType">
+              <td><select ref={this.paymentType} className="selectFields2" defaultValue={this.state.transactions.paymentType} name="paymentType">
                   <option value={this.state.transactions.paymentType}>{this.state.transactions.paymentType}</option>
                   <optgroup label="Select Payment Type:">
                     <option value="Direct Deposit">Direct Deposit</option>
@@ -111,8 +111,7 @@ class Edit extends React.Component {
           <button type="button" className="update" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
         </form>
         <p className="note">*** Please make ensure that all fields are filled out prior to update ***<br />- Team Penguin</p>
-      </div>
-    );
+      </div>    );
   }
 }
 

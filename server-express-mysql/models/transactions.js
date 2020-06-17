@@ -36,16 +36,16 @@ module.exports = function(sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true
       },
-      userid: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'userid'
-        }
-      }
+      // userid: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: 'users',
+      //     key: 'userid'
+      //   }
+      // }
     }, {
-      tableName: 'transactions'
+      // tableName: 'transactions'
     });
   };
   

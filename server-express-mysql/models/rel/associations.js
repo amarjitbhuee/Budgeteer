@@ -1,6 +1,6 @@
-module.exports = function(models) {
-    models.users.hasMany(models.transactions, {
-        foreignKey: 'userid'
-    });
-}
+// module.exports = function(models) {
+//     models.users.hasMany(models.transactions, {
+//         foreignKey: 'userid'
+//     });
+// }
 

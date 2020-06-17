@@ -14,7 +14,7 @@ var cors = require("cors");
 // var session = require('express-session');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var usersRouter = require('./routes/users');
 //Delete later not needed
 //var tasksRouter = require('./routes/tasks');
 var transactionsRouter = require('./routes/transactions');
@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(passport.session());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// app.use('/users', usersRouter);
 //Delete Later Not needed
 // app.use('/tasks', tasksRouter);
 app.use('/transactions', transactionsRouter);
