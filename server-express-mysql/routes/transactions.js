@@ -100,6 +100,19 @@ router.get("/incomeShow", function (req, res, next) {
     .then(transactions => res.json(transactions));
 });
 
+router.get("/incomeJune", function (req, res, next) {
+    models.Transaction.findAll({
+        where: {
+            type:'income',
+            date:06-01-2020
+        },
+        order:[
+            ['transactionid', 'DESC']
+        ]
+    })
+    .then(transactions => res.json(transactions));
+});
+
 router.get("/expense", function (req, res, next) {
     models.Transaction.findAll({
         where: {

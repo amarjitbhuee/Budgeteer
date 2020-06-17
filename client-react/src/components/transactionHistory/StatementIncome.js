@@ -16,7 +16,7 @@ class StatementIncome extends React.Component {
   };
 
   getIncome = () => {
-    let url = "http://localhost:3001/transactions/incomeShow";
+    let url = "http://localhost:3001/transactions/incomeJune";
     axios.get(url)
       .then(response => this.setState({ transactions: response.data }));
   };
