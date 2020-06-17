@@ -29,14 +29,6 @@ module.exports = function(sequelize, DataTypes) {
       updatedAt: {
         type: DataTypes.DATE,
         allowNull: false
-<<<<<<< HEAD:server-express-mysql/models/transaction.js
-      }, 
-      
-    }, {}
-    );
-  Transaction.associate = function (models) {
-    // associations can be defined here
-=======
       },
       transactionid: {
         type: DataTypes.INTEGER,
@@ -55,7 +47,6 @@ module.exports = function(sequelize, DataTypes) {
     }, {
       tableName: 'transactions'
     });
->>>>>>> a9d8f69596f2f710578cf1f9e462db364f465b5a:server-express-mysql/models/transactions.js
   };
   
   
