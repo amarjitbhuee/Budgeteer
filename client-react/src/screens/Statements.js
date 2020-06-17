@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
-// import { Link } from 'react-router-dom';
 import StatementIncome from '../components/transactionHistory/StatementIncome';
 import StatementSavings from '../components/transactionHistory/StatementSavings';
 import StatementExpense from '../components/transactionHistory/StatementExpense';
@@ -79,8 +77,6 @@ class Statements extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-
-                <Links />
             </div>
         );
     }

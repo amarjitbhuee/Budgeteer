@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
 import AllHistoryTransactions from '../components/transactionHistory/AllHistoryTransactions';
 
 
@@ -25,7 +24,6 @@ class History extends React.Component {
       <div className="form">
         <h1 className="transactions">Transaction History</h1>
         <AllHistoryTransactions />
-        <Links />
       </div>
     );
   }

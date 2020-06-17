@@ -2,7 +2,6 @@ import React from "react";
 import '../transaction.min.css';
 import axios from "axios";
 import DatePicker from "react-datepicker";
-import Links from "../components/nav/Links";
 
 class Edit extends React.Component {
   constructor(props) {
@@ -112,7 +111,6 @@ class Edit extends React.Component {
           <button type="button" className="update" onClick={() => this.updateTransaction(this.transactionid)}>Update</button>
         </form>
         <p className="note">*** Please make ensure that all fields are filled out prior to update ***<br />- Team Penguin</p>
-        <Links />
       </div>
     );
   }

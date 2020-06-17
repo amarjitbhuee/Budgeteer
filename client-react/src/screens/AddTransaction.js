@@ -3,7 +3,6 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../transaction.min.css';
-import Links from '../components/nav/Links';
 import NewTransaction from '../components/NewTransaction';
 import RecentTransactions from '../components/transactionHistory/RecentTransactions';
 
@@ -99,7 +98,6 @@ class AddTransaction extends React.Component {
         </form>
         <h4>Recent Transactions</h4>
         <RecentTransactions />
-        <Links />
       </div>
     );
   }
