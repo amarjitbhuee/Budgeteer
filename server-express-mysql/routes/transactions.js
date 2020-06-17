@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require("../models");
 
 //AJ added routes
-//Jeff added to limit 10 for main page
+//Jeff added to limit 3 for main page
 router.get("/", function (req, res, next) {
     models.transactions.findAll({
         limit:3,

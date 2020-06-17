@@ -12,7 +12,7 @@ class AddTransaction extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      transactions: []
+      users: []
     };
 
     this.paymentType = React.createRef();
@@ -22,7 +22,6 @@ class AddTransaction extends React.Component {
     this.description = React.createRef();
   };
 
-  // AJ - for DatePicker => npm install react-datepicker --save
   handleChange = date => {
     this.setState({
       date: date
@@ -35,14 +34,14 @@ class AddTransaction extends React.Component {
 
   getData = () => {
     // Express uses port 3001 (react uses 3000)
-    let url = "http://localhost:3001/transactions";
+    let url = "http://localhost:3001/users/transactions_MainPage";
+    //let url = "http://localhost:3001/users/transactions"
     axios.get(url)
-      .then(response => this.setState({ transactions: response.data }));
+      .then(response => this.setState({ users: response.data }));
   };
 
   addTransaction = () => {
-    //window.location.reload();
-    let url = "http://localhost:3001/transactions";
+    let url = "http://localhost:3001/users/transactions_AddTransaction";
     axios.post(url, {
       paymentType: this.paymentType.current.value,
       date: this.state.date,
@@ -61,7 +60,7 @@ class AddTransaction extends React.Component {
         this.amount.current.value = ""
         this.description.current.value = "";
       })
-      .catch((error) => alert('Oops! . There Is A Problem'))
+      .catch((error) => alert('Oops! There Is A Problem'))
       window.location.reload();
   };
 
