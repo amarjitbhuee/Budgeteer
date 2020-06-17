@@ -104,7 +104,7 @@ router.get("/incomeJune", function (req, res, next) {
     models.Transaction.findAll({
         where: {
             type:'income',
-            date:06-01-2020
+            date:'06-1-2020'
         },
         order:[
             ['transactionid', 'DESC']
