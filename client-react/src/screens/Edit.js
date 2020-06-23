@@ -47,7 +47,7 @@ class Edit extends React.Component {
     })
       .then(response => {
         alert('Hey there Budgeteer!\n\nYou Applied An Update To Your Transaction!')
-        window.location.reload();
+        window.location.replace("http://localhost:3000/history");
         // refresh the data
         // this.getTransaction();
       })
