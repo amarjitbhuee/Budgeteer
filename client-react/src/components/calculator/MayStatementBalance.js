@@ -54,7 +54,7 @@ class MayStatementBalance extends React.Component{
         const currentBalance = ((totalIncome-totalExpense) - (totalSavings)); 
         return(
             <div>
-                <h1>Total Balance: <CurrencyFormat value={currentBalance} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h1>
+                <h1>Profit/Loss: <CurrencyFormat value={currentBalance} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h1>
             </div>
         )
     }
