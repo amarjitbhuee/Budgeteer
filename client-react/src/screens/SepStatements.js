@@ -8,7 +8,7 @@ import SepIncome from '../components/calculator/SepIncome';
 import SepExpense from '../components/calculator/SepExpense';
 import SepSavings from '../components/calculator/SepSavings';
 import SepStatementBalance from '../components/calculator/SepStatementBalance';
-
+import { Link } from 'react-router-dom';
 
 
 class SepStatements extends React.Component {
@@ -50,6 +50,7 @@ class SepStatements extends React.Component {
     render() {
         return (
             <div className="form">
+                <p className="transactions">Profit and Loss</p>
                 <p className="transactions">September 2020</p>
                 <table className="table">
                     <thead className="thead">
@@ -77,6 +78,19 @@ class SepStatements extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+                <Link to={`/JanStatements`}>January</Link><br />
+                <Link to={`/FebStatements`}>February</Link><br />
+                <Link to={`/MarStatements`}>March</Link><br />
+                <Link to={`/AprStatements`}>April</Link><br />
+                <Link to={`/MayStatements`}>May</Link><br />
+                <Link to={`/JuneStatements`}>June</Link><br />
+                <Link to={`/JulStatements`}>July</Link><br />
+                <Link to={`/AugStatements`}>August</Link><br />
+                <Link to={`/SepStatements`}>September</Link><br />
+                <Link to={`/OctStatements`}>October</Link><br />
+                <Link to={`/NovStatements`}>November</Link><br />
+                <Link to={`/DecStatements`}>December</Link><br />
+
             </div>
         );
     }

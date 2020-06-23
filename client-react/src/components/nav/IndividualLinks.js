@@ -9,7 +9,7 @@ export const IndividualLinks = () => {
             <Link to={`/Income`} className="allTransactions">Income</Link> |
             <Link to={`/Expense`} className="allTransactions">Expenses</Link> |
             <Link to={`/Savings`} className="allTransactions">Savings</Link> |
-            <Link to={`/Statements`} className="allTransactions">Statements</Link>
+            <Link to={`/JuneStatements`} className="allTransactions">Statements</Link>
         </div>
     )
 }

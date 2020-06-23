@@ -14,8 +14,20 @@ import Income from "./screens/Income";
 import Expense from "./screens/Expense";
 import Savings from "./screens/Savings";
 import Help from "./screens/Help";
-import Statements from "./screens/Statements";
 import Links from './components/nav/Links';
+import JuneStatements from './screens/JuneStatements';
+import JanStatements from './screens/JanStatements';
+import FebStatements from './screens/FebStatements';
+import MarStatements from './screens/MarStatements';
+import AprStatements from './screens/AprStatements';
+import MayStatements from './screens/MayStatements';
+import JulStatements from './screens/JulStatements';
+import AugStatements from './screens/AugStatements';
+import SepStatements from './screens/SepStatements';
+import OctStatements from './screens/OctStatements';
+import NovStatements from './screens/NovStatements';
+import DecStatements from './screens/DecStatements';
+
 
 function App() {
   return (
@@ -42,7 +54,18 @@ function App() {
               <Route path="/Savings" component={Savings} />
               <Route path="/edit/:transactionid" component={Edit} />
               <Route path="/Help" component={Help} />
-              <Route path="/Statements" component={Statements} />
+              <Route path="/JanStatements" component={JanStatements} />
+              <Route path="/FebStatements" component={FebStatements} />
+              <Route path="/MarStatements" component={MarStatements} />
+              <Route path="/AprStatements" component={AprStatements} />
+              <Route path="/MayStatements" component={MayStatements} />
+              <Route path="/JuneStatements" component={JuneStatements} />
+              <Route path="/JulStatements" component={JulStatements} />
+              <Route path="/AugStatements" component={AugStatements} />
+              <Route path="/SepStatements" component={SepStatements} />
+              <Route path="/OctStatements" component={OctStatements} />
+              <Route path="/NovStatements" component={NovStatements} />
+              <Route path="/DecStatements" component={DecStatements} />
             </Switch>
             <div className="form">
               <Links />
