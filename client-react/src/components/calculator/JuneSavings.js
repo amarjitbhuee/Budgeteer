@@ -4,7 +4,7 @@ import '../../transaction.min.css';
 import CurrencyFormat from 'react-currency-format';
 // npm install react-currency-format --save
 
-class MonthlySavings extends React.Component {
+class JuneSavings extends React.Component {
     constructor(props) {
         super(props); 
         this.state ={
@@ -17,7 +17,7 @@ class MonthlySavings extends React.Component {
     };
 
     getSavings = () => {
-        let url = "http://localhost:3001/transactions/savings"; 
+        let url = "http://localhost:3001/transactions/savingsJune"; 
         axios.get(url)
             .then(response => this.setState({ transactions: response.data})); 
     }; 
@@ -33,4 +33,4 @@ class MonthlySavings extends React.Component {
     }
 }
 
-export default MonthlySavings; 
+export default JuneSavings; 

@@ -3,7 +3,7 @@ import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import '../../transaction.min.css';
 
-class StatementIncome extends React.Component {
+class AprStatementIncome extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ class StatementIncome extends React.Component {
   };
 
   getIncome = () => {
-    let url = "http://localhost:3001/transactions/incomeJune";
+    let url = "http://localhost:3001/transactions/incomeApril";
     axios.get(url)
       .then(response => this.setState({ transactions: response.data }));
   };
@@ -45,4 +45,4 @@ class StatementIncome extends React.Component {
   }
 }
 
-export default StatementIncome; 
+export default AprStatementIncome; 

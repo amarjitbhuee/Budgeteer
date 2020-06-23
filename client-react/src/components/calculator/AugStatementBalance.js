@@ -4,7 +4,7 @@ import '../../transaction.min.css';
 import CurrencyFormat from 'react-currency-format';
 // npm install react-currency-format --save
 
-class StatementBalance extends React.Component{
+class AugStatementBalance extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -22,20 +22,20 @@ class StatementBalance extends React.Component{
     };
 
     getIncome = () => {
-        let url = "http://localhost:3001/transactions/income";
+        let url = "http://localhost:3001/transactions/incomeAugust";
         axios.get(url)
             .then(response => this.setState({ transactionsIncome: response.data}))
 
     }; 
 
     getExpense = () => {
-        let url = "http://localhost:3001/transactions/expense"; 
+        let url = "http://localhost:3001/transactions/expenseAugust"; 
         axios.get(url)
             .then(response => this.setState({ transactionsExpense: response.data}));
     };
 
     getSavings = () => {
-        let url = "http://localhost:3001/transactions/savings"; 
+        let url = "http://localhost:3001/transactions/savingsAugust"; 
         axios.get(url)
             .then(response => this.setState({ transactionsSavings: response.data})); 
     }; 
@@ -59,4 +59,4 @@ class StatementBalance extends React.Component{
         )
     }
 }
-export default StatementBalance; 
+export default AugStatementBalance; 
