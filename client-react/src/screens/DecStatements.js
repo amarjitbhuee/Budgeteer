@@ -52,25 +52,25 @@ class DecStatements extends React.Component {
             <div className="form">
                 <p className="transactions">December 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><DecStatementIncome /></td>
-                            <td><DecStatementExpense /></td>
-                            <td><DecStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><DecStatementIncome /></td>
+                            <td className="tdata"><DecStatementExpense /></td>
+                            <td className="tdata"><DecStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <DecIncome /></td>
                             <td>Total Expense: <DecExpense /></td>
                             <td>Total Savings: <DecSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><DecStatementBalance /></td>

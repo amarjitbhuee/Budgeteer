@@ -52,25 +52,25 @@ class MayStatements extends React.Component {
             <div className="form">
                 <p className="transactions">May 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><MayStatementIncome /></td>
-                            <td><MayStatementExpense /></td>
-                            <td><MayStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><MayStatementIncome /></td>
+                            <td className="tdata"><MayStatementExpense /></td>
+                            <td className="tdata"><MayStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <MayIncome /></td>
                             <td>Total Expense: <MayExpense /></td>
                             <td>Total Savings: <MaySavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><MayStatementBalance /></td>

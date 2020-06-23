@@ -52,25 +52,25 @@ class JanStatements extends React.Component {
             <div className="form">
                 <p className="transactions">January 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><JanStatementIncome /></td>
-                            <td><JanStatementExpense /></td>
-                            <td><JanStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><JanStatementIncome /></td>
+                            <td className="tdata"><JanStatementExpense /></td>
+                            <td className="tdata"><JanStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <JanIncome /></td>
                             <td>Total Expense: <JanExpense /></td>
                             <td>Total Savings: <JanSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><JanStatementBalance /></td>

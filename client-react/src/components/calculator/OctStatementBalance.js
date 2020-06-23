@@ -29,7 +29,7 @@ class OctStatementBalance extends React.Component{
     }; 
 
     getExpense = () => {
-        let url = "http://localhost:3001/transactions/expenseJuneOctober"; 
+        let url = "http://localhost:3001/transactions/expenseOctober"; 
         axios.get(url)
             .then(response => this.setState({ transactionsExpense: response.data}));
     };

@@ -52,25 +52,25 @@ class AprStatements extends React.Component {
             <div className="form">
                 <p className="transactions">April 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><AprStatementIncome /></td>
-                            <td><AprStatementExpense /></td>
-                            <td><AprStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><AprStatementIncome /></td>
+                            <td className="tdata"><AprStatementExpense /></td>
+                            <td className="tdata"><AprStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <AprIncome /></td>
                             <td>Total Expense: <AprExpense /></td>
                             <td>Total Savings: <AprSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><AprStatementBalance /></td>

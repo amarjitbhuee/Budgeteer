@@ -34,8 +34,8 @@ class MayStatementExpense extends React.Component {
           <tbody>
             {this.state.transactions.map(p => (
               <tr key={p.transactionid}>
-                <td>{p.description}</td>
-                <td>${p.amount}</td>
+                <td className='tdata'>{p.description}</td>
+                <td className='tdata'>${p.amount}</td>
               </tr>
             ))}
           </tbody>

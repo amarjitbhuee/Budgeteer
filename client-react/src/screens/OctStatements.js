@@ -52,25 +52,25 @@ class OctStatements extends React.Component {
             <div className="form">
                 <p className="transactions">October 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><OctStatementIncome /></td>
-                            <td><OctStatementExpense /></td>
-                            <td><OctStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><OctStatementIncome /></td>
+                            <td className="tdata"><OctStatementExpense /></td>
+                            <td className="tdata"><OctStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <OctIncome /></td>
                             <td>Total Expense: <OctExpense /></td>
                             <td>Total Savings: <OctSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><OctStatementBalance /></td>

@@ -52,25 +52,25 @@ class SepStatements extends React.Component {
             <div className="form">
                 <p className="transactions">September 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><SepStatementIncome /></td>
-                            <td><SepStatementExpense /></td>
-                            <td><SepStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><SepStatementIncome /></td>
+                            <td className="tdata"><SepStatementExpense /></td>
+                            <td className="tdata"><SepStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <SepIncome /></td>
                             <td>Total Expense: <SepExpense /></td>
                             <td>Total Savings: <SepSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><SepStatementBalance /></td>

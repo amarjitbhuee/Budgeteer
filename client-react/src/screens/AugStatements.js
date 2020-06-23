@@ -52,25 +52,25 @@ class AugStatements extends React.Component {
             <div className="form">
                 <p className="transactions">August 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><AugStatementIncome /></td>
-                            <td><AugStatementExpense /></td>
-                            <td><AugStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><AugStatementIncome /></td>
+                            <td className="tdata"><AugStatementExpense /></td>
+                            <td className="tdata"><AugStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <AugIncome /></td>
                             <td>Total Expense: <AugExpense /></td>
                             <td>Total Savings: <AugSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><AugStatementBalance /></td>

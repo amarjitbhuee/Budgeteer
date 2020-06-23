@@ -52,25 +52,25 @@ class Statements extends React.Component {
             <div className="form">
                 <p className="transactions">June 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><JuneStatementIncome /></td>
-                            <td><JuneStatementExpense /></td>
-                            <td><JuneStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><JuneStatementIncome /></td>
+                            <td className="tdata"><JuneStatementExpense /></td>
+                            <td className="tdata"><JuneStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <JuneIncome /></td>
                             <td>Total Expense: <JuneExpense /></td>
                             <td>Total Savings: <JuneSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><JuneStatementBalance /></td>

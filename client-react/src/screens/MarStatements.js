@@ -52,25 +52,25 @@ class MarStatements extends React.Component {
             <div className="form">
                 <p className="transactions">March 2020</p>
                 <table className="table">
-                    <thead>
-                        <tr>
+                    <thead className="thead">
+                        <tr className="trow">
                             <th>Income</th>
                             <th>Expense</th>
                             <th>Savings</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><MarStatementIncome /></td>
-                            <td><MarStatementExpense /></td>
-                            <td><MarStatementSavings /></td>
+                    <tbody className="tbody">
+                        <tr className="trow">
+                            <td className="tdata"><MarStatementIncome /></td>
+                            <td className="tdata"><MarStatementExpense /></td>
+                            <td className="tdata"><MarStatementSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td>Total Income: <MarIncome /></td>
                             <td>Total Expense: <MarExpense /></td>
                             <td>Total Savings: <MarSavings /></td>
                         </tr>
-                        <tr>
+                        <tr className="trow">
                             <td></td>
                             <td></td>
                             <td><MarStatementBalance /></td>
